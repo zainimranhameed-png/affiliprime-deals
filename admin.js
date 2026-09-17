@@ -138,14 +138,27 @@ function renderDashboard() {
 // ==========================================================================
 function renderCountries(data) {
   const totalViews = data.totalViews || 1;
-  const sortedCountries = Object.entries(data.countries).sort((a, b) => b[1].views - a[1].views);
+  const entries = Object.entries(data.countries || {});
+
+  if (entries.length === 0) {
+    countryListContainer.innerHTML = `
+      <div style="text-align: center; color: var(--text-muted); padding: 2.5rem 1rem;">
+        <i class="fa-solid fa-earth-americas" style="font-size: 2.5rem; margin-bottom: 0.75rem; color: var(--accent-cyan); display: block;"></i>
+        <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;">Waiting for First Real Visitor</div>
+        <p style="font-size: 0.82rem;">Open <a href="index.html" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">your website</a> to see your real country appear instantly!</p>
+      </div>
+    `;
+    return;
+  }
+
+  const sortedCountries = entries.sort((a, b) => b[1].views - a[1].views);
 
   countryListContainer.innerHTML = sortedCountries.map(([countryName, countryData]) => {
     const percentage = Math.round((countryData.views / totalViews) * 100);
     return `
       <div class="country-row">
         <div class="country-info">
-          <span class="country-flag">${countryData.flag}</span>
+          <span class="country-flag">${countryData.flag || "🌐"}</span>
           <span class="country-name">${countryName}</span>
         </div>
         <div class="country-bar-wrap">
@@ -197,13 +210,15 @@ function renderActivityStream(data) {
 // Top Products Table
 // ==========================================================================
 function renderProductPerformance(data) {
-  const products = Object.entries(data.productClicks).sort((a, b) => b[1].clicks - a[1].clicks);
+  const products = Object.entries(data.productClicks || {}).sort((a, b) => b[1].clicks - a[1].clicks);
 
   if (products.length === 0) {
     productPerformanceTableBody.innerHTML = `
       <tr>
-        <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">
-          No product clicks recorded yet.
+        <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2.5rem 1rem;">
+          <i class="fa-solid fa-arrow-pointer" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary); display: block;"></i>
+          <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;">No Clicks Recorded Yet</div>
+          <div style="font-size: 0.82rem;">As real visitors click "Check Deal" or "Buy on Amazon", clicks and real commission will populate here.</div>
         </td>
       </tr>
     `;
@@ -284,4 +299,11 @@ function simulateClickTest() {
 
 function refreshDashboard() {
   renderDashboard();
+}
+
+function handleResetClean() {
+  if (confirm("Kya aap data ko 0 par reset karna chahte hain taake bilkul fresh real tracking shuru ho?")) {
+    resetAnalyticsToZero();
+    renderDashboard();
+  }
 }
