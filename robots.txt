@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://rbdeals.surge.sh/sitemap.xml
+Sitemap: https://zainimranhameed-png.github.io/affiliprime-deals/sitemap.xml
