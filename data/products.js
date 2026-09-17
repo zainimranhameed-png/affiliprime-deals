@@ -436,7 +436,7 @@ const PRODUCTS_DATA = [
 
 // Global configuration for Affiliate Tag
 const APP_CONFIG = {
-  defaultAffiliateTag: "dealsradar-20", // Default Fallback Tag
+  defaultAffiliateTag: "affiliprimehu-20", // Official Amazon Associate Tag
   storageKey: "amazon_affiliate_tag_custom",
   siteName: "AffiliPrime Hub",
   currencySymbol: "$",
