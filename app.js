@@ -136,6 +136,11 @@ function renderSpotlight() {
   const buyBtn = document.getElementById("spotlightBuyBtn");
   if (buyBtn) {
     buyBtn.href = getAffiliateLink(spotlightItem.amazonUrl);
+    buyBtn.onclick = () => {
+      if (typeof trackAffiliateClick === 'function') {
+        trackAffiliateClick(spotlightItem.id, spotlightItem.title, spotlightItem.price, spotlightItem.category);
+      }
+    };
   }
 }
 
@@ -247,7 +252,7 @@ function renderProducts() {
           </div>
 
           <div class="card-buttons-group">
-            <a href="${affiliateUrl}" target="_blank" rel="nofollow noopener" class="btn-amazon" title="Buy on Amazon with current affiliate tag">
+            <a href="${affiliateUrl}" target="_blank" rel="nofollow noopener" class="btn-amazon" title="Buy on Amazon with current affiliate tag" onclick="if(typeof trackAffiliateClick==='function') trackAffiliateClick('${product.id}', '${product.title.replace(/'/g, "\\'")}', ${product.price}, '${product.category}')">
               <i class="fa-brands fa-amazon"></i> Check Deal
             </a>
             <button class="btn-card-compare ${isCompared ? 'active' : ''}" onclick="toggleCompare('${product.id}')" title="${isCompared ? 'Remove from comparison' : 'Add to compare'}">
@@ -287,7 +292,7 @@ function openProductModal(productId) {
   modalBodyContent.innerHTML = `
     <div class="modal-image-col">
       <img class="modal-main-img" src="${product.image}" alt="${product.title}">
-      <a href="${affiliateUrl}" target="_blank" rel="nofollow noopener" class="btn-amazon" style="padding: 0.9rem 1.5rem; font-size: 1.05rem;">
+      <a href="${affiliateUrl}" target="_blank" rel="nofollow noopener" class="btn-amazon" style="padding: 0.9rem 1.5rem; font-size: 1.05rem;" onclick="if(typeof trackAffiliateClick==='function') trackAffiliateClick('${product.id}', '${product.title.replace(/'/g, "\\'")}', ${product.price}, '${product.category}')">
         <i class="fa-brands fa-amazon"></i> Check Best Price on Amazon
       </a>
       <button class="btn-secondary" onclick="copyAffiliateLink('${affiliateUrl}', event)" style="width: 100%;">
@@ -425,7 +430,7 @@ function openComparisonModal() {
                 <img src="${p.image}" alt="${p.title}" style="width: 90px; height: 90px; object-fit: cover; border-radius: var(--radius-sm);">
                 <div style="font-size: 0.95rem; font-weight: 700;">${p.title}</div>
                 <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary);">$${p.price.toFixed(2)}</div>
-                <a href="${getAffiliateLink(p.amazonUrl)}" target="_blank" rel="nofollow noopener" class="btn-amazon" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+                <a href="${getAffiliateLink(p.amazonUrl)}" target="_blank" rel="nofollow noopener" class="btn-amazon" style="font-size: 0.85rem; padding: 0.5rem 1rem;" onclick="if(typeof trackAffiliateClick==='function') trackAffiliateClick('${p.id}', '${p.title.replace(/'/g, "\\'")}', ${p.price}, '${p.category}')">
                   <i class="fa-brands fa-amazon"></i> Buy on Amazon
                 </a>
               </div>
