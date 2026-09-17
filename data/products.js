@@ -431,6 +431,186 @@ const PRODUCTS_DATA = [
       "App connection is optional but adds extra steps"
     ],
     description: "Whiter, healthier teeth for life. Start every day in style with advanced Sonicare technology for whiter teeth and improved oral health. 4 modes and 3 intensities let you personalize your brushing."
+  },
+  {
+    id: "prod-13",
+    asin: "B0BVM9X43F",
+    title: "Stanley Quencher H2.0 FlowState 40 oz Tumbler (Stainless Steel)",
+    tagline: "The viral TikTok hydration tumbler with 3-way rotating lid and 11-hour ice retention",
+    category: "home",
+    categoryName: "Home & Lifestyle",
+    rating: 4.8,
+    reviewsCount: 78500,
+    price: 45.00,
+    originalPrice: 50.00,
+    discount: "10% OFF",
+    badge: "🔥 #1 Viral TikTok",
+    badgeType: "hot",
+    image: "https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B0BVM9X43F",
+    specs: {
+      "Capacity": "40 Ounces (1.18 Liters)",
+      "Insulation": "Double-wall vacuum (11 hrs cold, 2 days iced)",
+      "Material": "90% recycled 18/8 food-grade stainless steel",
+      "Lid Type": "FlowState 3-position lid with splash resistance",
+      "Cup Holder Friendly": "Yes (Narrow base fits car cup holders)",
+      "Cleaning": "Dishwasher safe"
+    },
+    pros: [
+      "Keeps ice frozen for over 48 hours in warm temperatures",
+      "Fits perfectly into standard automobile cup holders",
+      "Comfort-grip handle makes carrying 40oz effortless",
+      "Extremely durable stainless steel body"
+    ],
+    cons: [
+      "Not 100% leakproof if held completely upside down",
+      "Heavy when filled to full capacity"
+    ],
+    description: "Constructed of recycled stainless steel for sustainable sipping, our 40 oz Quencher H2.0 offers maximum hydration with fewer refills. Commuting, studio workouts, day trips or your front porch—you'll want this tumbler by your side."
+  },
+  {
+    id: "prod-14",
+    asin: "B0CHWRXH8B",
+    title: "Apple AirPods Pro 2 Wireless Earbuds (USB-C MagSafe Case)",
+    tagline: "Up to 2x more Active Noise Cancellation, Transparency mode, and Hearing Aid feature",
+    category: "tech",
+    categoryName: "Tech & Audio",
+    rating: 4.8,
+    reviewsCount: 42100,
+    price: 189.99,
+    originalPrice: 249.00,
+    discount: "24% OFF",
+    badge: "⚡ Flash Deal",
+    badgeType: "deal",
+    image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B0CHWRXH8B",
+    specs: {
+      "Chip": "Apple H2 Headphone Chip",
+      "ANC": "Up to 2x more Active Noise Cancellation",
+      "Audio": "Personalized Spatial Audio with dynamic head tracking",
+      "Charging": "USB-C, MagSafe & Apple Watch charger",
+      "Water Resistance": "IP54 dust, sweat, and water resistant",
+      "Battery Life": "Up to 6 hours listening (30 hrs with case)"
+    },
+    pros: [
+      "Unmatched transparency mode sounds like wearing nothing",
+      "USB-C port matches modern iPhones and MacBooks",
+      "Precision finding with built-in case speaker",
+      "Now features scientifically validated clinical hearing protection"
+    ],
+    cons: [
+      "Touch swipe volume controls take a little getting used to",
+      "Full feature set requires iOS device"
+    ],
+    description: "AirPods Pro 2 feature up to 2x more Active Noise Cancellation, Adaptive Audio, and Transparency mode. Now with Hearing Health features including Hearing Protection, Hearing Test, and Clinical-Grade Hearing Aid capability."
+  },
+  {
+    id: "prod-15",
+    asin: "B0CL61F39H",
+    title: "Sony PlayStation 5 Slim Console (1TB SSD, 4K 120Hz)",
+    tagline: "Slimmer design, 1TB ultra-high speed storage, ray tracing, and 3D Audio",
+    category: "gaming",
+    categoryName: "Gaming & VR",
+    rating: 4.9,
+    reviewsCount: 31800,
+    price: 499.00,
+    originalPrice: 549.99,
+    discount: "9% OFF",
+    badge: "🎮 Gamer Choice",
+    badgeType: "hot",
+    image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B0CL61F39H",
+    specs: {
+      "Storage": "1TB Custom Ultra-High Speed NVMe SSD",
+      "Resolution": "Up to 4K 120Hz with HDR and 8K output support",
+      "Audio": "Tempest 3D AudioTech",
+      "Controller": "DualSense Wireless Controller with Haptic Feedback",
+      "Form Factor": "30% smaller volume than original PS5",
+      "Ports": "2x Front USB-C, HDMI 2.1, Gigabit Ethernet"
+    },
+    pros: [
+      "Near-instant game loading times with 1TB SSD",
+      "DualSense haptic feedback and adaptive triggers feel incredible",
+      "Compact, modern aesthetic fits television media consoles",
+      "Enormous library of exclusive blockbuster games"
+    ],
+    cons: [
+      "Vertical stand sold separately on slim model",
+      "Fan is audible during intense graphical rendering"
+    ],
+    description: "Experience lightning fast loading with an ultra-high speed SSD, deeper immersion with support for haptic feedback, adaptive triggers, and 3D Audio, and an all-new generation of incredible PlayStation games."
+  },
+  {
+    id: "prod-16",
+    asin: "B0CD27L93Y",
+    title: "DJI Mini 4 Pro Drone with 4K/60fps HDR & Omnidirectional Obstacle Sensing",
+    tagline: "Under 249g ultra-lightweight drone with 20km FHD video transmission and true vertical shooting",
+    category: "tech",
+    categoryName: "Drones & Cameras",
+    rating: 4.8,
+    reviewsCount: 9400,
+    price: 759.00,
+    originalPrice: 849.00,
+    discount: "11% OFF",
+    badge: "🚁 Top Tech 2026",
+    badgeType: "editor",
+    image: "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B0CD27L93Y",
+    specs: {
+      "Weight": "Under 249g (No FAA registration needed in many areas)",
+      "Video Quality": "4K/60fps HDR + 4K/100fps Slow-Motion",
+      "Safety": "Omnidirectional Active Obstacle Avoidance",
+      "Transmission": "DJI O4 FHD Video Transmission up to 20 km",
+      "Flight Time": "Up to 34 minutes per battery",
+      "Shooting": "True Vertical Shooting for YouTube Shorts & Reels"
+    },
+    pros: [
+      "Weighs less than 249 grams, regulatory-friendly worldwide",
+      "True vertical camera rotation for instant TikTok / YouTube Shorts",
+      "Omnidirectional sensors prevent crashes into trees and walls",
+      "Outstanding dynamic range in low-light and sunrise/sunset"
+    ],
+    cons: [
+      "Sensitive to high gale-force ocean winds",
+      "Requires phone or dedicated screen controller"
+    ],
+    description: "Mini 4 Pro is DJI's most advanced mini drone to date. It integrates powerful imaging capabilities, omnidirectional obstacle sensing, ActiveTrack 360° with the new Trace Mode, and 20km FHD video transmission."
+  },
+  {
+    id: "prod-17",
+    asin: "B0CSB4K8L9",
+    title: "Samsung Galaxy S24 Ultra (512GB, Galaxy AI, Titanium Gray)",
+    tagline: "Titanium armor frame, 200MP camera with AI zoom, Snapdragon 8 Gen 3, and built-in S Pen",
+    category: "tech",
+    categoryName: "Smartphones",
+    rating: 4.8,
+    reviewsCount: 15300,
+    price: 1219.99,
+    originalPrice: 1419.99,
+    discount: "14% OFF",
+    badge: "📱 Flagship King",
+    badgeType: "hot",
+    image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B0CSB4K8L9",
+    specs: {
+      "Display": "6.8\" Flat Dynamic AMOLED 2X, 2600 nits, Gorilla Armor",
+      "Processor": "Qualcomm Snapdragon 8 Gen 3 for Galaxy",
+      "Camera": "200MP Main + 50MP 5x Periscope + 10MP 3x + 12MP Ultra-wide",
+      "AI Features": "Circle to Search, Live Translate, Note Assist",
+      "Battery": "5000mAh with 45W Fast Charging",
+      "Stylus": "Built-in S Pen included"
+    },
+    pros: [
+      "Gorilla Glass Armor eliminates 75% of screen reflections",
+      "Top-tier 200MP camera with insane 100x zoom capability",
+      "Galaxy AI tools make summarizing and photo editing effortless",
+      "Guaranteed 7 full years of Android OS and security upgrades"
+    ],
+    cons: [
+      "Large phone dimensions may feel bulky in small pockets",
+      "Does not include charging wall adapter in box"
+    ],
+    description: "Welcome to the era of mobile AI. With Galaxy S24 Ultra in your hands, you can unleash whole new levels of creativity, productivity and possibility — starting with the most important device in your life. Your phone."
   }
 ];
 

@@ -264,6 +264,9 @@ function renderProducts() {
             <button class="btn-secondary" style="flex: 1; font-size: 0.78rem; padding: 0.45rem 0.5rem;" onclick="openProductModal('${product.id}')">
               <i class="fa-solid fa-circle-info"></i> Full Review & Specs
             </button>
+            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('🔥 Amazing Amazon Deal: ' + product.title + ' at ' + product.discount + ' - ' + affiliateUrl)}" target="_blank" rel="noopener" class="btn-secondary" style="font-size: 0.85rem; padding: 0.45rem 0.65rem; color: #25D366;" title="Share deal on WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
             <button class="btn-secondary" style="font-size: 0.78rem; padding: 0.45rem 0.65rem;" onclick="copyAffiliateLink('${affiliateUrl}', event)" title="Copy direct affiliate link to clipboard">
               <i class="fa-solid fa-copy"></i>
             </button>
@@ -295,9 +298,14 @@ function openProductModal(productId) {
       <a href="${affiliateUrl}" target="_blank" rel="nofollow noopener" class="btn-amazon" style="padding: 0.9rem 1.5rem; font-size: 1.05rem;" onclick="if(typeof trackAffiliateClick==='function') trackAffiliateClick('${product.id}', '${product.title.replace(/'/g, "\\'")}', ${product.price}, '${product.category}')">
         <i class="fa-brands fa-amazon"></i> Check Best Price on Amazon
       </a>
-      <button class="btn-secondary" onclick="copyAffiliateLink('${affiliateUrl}', event)" style="width: 100%;">
-        <i class="fa-solid fa-share-nodes"></i> Copy Shareable Affiliate Link
-      </button>
+      <div style="display: flex; gap: 0.5rem; width: 100%;">
+        <button class="btn-secondary" onclick="copyAffiliateLink('${affiliateUrl}', event)" style="flex: 1;">
+          <i class="fa-solid fa-copy"></i> Copy Link
+        </button>
+        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('🔥 Check out this Amazon Deal on ' + product.title + ': ' + affiliateUrl)}" target="_blank" rel="noopener" class="btn-secondary" style="color: #25D366; padding: 0.65rem 1rem;" title="Share on WhatsApp">
+          <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i>
+        </a>
+      </div>
     </div>
 
     <div class="modal-details-col">
