@@ -131,6 +131,9 @@ function renderDashboard() {
 
   // Render Top Products Table
   renderProductPerformance(data);
+
+  // Render Pinterest Auto-Pin Hub
+  renderPinterestHub();
 }
 
 // ==========================================================================
@@ -307,3 +310,76 @@ function handleResetClean() {
     renderDashboard();
   }
 }
+
+// ==========================================================================
+// Pinterest Auto-Pin Hub Logic
+// ==========================================================================
+function renderPinterestHub() {
+  const container = document.getElementById("pinterestProductList");
+  if (!container || typeof PRODUCTS_DATA === "undefined") return;
+
+  const siteBase = "https://zainimranhameed-png.github.io/affiliprime-deals";
+
+  container.innerHTML = PRODUCTS_DATA.map((prod) => {
+    const prodUrl = `${siteBase}/?product=${prod.id}`;
+    const viralText = `🔥 ${prod.title} (${prod.discount} OFF) - Authentic Amazon Deal & In-Depth Review! Tested & verified on AffiliPrime. Check current deal & specs now! #AmazonFinds #AmazonDeals #Trending #BestDeals #MustHaves`;
+    const pinUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(prodUrl)}&media=${encodeURIComponent(prod.image)}&description=${encodeURIComponent(viralText)}`;
+
+    // Escaped for attribute
+    const safeText = viralText.replace(/"/g, '&quot;');
+
+    return `
+      <tr>
+        <td style="max-width: 260px;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <img src="${prod.image}" alt="${prod.title}" style="width: 48px; height: 48px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--border-color); flex-shrink: 0;">
+            <div>
+              <div style="font-weight: 700; color: var(--text-primary); font-size: 0.88rem; line-height: 1.25; margin-bottom: 0.2rem;">
+                ${prod.title}
+              </div>
+              <span style="font-size: 0.72rem; color: var(--text-muted);">ASIN: ${prod.asin || prod.id}</span>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div style="font-weight: 700; color: var(--primary); font-size: 0.95rem;">$${prod.price.toFixed(2)}</div>
+          <span class="card-price-discount" style="font-size: 0.72rem; padding: 0.15rem 0.4rem;">${prod.discount}</span>
+        </td>
+        <td>
+          <span style="font-size: 0.8rem; color: var(--text-secondary);">${prod.categoryName}</span>
+        </td>
+        <td style="max-width: 320px;">
+          <div style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.4; background: var(--bg-card); padding: 0.5rem 0.65rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); margin-bottom: 0.35rem; max-height: 60px; overflow-y: auto;">
+            ${viralText}
+          </div>
+          <button class="action-btn" onclick="copyTextToClipboard('${safeText}')" style="font-size: 0.72rem; padding: 0.25rem 0.6rem; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary);">
+            <i class="fa-solid fa-copy"></i> Copy Pin Caption
+          </button>
+        </td>
+        <td style="text-align: center;">
+          <a href="${pinUrl}" target="_blank" rel="noopener" class="action-btn" style="background: #e60023; color: #fff; font-weight: 700; font-size: 0.82rem; padding: 0.5rem 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; border-radius: var(--radius-sm); text-decoration: none;" title="Open Pinterest Pin Creator for this product">
+            <i class="fa-brands fa-pinterest"></i> Pin Now
+          </a>
+        </td>
+      </tr>
+    `;
+  }).join("");
+}
+
+function copyPinterestRss() {
+  const url = "https://zainimranhameed-png.github.io/affiliprime-deals/pinterest-feed.xml";
+  navigator.clipboard.writeText(url).then(() => {
+    alert("✅ Pinterest RSS Feed URL Copied!\n\n" + url + "\n\nPaste this in your Pinterest Business account (Settings -> Auto-publish from RSS feed) to auto-post all products!");
+  }).catch(() => {
+    prompt("Copy this Pinterest RSS Feed URL:", url);
+  });
+}
+
+function copyTextToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    alert("✅ Viral Pin Caption Copied to Clipboard!");
+  }).catch(() => {
+    prompt("Copy text:", text);
+  });
+}
+

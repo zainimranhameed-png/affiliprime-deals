@@ -2,4 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
+User-agent: Pinterestbot
+Allow: /
+
 Sitemap: https://zainimranhameed-png.github.io/affiliprime-deals/sitemap.xml

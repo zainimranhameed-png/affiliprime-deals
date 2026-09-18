@@ -65,6 +65,19 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProducts();
   attachEventListeners();
   initFaqAccordion();
+
+  // Handle direct product incoming links from Pinterest / Social shares
+  const urlParams = new URLSearchParams(window.location.search);
+  const targetProdId = urlParams.get("product") || urlParams.get("id");
+  if (targetProdId) {
+    setTimeout(() => {
+      openProductModal(targetProdId);
+      const targetCard = document.querySelector(`[data-id="${targetProdId}"]`);
+      if (targetCard) {
+        targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }, 450);
+  }
 });
 
 // ==========================================================================
@@ -269,7 +282,7 @@ function renderProducts() {
             <button class="btn-secondary" style="flex: 1; font-size: 0.78rem; padding: 0.45rem 0.5rem;" onclick="openProductModal('${product.id}')">
               <i class="fa-solid fa-circle-info"></i> Review
             </button>
-            <a href="https://pinterest.com/pin/create/button/?url=${encodeURIComponent(affiliateUrl)}&media=${encodeURIComponent(product.image)}&description=${encodeURIComponent(product.title + ' - Save ' + product.discount)}" target="_blank" rel="noopener" class="btn-secondary btn-pinterest" style="font-size: 0.85rem; padding: 0.45rem 0.6rem;" title="Pin to Pinterest for viral US buyer traffic">
+            <a href="https://pinterest.com/pin/create/button/?url=${encodeURIComponent(window.location.origin + window.location.pathname.replace(/\\/$/, '') + '/?product=' + product.id)}&media=${encodeURIComponent(product.image)}&description=${encodeURIComponent('🔥 ' + product.title + ' (' + product.discount + ' OFF) - Best Amazon Deal & Review on AffiliPrime Deals! #AmazonFinds #AmazonDeals #MustHaves #Trending')}" target="_blank" rel="noopener" class="btn-secondary btn-pinterest" style="font-size: 0.85rem; padding: 0.45rem 0.6rem;" title="Pin to Pinterest for viral US buyer traffic">
               <i class="fa-brands fa-pinterest"></i>
             </a>
             <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('🔥 Amazing Amazon Deal: ' + product.title + ' at ' + product.discount + ' - ' + affiliateUrl)}" target="_blank" rel="noopener" class="btn-secondary" style="font-size: 0.85rem; padding: 0.45rem 0.6rem; color: #25D366;" title="Share deal on WhatsApp">
@@ -314,7 +327,7 @@ function openProductModal(productId) {
         <button class="btn-secondary" onclick="copyAffiliateLink('${affiliateUrl}', event)" style="flex: 1;">
           <i class="fa-solid fa-copy"></i> Copy Link
         </button>
-        <a href="https://pinterest.com/pin/create/button/?url=${encodeURIComponent(affiliateUrl)}&media=${encodeURIComponent(product.image)}&description=${encodeURIComponent(product.title + ' - ' + product.tagline)}" target="_blank" rel="noopener" class="btn-secondary btn-pinterest" style="padding: 0.65rem 0.9rem;" title="Pin to Pinterest">
+        <a href="https://pinterest.com/pin/create/button/?url=${encodeURIComponent(window.location.origin + window.location.pathname.replace(/\\/$/, '') + '/?product=' + product.id)}&media=${encodeURIComponent(product.image)}&description=${encodeURIComponent('🔥 ' + product.title + ' (' + product.discount + ' OFF) - Best Amazon Deal & Review on AffiliPrime Deals! #AmazonFinds #AmazonDeals #MustHaves #Trending')}" target="_blank" rel="noopener" class="btn-secondary btn-pinterest" style="padding: 0.65rem 0.9rem;" title="Pin to Pinterest">
           <i class="fa-brands fa-pinterest" style="font-size: 1.1rem;"></i>
         </a>
         <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('🔥 Check out this Amazon Deal on ' + product.title + ': ' + affiliateUrl)}" target="_blank" rel="noopener" class="btn-secondary" style="color: #25D366; padding: 0.65rem 0.9rem;" title="Share on WhatsApp">
