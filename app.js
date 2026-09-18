@@ -265,14 +265,17 @@ function renderProducts() {
             </button>
           </div>
           
-          <div style="display: flex; gap: 0.5rem; margin-top: 0.25rem;">
+          <div style="display: flex; gap: 0.4rem; margin-top: 0.25rem;">
             <button class="btn-secondary" style="flex: 1; font-size: 0.78rem; padding: 0.45rem 0.5rem;" onclick="openProductModal('${product.id}')">
-              <i class="fa-solid fa-circle-info"></i> Full Review & Specs
+              <i class="fa-solid fa-circle-info"></i> Review
             </button>
-            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('🔥 Amazing Amazon Deal: ' + product.title + ' at ' + product.discount + ' - ' + affiliateUrl)}" target="_blank" rel="noopener" class="btn-secondary" style="font-size: 0.85rem; padding: 0.45rem 0.65rem; color: #25D366;" title="Share deal on WhatsApp">
+            <a href="https://pinterest.com/pin/create/button/?url=${encodeURIComponent(affiliateUrl)}&media=${encodeURIComponent(product.image)}&description=${encodeURIComponent(product.title + ' - Save ' + product.discount)}" target="_blank" rel="noopener" class="btn-secondary btn-pinterest" style="font-size: 0.85rem; padding: 0.45rem 0.6rem;" title="Pin to Pinterest for viral US buyer traffic">
+              <i class="fa-brands fa-pinterest"></i>
+            </a>
+            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('🔥 Amazing Amazon Deal: ' + product.title + ' at ' + product.discount + ' - ' + affiliateUrl)}" target="_blank" rel="noopener" class="btn-secondary" style="font-size: 0.85rem; padding: 0.45rem 0.6rem; color: #25D366;" title="Share deal on WhatsApp">
               <i class="fa-brands fa-whatsapp"></i>
             </a>
-            <button class="btn-secondary" style="font-size: 0.78rem; padding: 0.45rem 0.65rem;" onclick="copyAffiliateLink('${affiliateUrl}', event)" title="Copy direct affiliate link to clipboard">
+            <button class="btn-secondary" style="font-size: 0.78rem; padding: 0.45rem 0.6rem;" onclick="copyAffiliateLink('${affiliateUrl}', event)" title="Copy direct affiliate link to clipboard">
               <i class="fa-solid fa-copy"></i>
             </button>
           </div>
@@ -307,11 +310,14 @@ function openProductModal(productId) {
       <a href="${directUrl}" target="_blank" rel="nofollow noopener" class="btn-secondary" style="font-size: 0.82rem; padding: 0.5rem 0.8rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem; width: 100%;" title="Open direct Amazon catalog page">
         <i class="fa-solid fa-arrow-up-right-from-square"></i> Direct Product Page (US)
       </a>
-      <div style="display: flex; gap: 0.5rem; width: 100%; margin-top: 0.25rem;">
+      <div style="display: flex; gap: 0.4rem; width: 100%; margin-top: 0.25rem;">
         <button class="btn-secondary" onclick="copyAffiliateLink('${affiliateUrl}', event)" style="flex: 1;">
           <i class="fa-solid fa-copy"></i> Copy Link
         </button>
-        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('🔥 Check out this Amazon Deal on ' + product.title + ': ' + affiliateUrl)}" target="_blank" rel="noopener" class="btn-secondary" style="color: #25D366; padding: 0.65rem 1rem;" title="Share on WhatsApp">
+        <a href="https://pinterest.com/pin/create/button/?url=${encodeURIComponent(affiliateUrl)}&media=${encodeURIComponent(product.image)}&description=${encodeURIComponent(product.title + ' - ' + product.tagline)}" target="_blank" rel="noopener" class="btn-secondary btn-pinterest" style="padding: 0.65rem 0.9rem;" title="Pin to Pinterest">
+          <i class="fa-brands fa-pinterest" style="font-size: 1.1rem;"></i>
+        </a>
+        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('🔥 Check out this Amazon Deal on ' + product.title + ': ' + affiliateUrl)}" target="_blank" rel="noopener" class="btn-secondary" style="color: #25D366; padding: 0.65rem 0.9rem;" title="Share on WhatsApp">
           <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i>
         </a>
       </div>
