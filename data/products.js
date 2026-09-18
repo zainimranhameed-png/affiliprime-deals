@@ -611,6 +611,258 @@ const PRODUCTS_DATA = [
       "Does not include charging wall adapter in box"
     ],
     description: "Welcome to the era of mobile AI. With Galaxy S24 Ultra in your hands, you can unleash whole new levels of creativity, productivity and possibility — starting with the most important device in your life. Your phone."
+  },
+  {
+    id: "prod-18",
+    asin: "B0C7JFD92D",
+    title: "Apple Mac Studio (M2 Ultra 24-Core CPU, 60-Core GPU, 64GB Unified RAM, 1TB SSD)",
+    tagline: "Outrageous powerhouse workstation for 8K video editing, 3D rendering, and machine learning",
+    category: "tech",
+    categoryName: "Pro Workstations",
+    rating: 4.9,
+    reviewsCount: 1640,
+    price: 3799.00,
+    originalPrice: 3999.00,
+    discount: "5% OFF",
+    badge: "🚀 High-Ticket Beast",
+    badgeType: "hot",
+    image: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B0C7JFD92D",
+    specs: {
+      "Processor": "Apple M2 Ultra (24-Core CPU, 60-Core GPU, 32-Core Neural Engine)",
+      "Unified Memory": "64GB Fast Unified Memory (800GB/s bandwidth)",
+      "Storage": "1TB Superfast NVMe SSD",
+      "Displays Supported": "Up to 8 simultaneous 4K displays or 6x 6K displays",
+      "Ports": "6x Thunderbolt 4, 2x USB-A, HDMI, 10Gb Ethernet, SDXC card slot",
+      "Form Factor": "Compact 7.7-inch aluminum desktop enclosure"
+    },
+    pros: [
+      "Incredible render speeds for 8K ProRes and complex 3D VFX",
+      "Silent cooling architecture even under maximum stress workloads",
+      "Massive port selection on front and back for pro peripherals",
+      "Unmatched power efficiency compared to standard workstation towers"
+    ],
+    cons: [
+      "Internal hardware components cannot be upgraded post-purchase",
+      "Requires external monitor, keyboard, and mouse"
+    ],
+    description: "Embraced by creative pros everywhere, Mac Studio delivers extraordinary power with the M2 Ultra chip. It packs outrageous performance and extensive connectivity into an unbelievably compact form, letting you transform any space into a creative studio."
+  },
+  {
+    id: "prod-19",
+    asin: "B0CSG6TX9R",
+    title: "ASUS ROG Strix SCAR 18 (2024) Gaming Laptop (Intel i9-14900HX, RTX 4090, 64GB DDR5, 2TB SSD)",
+    tagline: "The pinnacle of mobile gaming: 18-inch 2.5K 240Hz Nebula HDR Display with RTX 4090 power",
+    category: "gaming",
+    categoryName: "Gaming Laptops",
+    rating: 4.7,
+    reviewsCount: 1850,
+    price: 3699.99,
+    originalPrice: 3999.99,
+    discount: "8% OFF",
+    badge: "⚡ 4K Gaming King",
+    badgeType: "editor",
+    image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B0CSG6TX9R",
+    specs: {
+      "GPU": "NVIDIA GeForce RTX 4090 16GB GDDR6 (175W Max TGP)",
+      "CPU": "Intel Core i9-14900HX 24-Cores / 32-Threads (up to 5.8 GHz)",
+      "Screen": "18\" QHD+ 16:10 (2560 x 1600) 240Hz 3ms Mini-LED ROG Nebula HDR",
+      "Memory": "64GB DDR5-5600MHz RAM",
+      "Storage": "2TB PCIe 4.0 NVMe M.2 Performance SSD in RAID 0",
+      "Cooling": "Conductonaut Extreme Liquid Metal + Tri-Fan Technology"
+    },
+    pros: [
+      "Uncompromising ultra-settings 4K/QHD gaming framerates",
+      "Stunning 1100-nit Mini-LED HDR screen with 100% DCI-P3 color",
+      "Chilly thermals due to liquid metal and full-width vapor chamber",
+      "Per-key RGB mechanical-feel keyboard with customizable lightbar"
+    ],
+    cons: [
+      "Heavy 3.1kg chassis designed primarily for desk usage",
+      "Short battery life under heavy gaming load"
+    ],
+    description: "Rule the battlefield with the ROG Strix SCAR 18. Dominate every competitive arena with the Intel Core i9 processor and NVIDIA GeForce RTX 4090 Laptop GPU. An 18-inch Mini LED panel provides stunning visuals that immerse you directly into AAA blockbusters."
+  },
+  {
+    id: "prod-20",
+    asin: "B078WML5PC",
+    title: "Breville the Oracle Touch Fully Automatic Espresso Machine (Dual Boiler, Stainless Steel)",
+    tagline: "Commercial barista-grade espresso, automated microfoam milk texturing, and swipe touch screen",
+    category: "home",
+    categoryName: "Luxury Kitchen",
+    rating: 4.8,
+    reviewsCount: 3980,
+    price: 2799.95,
+    originalPrice: 2999.95,
+    discount: "7% OFF",
+    badge: "☕ Barista Luxury",
+    badgeType: "hot",
+    image: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B078WML5PC",
+    specs: {
+      "Boilers": "Dedicated Stainless Steel Dual Boilers (Simultaneous Brew & Steam)",
+      "Interface": "Intuitive 4-inch Full Color Touchscreen with 8 customizable presets",
+      "Grinder": "Integrated Precision Conical Burr Grinder with auto dose & tamp",
+      "Steam Wand": "Hands-free automatic microfoam milk texturing with temp control",
+      "Pressure": "Commercial 15-bar Italian pump with Over Pressure Valve (OPV)",
+      "Material": "Heavy-duty Brushed Stainless Steel chassis"
+    },
+    pros: [
+      "Automates grinding, dosing, tamping, and milk steaming to perfection",
+      "Dual boilers allow pulling espresso shots and steaming milk at the exact same time",
+      "Produces authentic café-quality microfoam essential for latte art",
+      "Save up to 8 personalized custom coffee profiles"
+    ],
+    cons: [
+      "Substantial kitchen counter footprint",
+      "Requires regular water filtration and descaling maintenance"
+    ],
+    description: "Automated, touch screen operation simplifies how to make your favorite café coffee in three easy steps: grind, brew and milk. You can easily adjust coffee strength, milk texture or temperature to suit your taste. Then save it with your own unique name."
+  },
+  {
+    id: "prod-21",
+    asin: "B09JZT6YK5",
+    title: "Sony Alpha 7 IV Full-Frame Mirrorless Camera Kit (33MP Sensor, 4K 60p, 28-70mm Lens)",
+    tagline: "The benchmark hybrid camera for professional photography, 4K streaming, and cinematic filmmaking",
+    category: "tech",
+    categoryName: "Pro Cameras",
+    rating: 4.8,
+    reviewsCount: 3240,
+    price: 2498.00,
+    originalPrice: 2699.99,
+    discount: "7% OFF",
+    badge: "📸 Pro Creator",
+    badgeType: "editor",
+    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B09JZT6YK5",
+    specs: {
+      "Sensor": "33MP Full-Frame Exmor R Back-Illuminated CMOS Sensor",
+      "Processor": "BIONZ XR Engine with 8x more processing power",
+      "Autofocus": "759-Point Phase-Detection AF with Real-time Eye AF for Humans/Animals/Birds",
+      "Video": "4K 60p 10-Bit 4:2:2 recording, S-Cinetone, S-Log3",
+      "Stabilization": "5-Axis In-Body Image Stabilization (5.5-step shutter advantage)",
+      "Connectivity": "UVC/UAC Plug-and-play USB live streaming up to 4K 15p"
+    },
+    pros: [
+      "Exceptional 33MP detail with unmatched dynamic range and color science",
+      "Industry-leading autofocus locks onto eyes instantly even in low light",
+      "Fully articulating touchscreen LCD ideal for vlogging and studio filming",
+      "Dual card slots supporting CFexpress Type A and SD UHS-II"
+    ],
+    cons: [
+      "4K 60p video recording incurs a minor 1.5x Super35 crop",
+      "Advanced menu system has a slight learning curve for beginners"
+    ],
+    description: "An ideal all-arounder that pushes beyond basic, the Sony a7 IV does double duty with strong stills and video performance. Featuring an advanced 33MP Exmor R CMOS sensor and blazing BIONZ XR processing, it brings cinematic clarity to every frame."
+  },
+  {
+    id: "prod-22",
+    asin: "B0CVRFRK99",
+    title: "Samsung 77-Inch Class OLED 4K S90D Series Smart TV (Pantone Validated, 144Hz, Dolby Atmos)",
+    tagline: "Infinite contrast, pure deep blacks, quantum HDR, and ultra-fluid 144Hz PC gaming motion",
+    category: "home",
+    categoryName: "Home Theater",
+    rating: 4.8,
+    reviewsCount: 2410,
+    price: 2497.99,
+    originalPrice: 3297.99,
+    discount: "24% OFF",
+    badge: "🎬 Cinematic 4K",
+    badgeType: "hot",
+    image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B0CVRFRK99",
+    specs: {
+      "Screen Size": "77-Inch Diagonal Quantum Dot OLED Panel",
+      "Resolution & Refresh": "4K UHD (3840 x 2160) at up to 144Hz Variable Refresh Rate",
+      "Processor": "NQ4 AI Gen2 Processor with 20 AI neural networks",
+      "Audio": "2.1 Channel 40W Speakers with Dolby Atmos & Object Tracking Sound Lite",
+      "Gaming Features": "4x HDMI 2.1 Ports, FreeSync Premium Pro, Samsung Gaming Hub",
+      "Design": "LaserSlim razor-thin design with virtually bezel-less infinity screen"
+    },
+    pros: [
+      "Breathtaking pure black levels paired with vibrant Quantum Dot color brilliance",
+      "144Hz refresh rate with sub-1ms input latency delivers elite gaming performance",
+      "Anti-glare panel minimizes daytime ambient room reflections",
+      "AI 4K upscaling elevates standard HD streaming to crisp near-4K clarity"
+    ],
+    cons: [
+      "Large 77-inch profile requires a wide console table or sturdy wall mount",
+      "Does not support Dolby Vision HDR format (uses HDR10+ Adaptive instead)"
+    ],
+    description: "Steal the show with the bold contrast, dramatic sound and vibrant colors of the Samsung OLED TV. Watch everything in sharp 4K thanks to AI-powered upscaling. Experience pure blacks, bright whites and Pantone-validated color accuracy."
+  },
+  {
+    id: "prod-23",
+    asin: "B003M1C7TY",
+    title: "Herman Miller Embody Ergonomic Office & Gaming Chair (Sync Tilt, BackFit Adjustment)",
+    tagline: "Engineered with 30+ medical physicians: pressure-distributing pixelated support that enhances blood flow",
+    category: "gaming",
+    categoryName: "Ergonomic Chairs",
+    rating: 4.9,
+    reviewsCount: 4120,
+    price: 1795.00,
+    originalPrice: 1995.00,
+    discount: "10% OFF",
+    badge: "👑 Ergonomic King",
+    badgeType: "editor",
+    image: "https://images.unsplash.com/photo-1580481077195-c266a4f21cb4?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B003M1C7TY",
+    specs: {
+      "Support Matrix": "Dynamic Pixelated Support Matrix with BackFit Spine Alignment",
+      "Adjustments": "Seat Depth, Fully Articulating Armrests, Tilt Limiter, Pneumatic Height",
+      "Warranty": "Herman Miller 12-Year Official 24/7 Multi-Shift Warranty",
+      "Weight Capacity": "Tested and rated for up to 300 lbs (136 kg)",
+      "Eco Construction": "95% Recyclable materials assembled in green-energy facilities",
+      "Upholstery": "Breathable Sync Fabric that prevents heat accumulation during long sessions"
+    },
+    pros: [
+      "Completely eliminates lower back stiffness and tailbone pressure during 10+ hour days",
+      "Instinctively contours to micro-movements of your spine in real-time",
+      "Industry-leading 12-year manufacturer warranty covers all parts and mechanisms",
+      "Fully assembled out of the box — zero tedious DIY assembly required"
+    ],
+    cons: [
+      "Substantial investment price point for home offices",
+      "Does not include an integrated headrest"
+    ],
+    description: "You feel Embody's pixelated support the moment you sit down — a sense that you are floating, yet perfectly balanced. The back of the chair is modeled after the human spine to reduce spine compression and encourage healthy blood circulation."
+  },
+  {
+    id: "prod-24",
+    asin: "B0CB93KDFQ",
+    title: "Garmin tactix 7 AMOLED Edition Tactical GPS Smartwatch (Ballistics, NVG, 31-Day Battery)",
+    tagline: "Military-grade tactical smartwatch with adaptive AMOLED display, built-in flashlight, and avionics",
+    category: "fitness",
+    categoryName: "Tactical Smartwatches",
+    rating: 4.8,
+    reviewsCount: 1920,
+    price: 1399.99,
+    originalPrice: 1499.99,
+    discount: "7% OFF",
+    badge: "🛡️ Military Grade",
+    badgeType: "hot",
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B0CB93KDFQ",
+    specs: {
+      "Display": "1.4\" Adaptive AMOLED Touchscreen with Scratch-Resistant Sapphire Crystal",
+      "Durability": "Tested to U.S. Military Standards (MIL-STD-810G) for thermal, shock & water (10 ATM)",
+      "Battery Life": "Up to 31 days in smartwatch mode / 82 hours in GPS mode",
+      "Flashlight": "Multi-LED white and night-vision preserving green flashlight",
+      "Tactical Features": "Kill Switch, Stealth Mode, Night Vision Goggle (NVG) compatibility, Jumpmaster",
+      "Navigation": "Multi-Band GNSS with SatIQ Technology, TopoActive Maps, Direct-to Avionics"
+    },
+    pros: [
+      "Unbelievable 31-day battery life with a razor-sharp AMOLED touchscreen",
+      "Titanium bezel with DLC coating withstands severe outdoor punishment",
+      "Built-in green/white flashlight is invaluable for daily and night operations",
+      "Advanced physiological metrics for endurance, VO2 Max, and sleep recovery"
+    ],
+    cons: [
+      "Large 51mm case may feel prominent on smaller wrists",
+      "Premium tactical tool with specialized military features most casual users won't exhaust"
+    ],
+    description: "Featuring an adaptive AMOLED display, traditional buttons and touchscreen display, this tactical smartwatch offers mission-ready tactical features as well as mapping, training metrics, multi-GNSS positioning, and comprehensive health monitoring."
   }
 ];
 
