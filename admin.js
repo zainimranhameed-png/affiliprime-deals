@@ -1,6 +1,7 @@
 /**
  * AffiliPrime Admin Dashboard Logic
- * Handles PIN Authentication, Metrics Calculation, Country Analytics,
+ * Handles PIN Authentication, Multi-Stream Real Earnings (Views/CPM, Pinterest, Amazon),
+ * Country Geolocation Breakdown (Pakistan vs USA/UK), Traffic Sources,
  * and Real-Time Activity Streaming.
  */
 
@@ -14,15 +15,22 @@ const pinDisplay = document.getElementById("pinDisplay");
 const pinErrorMsg = document.getElementById("pinErrorMsg");
 const adminTagDisplay = document.getElementById("adminTagDisplay");
 
-// Metric Elements
+// Earning Stream Metric Elements
+const metricAdRevenue = document.getElementById("metricAdRevenue");
+const metricPinterestRevenue = document.getElementById("metricPinterestRevenue");
+const metricPinterestViewsCount = document.getElementById("metricPinterestViewsCount");
+const metricCommission = document.getElementById("metricCommission");
+const metricTotalEarnings = document.getElementById("metricTotalEarnings");
+
+// Secondary Traffic Metric Elements
 const metricViews = document.getElementById("metricViews");
 const metricClicks = document.getElementById("metricClicks");
 const metricCtr = document.getElementById("metricCtr");
-const metricCommission = document.getElementById("metricCommission");
 const metricSales = document.getElementById("metricSales");
 
 // Container Elements
 const countryListContainer = document.getElementById("countryListContainer");
+const trafficSourcesContainer = document.getElementById("trafficSourcesContainer");
 const activityStreamContainer = document.getElementById("activityStreamContainer");
 const productPerformanceTableBody = document.getElementById("productPerformanceTableBody");
 
@@ -116,23 +124,32 @@ function renderDashboard() {
   const data = getAnalyticsData();
   const financials = calculateEarnings(data);
 
-  // Top Metrics
-  metricViews.textContent = financials.totalViews.toLocaleString();
-  metricClicks.textContent = financials.totalClicks.toLocaleString();
-  metricCtr.textContent = `${financials.ctr}%`;
-  metricCommission.textContent = `$${financials.totalEstCommission}`;
-  metricSales.textContent = `$${financials.totalEstSales}`;
+  // 1. Primary Multi-Stream Earnings
+  if (metricAdRevenue) metricAdRevenue.textContent = `$${financials.totalAdRevenue}`;
+  if (metricPinterestRevenue) metricPinterestRevenue.textContent = `$${financials.pinterestEstEarnings}`;
+  if (metricPinterestViewsCount) metricPinterestViewsCount.textContent = `${financials.pinterestViews} Pinterest Visitors`;
+  if (metricCommission) metricCommission.textContent = `$${financials.totalAmazonCommission}`;
+  if (metricTotalEarnings) metricTotalEarnings.textContent = `$${financials.totalCombinedEarnings}`;
 
-  // Render Countries
+  // 2. Secondary Operational Metrics
+  if (metricViews) metricViews.textContent = financials.totalViews.toLocaleString();
+  if (metricClicks) metricClicks.textContent = financials.totalClicks.toLocaleString();
+  if (metricCtr) metricCtr.textContent = `${financials.ctr}%`;
+  if (metricSales) metricSales.textContent = `$${financials.totalEstSales}`;
+
+  // 3. Render Countries
   renderCountries(data);
 
-  // Render Live Activity Stream
+  // 4. Render Traffic Acquisition Sources
+  renderTrafficSources(data);
+
+  // 5. Render Live Activity Stream
   renderActivityStream(data);
 
-  // Render Top Products Table
+  // 6. Render Top Products Table
   renderProductPerformance(data);
 
-  // Render Pinterest Auto-Pin Hub
+  // 7. Render Pinterest Auto-Pin Hub
   renderPinterestHub();
 }
 
@@ -145,31 +162,83 @@ function renderCountries(data) {
 
   if (entries.length === 0) {
     countryListContainer.innerHTML = `
-      <div style="text-align: center; color: var(--text-muted); padding: 2.5rem 1rem;">
-        <i class="fa-solid fa-earth-americas" style="font-size: 2.5rem; margin-bottom: 0.75rem; color: var(--accent-cyan); display: block;"></i>
-        <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;">Waiting for First Real Visitor</div>
-        <p style="font-size: 0.82rem;">Open <a href="index.html" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">your website</a> to see your real country appear instantly!</p>
+      <div style="text-align: center; color: var(--text-muted); padding: 2rem 1rem;">
+        <i class="fa-solid fa-earth-americas" style="font-size: 2.2rem; margin-bottom: 0.75rem; color: var(--accent-cyan); display: block;"></i>
+        <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;">Waiting for First Visitor</div>
+        <p style="font-size: 0.8rem;">Open <a href="index.html" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">your website</a> to see your country appear automatically!</p>
       </div>
     `;
     return;
   }
 
   const sortedCountries = entries.sort((a, b) => b[1].views - a[1].views);
+  const tier1Codes = ["US", "GB", "CA", "DE", "AU", "FR", "IT", "NL"];
 
   countryListContainer.innerHTML = sortedCountries.map(([countryName, countryData]) => {
     const percentage = Math.round((countryData.views / totalViews) * 100);
+    const isTier1 = tier1Codes.includes(countryData.code);
+    const isPK = countryData.code === "PK" || countryName.toLowerCase().includes("pakistan");
+
+    let tierBadge = `<span style="font-size: 0.68rem; background: rgba(255,255,255,0.08); color: var(--text-muted); padding: 0.12rem 0.35rem; border-radius: 4px;">Standard</span>`;
+    if (isTier1) {
+      tierBadge = `<span style="font-size: 0.68rem; background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.12rem 0.4rem; border-radius: 4px; font-weight: 700;">Tier-1 High CPM</span>`;
+    } else if (isPK) {
+      tierBadge = `<span style="font-size: 0.68rem; background: rgba(6, 182, 212, 0.15); color: var(--accent-cyan); border: 1px solid rgba(6, 182, 212, 0.3); padding: 0.12rem 0.4rem; border-radius: 4px; font-weight: 700;">Pakistan (Ad Views)</span>`;
+    }
+
     return `
-      <div class="country-row">
+      <div class="country-row" style="grid-template-columns: 145px 1fr 140px; margin-bottom: 0.25rem;">
         <div class="country-info">
-          <span class="country-flag">${countryData.flag || "🌐"}</span>
-          <span class="country-name">${countryName}</span>
+          <span class="country-flag" style="font-size: 1.2rem;">${countryData.flag || "🌐"}</span>
+          <div style="overflow: hidden;">
+            <div class="country-name" title="${countryName}">${countryName}</div>
+            ${tierBadge}
+          </div>
         </div>
         <div class="country-bar-wrap">
-          <div class="country-bar-fill" style="width: ${Math.max(8, percentage)}%;"></div>
+          <div class="country-bar-fill" style="width: ${Math.max(6, percentage)}%;"></div>
         </div>
         <div class="country-stats">
           <span style="font-weight: 700;">${countryData.views} views</span>
-          <span style="color: var(--accent-emerald); font-size: 0.78rem;">(${countryData.clicks || 0} clicks / ${percentage}%)</span>
+          <span style="color: var(--accent-emerald); font-size: 0.76rem;">(${countryData.clicks || 0} clicks / ${percentage}%)</span>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+// ==========================================================================
+// Traffic Acquisition Sources
+// ==========================================================================
+function renderTrafficSources(data) {
+  if (!trafficSourcesContainer) return;
+  const sources = data.sources || {
+    pinterest: { name: "Pinterest Traffic", count: 0, icon: "fa-brands fa-pinterest", color: "#e60023" },
+    google: { name: "Google / Organic Search", count: 0, icon: "fa-brands fa-google", color: "#4285F4" },
+    direct: { name: "Direct & Social", count: data.totalViews || 0, icon: "fa-solid fa-globe", color: "#10b981" }
+  };
+
+  const total = Math.max(1, Object.values(sources).reduce((acc, s) => acc + (s.count || 0), 0));
+
+  trafficSourcesContainer.innerHTML = Object.entries(sources).map(([key, s]) => {
+    const count = s.count || 0;
+    const pct = Math.round((count / total) * 100);
+    const color = key === "pinterest" ? "#e60023" : (key === "google" ? "#4285F4" : "#10b981");
+
+    return `
+      <div style="background: var(--bg-body); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.75rem 0.9rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="${s.icon || 'fa-solid fa-link'}" style="color: ${color}; font-size: 1rem;"></i>
+            <span style="font-weight: 600; font-size: 0.85rem; color: var(--text-primary);">${s.name}</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.4rem;">
+            <span style="font-weight: 700; color: var(--text-primary); font-size: 0.88rem;">${count}</span>
+            <span style="color: var(--text-muted); font-size: 0.75rem;">(${pct}%)</span>
+          </div>
+        </div>
+        <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden;">
+          <div style="width: ${Math.max(4, pct)}%; height: 100%; background: ${color}; border-radius: 999px; transition: width 0.5s ease;"></div>
         </div>
       </div>
     `;
@@ -221,7 +290,7 @@ function renderProductPerformance(data) {
         <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2.5rem 1rem;">
           <i class="fa-solid fa-arrow-pointer" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary); display: block;"></i>
           <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;">No Clicks Recorded Yet</div>
-          <div style="font-size: 0.82rem;">As real visitors click "Check Deal" or "Buy on Amazon", clicks and real commission will populate here.</div>
+          <div style="font-size: 0.82rem;">As visitors click "Check Deal on Amazon", items and real estimated commissions will appear here.</div>
         </td>
       </tr>
     `;
@@ -260,26 +329,39 @@ function renderProductPerformance(data) {
 // ==========================================================================
 function simulateLiveVisit() {
   const sampleCountries = [
-    { name: "United States", flag: "🇺🇸" },
-    { name: "United Kingdom", flag: "🇬🇧" },
-    { name: "Canada", flag: "🇨🇦" },
-    { name: "Pakistan", flag: "🇵🇰" },
-    { name: "Germany", flag: "🇩🇪" },
-    { name: "United Arab Emirates", flag: "🇦🇪" }
+    { name: "Pakistan", code: "PK", flag: "🇵🇰" },
+    { name: "United States", code: "US", flag: "🇺🇸" },
+    { name: "United Kingdom", code: "GB", flag: "🇬🇧" },
+    { name: "Canada", code: "CA", flag: "🇨🇦" },
+    { name: "Germany", code: "DE", flag: "🇩🇪" },
+    { name: "United Arab Emirates", code: "AE", flag: "🇦🇪" }
   ];
+  const sampleSources = ["pinterest", "google", "direct"];
+
   const chosen = sampleCountries[Math.floor(Math.random() * sampleCountries.length)];
+  const source = sampleSources[Math.floor(Math.random() * sampleSources.length)];
+
   const data = getAnalyticsData();
   data.totalViews += 1;
+
+  // Source count
+  if (!data.sources) data.sources = getDefaultAnalytics().sources;
+  if (data.sources[source]) {
+    data.sources[source].count = (data.sources[source].count || 0) + 1;
+  }
+
+  // Country count
   if (!data.countries[chosen.name]) {
-    data.countries[chosen.name] = { code: "SIM", flag: chosen.flag, views: 1, clicks: 0 };
+    data.countries[chosen.name] = { code: chosen.code, flag: chosen.flag, views: 1, clicks: 0 };
   } else {
     data.countries[chosen.name].views += 1;
   }
 
+  const sourceName = source === "pinterest" ? "Pinterest 📌" : (source === "google" ? "Google 🔍" : "Direct 🌐");
   data.activities.unshift({
     id: Date.now(),
     type: "view",
-    text: "New visitor browsing tech & home deals",
+    text: `Visitor browsing deals (${sourceName})`,
     location: `${chosen.name} ${chosen.flag}`,
     time: "Just now"
   });
@@ -325,7 +407,6 @@ function renderPinterestHub() {
     const viralText = `🔥 ${prod.title} (${prod.discount} OFF) - Authentic Amazon Deal & In-Depth Review! Tested & verified on AffiliPrime. Check current deal & specs now! #AmazonFinds #AmazonDeals #Trending #BestDeals #MustHaves`;
     const pinUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(prodUrl)}&media=${encodeURIComponent(prod.image)}&description=${encodeURIComponent(viralText)}`;
 
-    // Escaped for attribute
     const safeText = viralText.replace(/"/g, '&quot;');
 
     return `
@@ -382,4 +463,3 @@ function copyTextToClipboard(text) {
     prompt("Copy text:", text);
   });
 }
-

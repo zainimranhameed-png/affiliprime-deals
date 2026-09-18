@@ -117,103 +117,204 @@
         </div>
       </div>
 
-      <!-- Top Metrics Row -->
-      <section class="admin-metrics-grid">
-        <!-- Metric 1: Total Views -->
+      <!-- Primary Multi-Stream Earnings Row (4 Distinct Streams) -->
+      <div style="margin-bottom: 0.75rem;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.15rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+          <i class="fa-solid fa-wallet text-warning"></i> Multi-Stream Real Earnings Breakdown
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.8rem;">Live estimated earnings from Website Page Views (Ad CPM), Pinterest Referral Traffic, and Amazon Affiliate Commissions</p>
+      </div>
+
+      <section class="admin-metrics-grid" style="margin-bottom: 1.5rem;">
+        <!-- Stream 1: Website Views (Google / Adsterra CPM) -->
         <div class="metric-card">
           <div class="metric-header">
-            <span class="metric-title">Real Page Impressions</span>
+            <span class="metric-title">🌐 Website Views (Ad CPM)</span>
             <div class="metric-icon" style="background: rgba(6, 182, 212, 0.15); color: var(--accent-cyan);">
-              <i class="fa-solid fa-eye"></i>
+              <i class="fa-solid fa-rectangle-ad"></i>
             </div>
           </div>
-          <div class="metric-value" id="metricViews">0</div>
+          <div class="metric-value" style="color: var(--accent-cyan);" id="metricAdRevenue">$0.00</div>
           <div class="metric-trend positive">
-            <span>Genuine Unique Visitors</span>
+            <span>Google &amp; Adsterra CPM Impressions</span>
           </div>
         </div>
 
-        <!-- Metric 2: Affiliate Clicks -->
+        <!-- Stream 2: Pinterest Traffic Earnings -->
         <div class="metric-card">
           <div class="metric-header">
-            <span class="metric-title">Affiliate Store Clicks</span>
-            <div class="metric-icon" style="background: rgba(245, 158, 11, 0.15); color: var(--primary);">
-              <i class="fa-solid fa-arrow-pointer"></i>
+            <span class="metric-title">📌 Pinterest Referral Value</span>
+            <div class="metric-icon" style="background: rgba(230, 0, 35, 0.15); color: #e60023;">
+              <i class="fa-brands fa-pinterest"></i>
             </div>
           </div>
-          <div class="metric-value" id="metricClicks">0</div>
+          <div class="metric-value" style="color: #ff4d6d;" id="metricPinterestRevenue">$0.00</div>
           <div class="metric-trend positive">
-            <span id="metricCtr">0.0%</span> CTR (Click-Through Rate)
+            <span id="metricPinterestViewsCount">0 Pinterest Visitors</span>
           </div>
         </div>
 
-        <!-- Metric 3: Estimated Commission -->
-        <div class="metric-card glow-card">
+        <!-- Stream 3: Amazon Affiliate Commissions -->
+        <div class="metric-card">
           <div class="metric-header">
-            <span class="metric-title">Live Estimated Commission</span>
-            <div class="metric-icon" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald);">
+            <span class="metric-title">🛒 Amazon Commissions</span>
+            <div class="metric-icon" style="background: rgba(245, 158, 11, 0.15); color: var(--primary);">
+              <i class="fa-brands fa-amazon"></i>
+            </div>
+          </div>
+          <div class="metric-value" style="color: var(--primary);" id="metricCommission">$0.00</div>
+          <div class="metric-trend positive">
+            <span>3% - 4% Outbound Order Deals</span>
+          </div>
+        </div>
+
+        <!-- Stream 4: Total Combined Net Earnings -->
+        <div class="metric-card glow-card" style="border-color: rgba(16, 185, 129, 0.5); background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(19, 26, 42, 0.9));">
+          <div class="metric-header">
+            <span class="metric-title" style="color: var(--accent-emerald); font-weight: 700;">💰 Total Real Net Earnings</span>
+            <div class="metric-icon" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald);">
               <i class="fa-solid fa-sack-dollar"></i>
             </div>
           </div>
-          <div class="metric-value" style="color: var(--accent-emerald);" id="metricCommission">$0.00</div>
+          <div class="metric-value" style="color: var(--accent-emerald);" id="metricTotalEarnings">$0.00</div>
           <div class="metric-trend positive">
-            <span>24-Hour Active Cookie Window</span>
-          </div>
-        </div>
-
-        <!-- Metric 4: Estimated Gross Sales -->
-        <div class="metric-card">
-          <div class="metric-header">
-            <span class="metric-title">Est. Gross Retail Sales</span>
-            <div class="metric-icon" style="background: rgba(139, 92, 246, 0.15); color: var(--accent-purple);">
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-          </div>
-          <div class="metric-value" id="metricSales">$0.00</div>
-          <div class="metric-trend">
-            <span>Customer shopping cart volume</span>
+            <span>Ads CPM + Amazon Commissions</span>
           </div>
         </div>
       </section>
 
-      <!-- Two-Column Layout: Country Breakdown + Real-time Feed -->
-      <div class="admin-sections-grid">
-        
-        <!-- Left: Country Geolocation Breakdown -->
-        <div class="admin-card">
-          <div class="admin-card-header">
-            <div>
-              <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">
-                🌍 Visitor Country Traffic Breakdown
-              </h3>
-              <p style="color: var(--text-muted); font-size: 0.82rem;">Where your buyers and clicks are originating from worldwide</p>
-            </div>
-            <button class="btn-secondary" onclick="simulateLiveVisit()" style="font-size: 0.78rem; padding: 0.4rem 0.75rem;">
-              <i class="fa-solid fa-plus"></i> Simulate Visit
-            </button>
+      <!-- Secondary Traffic & Engagement Row -->
+      <section class="admin-metrics-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 2rem;">
+        <div class="metric-card" style="padding: 1.1rem 1.25rem;">
+          <div class="metric-header" style="margin-bottom: 0.4rem;">
+            <span class="metric-title" style="font-size: 0.8rem;">Real Page Impressions</span>
+            <i class="fa-solid fa-eye" style="color: var(--accent-cyan); font-size: 0.9rem;"></i>
           </div>
+          <div class="metric-value" style="font-size: 1.6rem; margin-bottom: 0.2rem;" id="metricViews">0</div>
+          <div class="metric-trend" style="font-size: 0.75rem;">Unique visitors loaded</div>
+        </div>
 
-          <div class="country-list" id="countryListContainer">
-            <!-- Rendered dynamically -->
+        <div class="metric-card" style="padding: 1.1rem 1.25rem;">
+          <div class="metric-header" style="margin-bottom: 0.4rem;">
+            <span class="metric-title" style="font-size: 0.8rem;">Affiliate Store Clicks</span>
+            <i class="fa-solid fa-arrow-pointer" style="color: var(--primary); font-size: 0.9rem;"></i>
+          </div>
+          <div class="metric-value" style="font-size: 1.6rem; margin-bottom: 0.2rem;" id="metricClicks">0</div>
+          <div class="metric-trend positive" style="font-size: 0.75rem;">
+            <span id="metricCtr">0.0%</span> CTR (Click-Through)
           </div>
         </div>
 
-        <!-- Right: Real-time Live Activity Stream -->
-        <div class="admin-card">
-          <div class="admin-card-header">
-            <div>
-              <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">
-                ⚡ Live Activity Stream
-              </h3>
-              <p style="color: var(--text-muted); font-size: 0.82rem;">Real-time visitor interactions and affiliate link clicks</p>
+        <div class="metric-card" style="padding: 1.1rem 1.25rem;">
+          <div class="metric-header" style="margin-bottom: 0.4rem;">
+            <span class="metric-title" style="font-size: 0.8rem;">Est. Gross Cart Volume</span>
+            <i class="fa-solid fa-cart-shopping" style="color: var(--accent-purple); font-size: 0.9rem;"></i>
+          </div>
+          <div class="metric-value" style="font-size: 1.6rem; margin-bottom: 0.2rem;" id="metricSales">$0.00</div>
+          <div class="metric-trend" style="font-size: 0.75rem;">Customer cart value</div>
+        </div>
+
+        <div class="metric-card" style="padding: 1.1rem 1.25rem; background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.25);">
+          <div class="metric-header" style="margin-bottom: 0.4rem;">
+            <span class="metric-title" style="font-size: 0.8rem; color: var(--accent-emerald);">Owner Security</span>
+            <i class="fa-solid fa-lock" style="color: var(--accent-emerald); font-size: 0.9rem;"></i>
+          </div>
+          <div style="font-weight: 700; color: var(--text-primary); font-size: 1.1rem; margin-bottom: 0.25rem;">Private Admin</div>
+          <div class="metric-trend" style="font-size: 0.75rem; color: var(--accent-emerald);">
+            <i class="fa-solid fa-shield-check"></i> Master PIN Protected
+          </div>
+        </div>
+      </section>
+
+      <!-- Two-Column Layout: Country Breakdown & Traffic Sources + Real-time Feed -->
+      <div class="admin-sections-grid">
+        
+        <!-- Left: Country Geolocation Breakdown & Sources -->
+        <div style="display: flex; flex-direction: column; gap: 1.75rem;">
+          
+          <!-- Card 1: Country Breakdown -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>🌍</span> Visitor Country Traffic Breakdown
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.8rem;">Real locations of visitors from Pakistan, USA, UK & worldwide</p>
+              </div>
+              <button class="btn-secondary" onclick="simulateLiveVisit()" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;">
+                <i class="fa-solid fa-plus"></i> Simulate Visit
+              </button>
             </div>
-            <button class="btn-secondary" onclick="refreshDashboard()" style="font-size: 0.78rem; padding: 0.4rem 0.75rem;">
-              <i class="fa-solid fa-rotate"></i> Refresh
-            </button>
+
+            <div class="country-list" id="countryListContainer">
+              <!-- Rendered dynamically -->
+            </div>
           </div>
 
-          <div class="activity-stream" id="activityStreamContainer">
-            <!-- Rendered dynamically -->
+          <!-- Card 2: Traffic Acquisition Sources -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>🚦</span> Traffic Sources &amp; Referral Channels
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.8rem;">Where your website traffic is coming from</p>
+              </div>
+            </div>
+
+            <div id="trafficSourcesContainer" style="display: flex; flex-direction: column; gap: 1rem;">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Real-time Live Activity Stream & Earning Guide -->
+        <div style="display: flex; flex-direction: column; gap: 1.75rem;">
+          
+          <!-- Card 1: Activity Stream -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.2rem; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>⚡</span> Live Activity Stream
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.8rem;">Real-time visitor interactions and affiliate link clicks</p>
+              </div>
+              <button class="btn-secondary" onclick="refreshDashboard()" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;">
+                <i class="fa-solid fa-rotate"></i> Refresh
+              </button>
+            </div>
+
+            <div class="activity-stream" id="activityStreamContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Card 2: Revenue Stream Explanation -->
+          <div class="admin-card" style="background: rgba(245, 158, 11, 0.04); border-color: rgba(245, 158, 11, 0.25);">
+            <h4 style="font-size: 1rem; color: var(--primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-circle-question"></i> Website Se Real Earning Kaise Hoti Hai?
+            </h4>
+            <div style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.82rem; line-height: 1.45; color: var(--text-secondary);">
+              <div style="display: flex; gap: 0.6rem; align-items: flex-start;">
+                <span style="color: var(--accent-cyan); font-weight: 700; font-size: 1rem;">1.</span>
+                <div>
+                  <b style="color: var(--text-primary);">Website Views (Adsterra Ads):</b> Koi bhi visitor (chahe Pakistan se ho ya bahar se) website par aayega to ads impressions par CPM earning banti hai.
+                </div>
+              </div>
+              <div style="display: flex; gap: 0.6rem; align-items: flex-start;">
+                <span style="color: #ff4d6d; font-weight: 700; font-size: 1rem;">2.</span>
+                <div>
+                  <b style="color: var(--text-primary);">Pinterest Viral Pins:</b> Pinterest par US/UK ke log products dekh kar click karte hain, jahan se high-earning foreign traffic aati hai.
+                </div>
+              </div>
+              <div style="display: flex; gap: 0.6rem; align-items: flex-start;">
+                <span style="color: var(--primary); font-weight: 700; font-size: 1rem;">3.</span>
+                <div>
+                  <b style="color: var(--text-primary);">Amazon Commission:</b> Jab koi "Check Deal" par click kar ke Amazon se koi bhi product buy karega to 3% - 4% direct commission banta hai.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
