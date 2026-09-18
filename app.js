@@ -64,6 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderSpotlight();
   renderProducts();
   attachEventListeners();
+  initCalculator();
+  initFaqAccordion();
 });
 
 // ==========================================================================
@@ -635,5 +637,78 @@ function attachEventListeners() {
       closeComparisonModal();
       closeTagConfigModal();
     }
+  });
+}
+
+// ==========================================================================
+// Interactive Earnings Calculator
+// ==========================================================================
+function initCalculator() {
+  const visitorsSlider = document.getElementById("calcVisitorsSlider");
+  const priceSlider = document.getElementById("calcPriceSlider");
+  const categorySelect = document.getElementById("calcCategorySelect");
+  
+  const visitorsVal = document.getElementById("calcVisitorsVal");
+  const priceVal = document.getElementById("calcPriceVal");
+  const rateVal = document.getElementById("calcRateVal");
+  const monthlyIncome = document.getElementById("calcMonthlyIncome");
+  const yearlyIncome = document.getElementById("calcYearlyIncome");
+  const monthlyOrders = document.getElementById("calcMonthlyOrders");
+
+  if (!visitorsSlider || !priceSlider || !categorySelect) return;
+
+  function recalculate() {
+    const dailyVisitors = parseInt(visitorsSlider.value) || 500;
+    const avgPrice = parseFloat(priceSlider.value) || 120;
+    const rate = parseFloat(categorySelect.value) || 0.04;
+
+    // Display formatted inputs
+    visitorsVal.textContent = dailyVisitors.toLocaleString();
+    priceVal.textContent = `$${avgPrice.toFixed(0)}`;
+    rateVal.textContent = `${(rate * 100).toFixed(1)}%`;
+
+    // Standard Amazon affiliate metrics (10% high-intent CTR * 10% buy conversion = 1% total visitor conversion)
+    // Or 10% of clicked visitors buy
+    const estMonthlyOrders = Math.round(dailyVisitors * 30 * 0.015);
+    const estMonthlySales = estMonthlyOrders * avgPrice;
+    const estMonthlyComm = estMonthlySales * rate;
+    const estYearlyComm = estMonthlyComm * 12;
+
+    monthlyIncome.textContent = `$${estMonthlyComm.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    yearlyIncome.textContent = `$${Math.round(estYearlyComm).toLocaleString('en-US')}`;
+    monthlyOrders.textContent = `${estMonthlyOrders.toLocaleString()} orders`;
+  }
+
+  visitorsSlider.addEventListener("input", recalculate);
+  priceSlider.addEventListener("input", recalculate);
+  categorySelect.addEventListener("change", recalculate);
+
+  recalculate();
+}
+
+// ==========================================================================
+// FAQ Accordion Interaction
+// ==========================================================================
+function initFaqAccordion() {
+  const faqItems = document.querySelectorAll(".faq-item");
+  if (!faqItems.length) return;
+
+  faqItems.forEach(item => {
+    const questionBtn = item.querySelector(".faq-question");
+    if (!questionBtn) return;
+
+    questionBtn.addEventListener("click", () => {
+      const isActive = item.classList.contains("active");
+      
+      // Close all other items for a clean accordion feel
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove("active");
+        }
+      });
+
+      // Toggle clicked item
+      item.classList.toggle("active", !isActive);
+    });
   });
 }
