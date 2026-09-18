@@ -299,7 +299,10 @@ function openProductModal(productId) {
       <a href="${affiliateUrl}" target="_blank" rel="nofollow noopener" class="btn-amazon" style="padding: 0.9rem 1.5rem; font-size: 1.05rem;" onclick="if(typeof trackAffiliateClick==='function') trackAffiliateClick('${product.id}', '${product.title.replace(/'/g, "\\'")}', ${product.price}, '${product.category}')">
         <i class="fa-brands fa-amazon"></i> Check Best Price on Amazon
       </a>
-      <div style="display: flex; gap: 0.5rem; width: 100%;">
+      <a href="https://www.amazon.com/s?k=${encodeURIComponent(product.title)}&tag=${encodeURIComponent(currentAffiliateTag)}" target="_blank" rel="nofollow noopener" class="btn-secondary" style="font-size: 0.82rem; padding: 0.5rem 0.8rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem; width: 100%;" title="Find live in-stock sellers on Amazon">
+        <i class="fa-solid fa-magnifying-glass"></i> Alternative: Search on Amazon
+      </a>
+      <div style="display: flex; gap: 0.5rem; width: 100%; margin-top: 0.25rem;">
         <button class="btn-secondary" onclick="copyAffiliateLink('${affiliateUrl}', event)" style="flex: 1;">
           <i class="fa-solid fa-copy"></i> Copy Link
         </button>

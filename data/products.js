@@ -2,7 +2,7 @@
 const PRODUCTS_DATA = [
   {
     id: "prod-1",
-    asin: "B09G96TFF7",
+    asin: "B09XS7JWHH",
     title: "Sony WH-1000XM5 Wireless Noise Canceling Headphones",
     tagline: "Industry-leading noise canceling with Auto NC Optimizer and crystal clear hands-free calling",
     category: "tech",
@@ -15,7 +15,7 @@ const PRODUCTS_DATA = [
     badge: "🔥 Best Seller",
     badgeType: "hot",
     image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80",
-    amazonUrl: "https://www.amazon.com/dp/B09G96TFF7",
+    amazonUrl: "https://www.amazon.com/dp/B09XS7JWHH",
     specs: {
       "Battery Life": "Up to 30 Hours",
       "Noise Cancellation": "Dual Processor V1 + QN1",
@@ -470,7 +470,7 @@ const PRODUCTS_DATA = [
   },
   {
     id: "prod-14",
-    asin: "B0CHWRXH8B",
+    asin: "B0CHWRXHQR",
     title: "Apple AirPods Pro 2 Wireless Earbuds (USB-C MagSafe Case)",
     tagline: "Up to 2x more Active Noise Cancellation, Transparency mode, and Hearing Aid feature",
     category: "tech",
@@ -483,7 +483,7 @@ const PRODUCTS_DATA = [
     badge: "⚡ Flash Deal",
     badgeType: "deal",
     image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&auto=format&fit=crop&q=80",
-    amazonUrl: "https://www.amazon.com/dp/B0CHWRXH8B",
+    amazonUrl: "https://www.amazon.com/dp/B0CHWRXHQR",
     specs: {
       "Chip": "Apple H2 Headphone Chip",
       "ANC": "Up to 2x more Active Noise Cancellation",
