@@ -848,8 +848,25 @@ function matchAiDeal(preference) {
   }, 900);
 }
 
+// Flash Sale Countdown Timer
+function initFlashCountdown() {
+  const cd = document.getElementById("flashCountdown");
+  if (!cd) return;
+  let totalSecs = (3 * 3600) + (41 * 60) + 22;
+  setInterval(() => {
+    totalSecs--;
+    if (totalSecs <= 0) totalSecs = (4 * 3600) + 30;
+    const h = Math.floor(totalSecs / 3600);
+    const m = Math.floor((totalSecs % 3600) / 60);
+    const s = totalSecs % 60;
+    cd.textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }, 1000);
+}
+
 // Auto init on page load
 document.addEventListener("DOMContentLoaded", () => {
   initLiveSocialProof();
+  initFlashCountdown();
 });
+
 

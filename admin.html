@@ -379,28 +379,48 @@
             </p>
           </div>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <button class="action-btn" id="btnCopyRssFeed" onclick="copyPinterestRss()" style="background: rgba(230,0,35,0.12); color: #e60023; border: 1px solid rgba(230,0,35,0.3); font-weight: 600; padding: 0.5rem 1rem;">
-              <i class="fa-solid fa-rss"></i> Copy Pinterest RSS Feed
-            </button>
-            <a href="https://www.pinterest.com/pin-creation-tool/" target="_blank" class="action-btn" style="background: #e60023; color: #fff; font-weight: 600; padding: 0.5rem 1rem;">
-              <i class="fa-brands fa-pinterest"></i> Open Pinterest Creator
+            <a href="pinterest-bulk-pins.csv" download="pinterest-bulk-pins.csv" class="action-btn" style="background: rgba(230, 0, 35, 0.18); color: #ff4d6d; border: 1px solid rgba(230, 0, 35, 0.4); font-weight: 700; padding: 0.5rem 1rem; text-decoration: none;" title="Download all 30 products in official Pinterest CSV format">
+              <i class="fa-solid fa-file-csv"></i> Download 30 Pins CSV
             </a>
+            <a href="https://www.pinterest.com/settings/bulk-create-pins/" target="_blank" class="action-btn" style="background: #e60023; color: #fff; font-weight: 700; padding: 0.5rem 1rem; text-decoration: none;" title="Go to Pinterest Bulk Create Pins page">
+              <i class="fa-solid fa-cloud-arrow-up"></i> 1-Click Upload on Pinterest
+            </a>
+            <button class="action-btn" id="btnCopyRssFeed" onclick="copyPinterestRss()" style="background: rgba(255,255,255,0.08); color: var(--text-primary); border: 1px solid var(--border-color); font-weight: 600; padding: 0.5rem 1rem;">
+              <i class="fa-solid fa-rss"></i> Copy RSS Feed URL
+            </button>
           </div>
         </div>
 
-        <!-- Automated RSS Feed Connection Box -->
-        <div style="background: var(--bg-card); border: 1px solid rgba(230,0,35,0.25); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 1.25rem;">
-          <div style="font-size: 2.5rem; color: #e60023; line-height: 1;"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-          <div style="flex: 1;">
-            <h4 style="font-size: 1.05rem; margin-bottom: 0.35rem; color: var(--text-primary);">🚀 Hands-Free Auto-Publishing (Pinterest RSS Sync):</h4>
-            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.75rem;">
-              Pinterest allows you to connect an RSS Feed that <b>automatically creates Pins for every product on your website</b> with image, discount, and backlink. In Pinterest Business Settings &rarr; <b>Claimed accounts &rarr; Auto-publish from RSS feed</b>, paste this link:
+        <!-- 2 Instant Auto-Upload Methods Box -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem;">
+          <!-- Method 1: Instant Bulk CSV Upload -->
+          <div style="background: var(--bg-card); border: 1px solid rgba(230,0,35,0.3); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem;">
+              <i class="fa-solid fa-bolt" style="color: #ff4d6d; font-size: 1.2rem;"></i>
+              <h4 style="font-size: 1.05rem; color: var(--text-primary);">Method 1: Instant 30-Pin Bulk Upload</h4>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.85rem;">
+              Agar aap chahte hain ke <b>abhi ke abhi saare 30 products Pinterest par upload ho jayein</b>:
+              <br>1. Click <b>"Download 30 Pins CSV"</b> button oopar.
+              <br>2. Open <a href="https://www.pinterest.com/settings/bulk-create-pins/" target="_blank" style="color: #ff4d6d; text-decoration: underline;">Pinterest Bulk Create Pins</a> aur file drag &amp; drop kar dein!
             </p>
-            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-              <input type="text" readonly value="https://zainimranhameed-png.github.io/affiliprime-deals/pinterest-feed.xml" id="pinterestRssInput" style="flex: 1; min-width: 280px; padding: 0.55rem 0.85rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-body); color: var(--text-primary); font-family: monospace; font-size: 0.85rem;">
-              <button onclick="copyPinterestRss()" class="action-btn" style="padding: 0.55rem 1rem; font-size: 0.85rem; background: #e60023; color: #fff;">
-                <i class="fa-solid fa-copy"></i> Copy Feed Link
-              </button>
+            <a href="pinterest-bulk-pins.csv" download="pinterest-bulk-pins.csv" class="btn-amazon" style="display: inline-flex; width: auto; font-size: 0.82rem; padding: 0.45rem 0.9rem; background: #e60023;">
+              <i class="fa-solid fa-download"></i> Download CSV File
+            </a>
+          </div>
+
+          <!-- Method 2: 24h Auto-Sync RSS -->
+          <div style="background: var(--bg-card); border: 1px solid rgba(16,185,129,0.3); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem;">
+              <i class="fa-solid fa-rotate" style="color: var(--accent-emerald); font-size: 1.2rem;"></i>
+              <h4 style="font-size: 1.05rem; color: var(--text-primary);">Method 2: Hands-Free Auto-Publish Feed</h4>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.85rem;">
+              Aapka RSS feed already Pinterest se connected hai. Pinterest har 24 ghante mein aapki website check karta hai aur naye products automatically post karta rehta hai.
+            </p>
+            <div style="display: flex; gap: 0.4rem; align-items: center;">
+              <input type="text" readonly value="https://zainimranhameed-png.github.io/affiliprime-deals/pinterest-feed.xml" style="flex: 1; padding: 0.4rem 0.6rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-body); color: var(--text-primary); font-family: monospace; font-size: 0.78rem;">
+              <button onclick="copyPinterestRss()" class="action-btn" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; background: var(--accent-emerald); color: #fff;">Copy</button>
             </div>
           </div>
         </div>
