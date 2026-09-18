@@ -2,6 +2,17 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
+User-agent: Googlebot
+Allow: /
+Disallow: /admin.html
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin.html
+
 User-agent: Pinterestbot
 Allow: /
 
