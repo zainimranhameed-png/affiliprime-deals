@@ -863,6 +863,222 @@ const PRODUCTS_DATA = [
       "Premium tactical tool with specialized military features most casual users won't exhaust"
     ],
     description: "Featuring an adaptive AMOLED display, traditional buttons and touchscreen display, this tactical smartwatch offers mission-ready tactical features as well as mapping, training metrics, multi-GNSS positioning, and comprehensive health monitoring."
+  },
+  {
+    id: "prod-25",
+    asin: "B00PBX3L7K",
+    title: "COSRX Snail Mucin 96% Power Repairing Essence (Hydrating Daily Serum, 3.38 fl oz)",
+    tagline: "The #1 viral Korean skincare hit with 150,000+ reviews: lightweight repair serum for glowing glass skin",
+    category: "fitness",
+    categoryName: "Beauty & Skincare",
+    rating: 4.8,
+    reviewsCount: 152800,
+    price: 14.99,
+    originalPrice: 25.00,
+    discount: "40% OFF",
+    badge: "🔥 #1 Viral TikTok Hit",
+    badgeType: "hot",
+    image: "https://images.unsplash.com/photo-1608248597359-7ffc93d9e843?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B00PBX3L7K",
+    specs: {
+      "Key Ingredient": "96.3% Snail Secretion Filtrate (Cruelty-Free)",
+      "Skin Types": "Dry, Acne-Prone, Sensitive, Combination",
+      "Key Benefits": "Soothes redness, hydrates deep skin layers, repairs barrier",
+      "Texture": "Lightweight slippery gel essence that absorbs without stickiness",
+      "Volume": "100ml / 3.38 fl. oz with hygienic pump dispenser",
+      "Free From": "Parabens, Sulfates, Artificial Fragrance, Mineral Oil"
+    },
+    pros: [
+      "Instantly quenches dry irritated skin and creates the viral Korean 'glass skin' look",
+      "Massive 150,000+ verified buyer reviews confirm fast acne scar fading",
+      "Hypoallergenic and dermatologist-tested for sensitive skin",
+      "Tremendous value per ounce compared to luxury department store serums"
+    ],
+    cons: [
+      "Slimy slippery texture can feel novel during first few uses",
+      "Not formulated with strong active acids (focuses purely on hydration & soothing)"
+    ],
+    description: "Formulated with 96.3% Snail Secretion Filtrate, this essence protects the skin from moisture loss while improving skin elasticity. Snail mucin helps repair and soothes red, sensitized skin back to its radiant glow."
+  },
+  {
+    id: "prod-26",
+    asin: "B074PVTPBW",
+    title: "Hero Cosmetics Mighty Patch Original Hydrocolloid Acne Pimple Patches (36 Count)",
+    tagline: "The #1 best-selling acne patch on Amazon: visibly pulls out pimple gunk in 6 to 8 hours",
+    category: "fitness",
+    categoryName: "Beauty & Skincare",
+    rating: 4.8,
+    reviewsCount: 134500,
+    price: 11.99,
+    originalPrice: 14.99,
+    discount: "20% OFF",
+    badge: "⭐ #1 Best Seller",
+    badgeType: "editor",
+    image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B074PVTPBW",
+    specs: {
+      "Material": "100% Medical-Grade Pure Hydrocolloid",
+      "Count": "36 Sterile 12mm circular blemish stickers",
+      "Wear Time": "6 to 8 Hours (Perfect for overnight wear)",
+      "Adhesion": "Ultra-thin tapered edges stay glued through tossing & turning",
+      "Finish": "Translucent matte sticker blends effortlessly into skin tones",
+      "Certifications": "Cruelty-free, vegan-friendly, non-drying"
+    },
+    pros: [
+      "Pulls pus and fluids directly out of whiteheads overnight without popping",
+      "Prevents finger picking and touching which eliminates acne scarring",
+      "Completely drug-free and gentle on super delicate facial skin",
+      "Turns white as it absorbs gunk so you see proof it worked"
+    ],
+    cons: [
+      "Designed specifically for surfaced whiteheads (not deep cystic blemishes)",
+      "Stickers must be applied to dry, oil-free skin for maximum adhesion"
+    ],
+    description: "Mighty Patch is a hydrocolloid sticker that improves the look of blemishes overnight without the popping. Just stick it on, get some sleep, and wake up with clearer-looking skin."
+  },
+  {
+    id: "prod-27",
+    asin: "B0016HF5GK",
+    title: "Bissell Little Green Multi-Purpose Portable Carpet & Upholstery Cleaner (1400B)",
+    tagline: "The legendary viral cleaning machine: removes tough pet stains, car seat grime, and sofa spills",
+    category: "home",
+    categoryName: "Home & Cleaning",
+    rating: 4.7,
+    reviewsCount: 128400,
+    price: 99.59,
+    originalPrice: 123.59,
+    discount: "19% OFF",
+    badge: "🔥 TikTok Cleaning Hero",
+    badgeType: "hot",
+    image: "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B0016HF5GK",
+    specs: {
+      "Tank Capacity": "48 oz dual tank system (keeps clean & dirty water separate)",
+      "Tools Included": "3\" Tough Stain Tool + 8 oz trial Spot & Stain formula with Febreze",
+      "Power Cord Length": "15-foot cord + 4-foot flexible suction hose",
+      "Weight": "Ultra-portable 9.6 lbs (easy to carry up stairs and out to vehicles)",
+      "Application": "Sofas, area rugs, car interiors, mattresses, pet beds",
+      "Eco Support": "Every purchase supports the BISSELL Pet Foundation"
+    },
+    pros: [
+      "Unbelievable dirt extraction power restores dirty car seats and muddy sofas to new",
+      "Compact size stores conveniently in small closets or laundry rooms",
+      "Dual removable water tanks make filling and rinsing out dirty water effortless",
+      "Hundreds of millions of TikTok views proving genuine stain removal"
+    ],
+    cons: [
+      "Small 48 oz tank requires refilling on large multi-cushion couch cleanups",
+      "Suction motor noise is similar to a compact vacuum cleaner"
+    ],
+    description: "The BISSELL Little Green portable carpet cleaner combines powerful suction with spot & stain spray to tackle pet messes, car detailing, and stubborn food spills on stairs and upholstery."
+  },
+  {
+    id: "prod-28",
+    asin: "B09B2W7J3J",
+    title: "Owala FreeSip Insulated Stainless Steel Water Bottle with Straw (32 oz, Leak-Proof)",
+    tagline: "The viral hydration sensation: dual sip-or-swig FreeSip spout, push-button lid, and 24h cold insulation",
+    category: "fitness",
+    categoryName: "Fitness & Hydration",
+    rating: 4.9,
+    reviewsCount: 48900,
+    price: 37.99,
+    originalPrice: 42.99,
+    discount: "12% OFF",
+    badge: "🥤 Viral Phenomenon",
+    badgeType: "editor",
+    image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B09B2W7J3J",
+    specs: {
+      "Capacity": "32 oz / 950 ml Double-Wall Vacuum Insulated Stainless Steel",
+      "Spout System": "Patented FreeSip Spout (Sip upright through straw OR tilt back to chug)",
+      "Lid Technology": "One-touch push-button flip lid with lock loop handle",
+      "Insulation Duration": "Keeps water ice-cold for up to 24 full hours",
+      "Safety": "100% Leak-Proof, BPA-free, lead-free, and phthalate-free",
+      "Cleaning": "Dishwasher-safe lid with wide opening for easy hand washing"
+    },
+    pros: [
+      "Patented FreeSip spout lets you drink upright without tipping your head back",
+      "100% truly leak-proof lock loop lets you toss it into backpacks worry-free",
+      "Triple-layer insulation keeps ice cubes intact throughout hot gym workouts",
+      "Stunning retro color combinations loved by lifestyle creators worldwide"
+    ],
+    cons: [
+      "32 oz diameter does not fit into tight compact car cup holders (fits in door pockets)",
+      "Stainless steel body requires hand-washing to preserve exterior matte powder coat"
+    ],
+    description: "Meet the bottle that took over TikTok. The Owala FreeSip insulated stainless-steel water bottle features a patented FreeSip spout designed for either sipping upright through the built-in straw or tilting back to swig from the chug opening."
+  },
+  {
+    id: "prod-29",
+    asin: "B0C159ZJ7X",
+    title: "Ninja CREAMi Deluxe 11-in-1 Ice Cream & Frozen Treat Maker (NC501 Series)",
+    tagline: "Turn everyday ingredients into gourmet ice cream, sorbet, gelato, frozen yogurt, and slushies in minutes",
+    category: "home",
+    categoryName: "Kitchen Appliances",
+    rating: 4.8,
+    reviewsCount: 21500,
+    price: 219.99,
+    originalPrice: 249.99,
+    discount: "12% OFF",
+    badge: "🍦 Viral Dessert King",
+    badgeType: "hot",
+    image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B0C159ZJ7X",
+    specs: {
+      "Programs": "11 One-Touch Functions (Ice Cream, Sorbet, Gelato, Lite Ice Cream, Slushi, etc.)",
+      "Capacity": "Deluxe 24 oz Pints (50% more ice cream than original CREAMi)",
+      "Technology": "Dual-Drive Creamerizer Paddle shaves frozen blocks into ultra-creamy micro-crystals",
+      "Customization": "Process top & bottom halves separately or add mix-ins (Oreos, peanut butter)",
+      "Pints Included": "Includes (2) 24 oz XL Deluxe Pints with storage lids",
+      "Dishwasher Safe": "Pints, lids, and processing paddle are top-rack dishwasher safe"
+    },
+    pros: [
+      "Makes healthy low-calorie, high-protein ice cream with identical texture to commercial pints",
+      "Deluxe 24 oz capacity provides enough treats for the whole family",
+      "Mix-In button distributes chocolate chips, fruit, and nuts evenly without pulverizing them",
+      "Massive viral TikTok recipe community with millions of healthy dessert creations"
+    ],
+    cons: [
+      "Requires pre-freezing recipe liquid in pints for 24 hours prior to blending",
+      "Motor is high-torque and loud during the 2-minute processing cycle"
+    ],
+    description: "The Ninja CREAMi Deluxe brings the ice cream parlor home. With 11 one-touch programs, turn simple household ingredients into rich, decadent frozen treats like gelato, Italian ice, milkshakes, and protein-packed ice creams."
+  },
+  {
+    id: "prod-30",
+    asin: "B07XXPHM23",
+    title: "LANEIGE Lip Sleeping Mask with Vitamin C & Murumuru Butter (Berry Flavor, 0.7 oz)",
+    tagline: "The holy grail overnight lip treatment: locks in intense moisture for soft, plump, baby-smooth lips",
+    category: "fitness",
+    categoryName: "Beauty & Lip Care",
+    rating: 4.8,
+    reviewsCount: 44200,
+    price: 24.00,
+    originalPrice: 28.00,
+    discount: "14% OFF",
+    badge: "💄 Cult Classic",
+    badgeType: "editor",
+    image: "https://images.unsplash.com/photo-1599305090598-fe179d501227?w=800&auto=format&fit=crop&q=80",
+    amazonUrl: "https://www.amazon.com/dp/B07XXPHM23",
+    specs: {
+      "Active Ingredients": "Berry Fruit Complex, Murumuru Seed Butter, Shea Butter, Vitamin C",
+      "Texture": "Rich buttery balm that melts effortlessly onto dry lips",
+      "Target": "Dry, chapped, peeling, or dehydrated lips",
+      "Size": "20g / 0.7 oz (Lasts 6-9 months with daily use)",
+      "Flavor": "Delicious sweet berry aroma",
+      "Spatula": "Includes soft silicone lip applicator wand"
+    },
+    pros: [
+      "Completely eradicates flaky dry lips in a single overnight application",
+      "A small dab lasts all night without wiping off onto pillows",
+      "Pot lasts over half a year of nightly use, making it very economical",
+      "One of the most gifted and viral beauty items across beauty influencers"
+    ],
+    cons: [
+      "Rich formula is meant primarily for night sleep (slightly thick for daytime under some lipsticks)",
+      "Needs small applicator spatula kept handy"
+    ],
+    description: "A leave-on lip mask that delivers intense moisture and antioxidants while you sleep with its Moisture Wrap technology and Berry Fruit Complex. Wake up to supple, smooth, nourished lips."
   }
 ];
 
