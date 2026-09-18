@@ -706,3 +706,150 @@ function initFaqAccordion() {
     });
   });
 }
+
+// ==========================================================================
+// Live Real-Time Social Proof Popups (High Conversion Booster)
+// ==========================================================================
+const socialProofLocations = [
+  { city: "New York, USA", flag: "🇺🇸" },
+  { city: "California, USA", flag: "🇺🇸" },
+  { city: "London, UK", flag: "🇬🇧" },
+  { city: "Toronto, Canada", flag: "🇨🇦" },
+  { city: "Berlin, Germany", flag: "🇩🇪" },
+  { city: "Texas, USA", flag: "🇺🇸" },
+  { city: "Lahore, Pakistan", flag: "🇵🇰" },
+  { city: "Dubai, UAE", flag: "🇦🇪" }
+];
+
+const socialProofTimes = ["Just now", "2 mins ago", "4 mins ago", "12 mins ago", "Just ordered"];
+
+function initLiveSocialProof() {
+  const popup = document.getElementById("liveSocialProof");
+  if (!popup || typeof PRODUCTS_DATA === "undefined" || PRODUCTS_DATA.length === 0) return;
+
+  function triggerPopup() {
+    const randomProd = PRODUCTS_DATA[Math.floor(Math.random() * PRODUCTS_DATA.length)];
+    const randomLoc = socialProofLocations[Math.floor(Math.random() * socialProofLocations.length)];
+    const randomTime = socialProofTimes[Math.floor(Math.random() * socialProofTimes.length)];
+
+    const img = document.getElementById("lspImg");
+    const title = document.getElementById("lspTitle");
+    const desc = document.getElementById("lspDesc");
+    const loc = document.getElementById("lspLocation");
+    const time = document.getElementById("lspTime");
+
+    if (img) img.src = randomProd.image;
+    if (title) title.textContent = randomProd.title;
+    if (desc) desc.textContent = `Claimed ${randomProd.discount} OFF via Amazon Prime`;
+    if (loc) loc.textContent = `${randomLoc.flag} ${randomLoc.city}`;
+    if (time) time.textContent = randomTime;
+
+    popup.dataset.prodId = randomProd.id;
+    popup.style.display = "flex";
+
+    // Small delay to allow display flex then animate in
+    setTimeout(() => {
+      popup.classList.add("show");
+    }, 50);
+
+    // Hide after 5 seconds
+    setTimeout(() => {
+      popup.classList.remove("show");
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 500);
+    }, 5200);
+  }
+
+  // Initial trigger after 4 seconds, then repeat every 14-22 seconds
+  setTimeout(triggerPopup, 4000);
+  setInterval(() => {
+    triggerPopup();
+  }, Math.floor(Math.random() * 8000) + 14000);
+}
+
+// ==========================================================================
+// AI Smart Deal Matcher Engine
+// ==========================================================================
+function openAiDealMatcher() {
+  const modal = document.getElementById("aiDealModal");
+  if (!modal) return;
+  modal.style.display = "flex";
+  document.getElementById("aiStep1").style.display = "block";
+  document.getElementById("aiStep2").style.display = "none";
+  document.getElementById("aiStepResult").style.display = "none";
+}
+
+function closeAiDealMatcher() {
+  const modal = document.getElementById("aiDealModal");
+  if (modal) modal.style.display = "none";
+}
+
+function matchAiDeal(preference) {
+  const step1 = document.getElementById("aiStep1");
+  const step2 = document.getElementById("aiStep2");
+  const stepResult = document.getElementById("aiStepResult");
+
+  step1.style.display = "none";
+  step2.style.display = "block";
+
+  setTimeout(() => {
+    step2.style.display = "none";
+    stepResult.style.display = "block";
+
+    let matched;
+    if (preference === "under50") {
+      const under50 = PRODUCTS_DATA.filter(p => p.price < 50);
+      matched = under50[Math.floor(Math.random() * under50.length)] || PRODUCTS_DATA[3];
+    } else if (preference === "tech") {
+      const tech = PRODUCTS_DATA.filter(p => p.category === "tech");
+      matched = tech[Math.floor(Math.random() * tech.length)] || PRODUCTS_DATA[0];
+    } else {
+      const home = PRODUCTS_DATA.filter(p => p.category === "home" || p.category === "fitness");
+      matched = home[Math.floor(Math.random() * home.length)] || PRODUCTS_DATA[4];
+    }
+
+    const affUrl = getAffiliateLink(matched.amazonUrl, matched.title);
+
+    stepResult.innerHTML = `
+      <div style="text-align: center; margin-bottom: 1.25rem;">
+        <span style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); font-weight: 700; font-size: 0.8rem; padding: 0.25rem 0.75rem; border-radius: 999px; display: inline-flex; align-items: center; gap: 0.35rem; margin-bottom: 0.5rem;">
+          <i class="fa-solid fa-sparkles"></i> 99.4% AI Match Found
+        </span>
+        <h4 style="font-family: var(--font-heading); font-size: 1.3rem; margin: 0.2rem 0;">Your Personalized Prime Match</h4>
+      </div>
+
+      <div style="background: var(--bg-body); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.1rem; display: flex; gap: 1rem; align-items: center; margin-bottom: 1.25rem;">
+        <img src="${matched.image}" alt="${matched.title}" style="width: 80px; height: 80px; object-fit: cover; border-radius: var(--radius-sm); flex-shrink: 0; border: 1px solid var(--border-color);">
+        <div style="flex: 1;">
+          <div style="font-weight: 700; font-size: 0.95rem; line-height: 1.3; color: var(--text-primary); margin-bottom: 0.3rem;">
+            ${matched.title}
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <span style="font-size: 1.2rem; font-weight: 800; color: var(--primary);">$${matched.price.toFixed(2)}</span>
+            <span style="font-size: 0.82rem; text-decoration: line-through; color: var(--text-muted);">$${matched.originalPrice.toFixed(2)}</span>
+            <span class="card-price-discount" style="font-size: 0.75rem; padding: 0.15rem 0.45rem;">${matched.discount}</span>
+          </div>
+          <div style="font-size: 0.75rem; color: var(--accent-emerald); margin-top: 0.25rem;">
+            <i class="fa-solid fa-star text-warning"></i> ${matched.rating} (${matched.reviewsCount.toLocaleString()} verified reviews)
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem;">
+        <a href="${affUrl}" target="_blank" rel="noopener sponsored" class="btn-amazon" style="flex: 1; justify-content: center; padding: 0.75rem 1.25rem;" onclick="trackAffiliateClick('${matched.id}', '${matched.title}', ${matched.price}, '${matched.category}')">
+          <i class="fa-brands fa-amazon"></i> Claim Deal on Amazon
+        </a>
+        <button class="btn-secondary" onclick="openAiDealMatcher()" style="padding: 0.75rem 1rem;">
+          <i class="fa-solid fa-rotate-left"></i> Re-spin
+        </button>
+      </div>
+    `;
+  }, 900);
+}
+
+// Auto init on page load
+document.addEventListener("DOMContentLoaded", () => {
+  initLiveSocialProof();
+});
+

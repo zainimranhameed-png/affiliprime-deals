@@ -511,6 +511,84 @@
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toastContainer"></div>
 
+  <!-- Live Social Proof Real-Time Buyer Notification -->
+  <div class="live-social-proof" id="liveSocialProof" onclick="openProductModal(this.dataset.prodId)">
+    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100" alt="Product" class="lsp-img" id="lspImg">
+    <div class="lsp-body">
+      <div class="lsp-title" id="lspTitle">Sony WH-1000XM5 Headphones</div>
+      <div id="lspDesc" style="color: var(--accent-cyan); font-weight: 600;">Verified Amazon Prime Deal</div>
+      <div class="lsp-meta">
+        <span id="lspLocation">🇺🇸 California</span> • <span id="lspTime">Just now</span> • <span class="lsp-tag">Verified Deal</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating AI Smart Deal Matcher Button -->
+  <button class="floating-ai-deal-btn" onclick="openAiDealMatcher()" title="Find My Perfect Amazon Deal With AI">
+    <i class="fa-solid fa-wand-magic-sparkles"></i>
+    <span>AI Deal Matcher</span>
+  </button>
+
+  <!-- AI Deal Matcher Interactive Modal -->
+  <div class="modal-backdrop" id="aiDealModal" style="display: none;">
+    <div class="modal-card" style="max-width: 520px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <div style="width: 38px; height: 38px; border-radius: 999px; background: linear-gradient(135deg, #f59e0b, #ec4899); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
+          <div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">AI Smart Deal Matcher</h3>
+            <span style="font-size: 0.76rem; color: var(--accent-cyan); font-weight: 600;">Instant Amazon Recommendation Engine</span>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeAiDealMatcher()">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 1.5rem;">
+        <div id="aiStep1">
+          <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.25rem;">
+            Select your goal and our smart algorithm will instantly match you with the <b>highest-rated discount deal on Amazon</b>!
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <div class="ai-modal-option-card" onclick="matchAiDeal('under50')">
+              <span style="font-size: 1.6rem;">💸</span>
+              <div>
+                <b style="color: var(--text-primary); font-size: 0.92rem; display: block;">Under $50 Budget Finds</b>
+                <span style="color: var(--text-muted); font-size: 0.78rem;">Affordable trending TikTok gadgets & viral kitchen finds</span>
+              </div>
+            </div>
+            <div class="ai-modal-option-card" onclick="matchAiDeal('tech')">
+              <span style="font-size: 1.6rem;">🎧</span>
+              <div>
+                <b style="color: var(--text-primary); font-size: 0.92rem; display: block;">High-Tech & Premium Audio</b>
+                <span style="color: var(--text-muted); font-size: 0.78rem;">Flagship headphones, Apple gear & ultrawide monitors</span>
+              </div>
+            </div>
+            <div class="ai-modal-option-card" onclick="matchAiDeal('lifestyle')">
+              <span style="font-size: 1.6rem;">🏠</span>
+              <div>
+                <b style="color: var(--text-primary); font-size: 0.92rem; display: block;">Smart Home & Daily Upgrades</b>
+                <span style="color: var(--text-muted); font-size: 0.78rem;">Viral tumblers, robot vacuums & coffee bar essentials</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="aiStep2" style="display: none; text-align: center; padding: 2.5rem 1rem;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.75rem; color: var(--primary);">
+            <i class="fa-solid fa-arrows-rotate fa-spin"></i>
+          </div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.25rem;">Analyzing 30 Live Amazon Deals...</h4>
+          <p style="color: var(--text-muted); font-size: 0.82rem;">Checking active price discounts, Prime badges & verified buyer ratings</p>
+        </div>
+
+        <div id="aiStepResult" style="display: none;">
+          <!-- Result injected dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">

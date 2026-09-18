@@ -2166,4 +2166,130 @@ button, input, select {
   border-color: #e60023 !important;
 }
 
+/* ==========================================================================
+   Live Social Proof Real-Time Buyer Notifications
+   ========================================================================== */
+.live-social-proof {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 999;
+  background: rgba(17, 24, 39, 0.94);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55), 0 0 15px rgba(16, 185, 129, 0.15);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: 360px;
+  transform: translateY(120px);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.live-social-proof.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lsp-img {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.lsp-body {
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--text-secondary);
+}
+
+.lsp-title {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 230px;
+}
+
+.lsp-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.lsp-tag {
+  color: var(--accent-emerald);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Floating AI Deal Matcher Widget
+   ========================================================================== */
+.floating-ai-deal-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 998;
+  background: linear-gradient(135deg, #f59e0b, #ec4899, #8b5cf6);
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.4rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4), 0 0 20px rgba(245, 158, 11, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.floating-ai-deal-btn:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 14px 40px rgba(236, 72, 153, 0.55), 0 0 30px rgba(245, 158, 11, 0.5);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* AI Matcher Modal Styles */
+.ai-modal-option-card {
+  background: var(--bg-body);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.ai-modal-option-card:hover, .ai-modal-option-card.selected {
+  border-color: var(--primary);
+  background: rgba(245, 158, 11, 0.08);
+  transform: translateX(4px);
+}
+
+
 
