@@ -2132,18 +2132,16 @@ button, input, select {
   width: 100%;
   max-width: 728px;
   min-height: 90px;
-  background: var(--bg-card);
-  border: 1px dashed var(--border-color);
-  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  transition: border-color var(--transition-fast);
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  margin: 0 auto;
 }
 
-.ad-box-leaderboard:hover {
-  border-color: var(--primary);
+.ad-box-leaderboard iframe {
+  max-width: 100%;
 }
 
 .ad-placeholder-content {
