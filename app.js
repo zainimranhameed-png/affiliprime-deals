@@ -863,6 +863,23 @@ function initFlashCountdown() {
   }, 1000);
 }
 
+// Viral WhatsApp & Native Share Handler
+function shareOnWhatsApp() {
+  const shareText = "🔥 Check out AffiliPrime Deals! Verified Amazon Price Drops & Discounts up to 40% OFF right now on Tech, Laptops & Home Gadgets:";
+  const shareUrl = "https://zainimranhameed-png.github.io/affiliprime-deals/";
+
+  if (navigator.share) {
+    navigator.share({
+      title: "AffiliPrime Deals - Verified Amazon Price Drops",
+      text: shareText,
+      url: shareUrl
+    }).catch(() => {});
+  } else {
+    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + "\n\n" + shareUrl)}`;
+    window.open(waUrl, "_blank");
+  }
+}
+
 // Auto init on page load
 document.addEventListener("DOMContentLoaded", () => {
   initLiveSocialProof();
