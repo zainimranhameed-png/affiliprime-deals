@@ -102,7 +102,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=3.5">
+  <link rel="stylesheet" href="style.css?v=4.0">
 </head>
 <body>
 
@@ -683,11 +683,17 @@
             <button class="wheel-tab" data-wheel-cat="gaming" onclick="setWheelCategory('gaming')">🎮 Gaming</button>
           </div>
 
-          <div class="wheel-container-wrapper">
-            <div class="wheel-pointer"></div>
-            <button class="wheel-center-button" id="btnSpinCenter" onclick="spinWheel()">SPIN</button>
+          <div class="wheel-container-wrapper" onclick="spinWheel()" style="cursor: pointer;" title="Click anywhere on the wheel to spin!">
             <canvas id="wheelCanvas" class="wheel-canvas" width="320" height="320"></canvas>
+            <div class="wheel-pointer"></div>
+            <button type="button" class="wheel-center-button" id="btnSpinCenter" onclick="event.stopPropagation(); spinWheel();" title="Click to Spin">SPIN</button>
           </div>
+
+          <!-- Large Spin Button -->
+          <button type="button" class="btn-spin-large-action" id="btnSpinLarge" onclick="spinWheel()">
+            <i class="fa-solid fa-dharmachakra fa-spin"></i>
+            <span>SPIN LUCKY WHEEL NOW</span>
+          </button>
 
           <!-- Pool Count & Shuffle Control -->
           <div style="margin-top: 0.85rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: var(--text-secondary); flex-wrap: wrap; gap: 0.5rem;">
@@ -761,9 +767,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="data/products.js?v=3.5"></script>
-  <script src="analytics.js?v=3.5"></script>
-  <script src="app.js?v=3.5"></script>
+  <script src="data/products.js?v=4.0"></script>
+  <script src="analytics.js?v=4.0"></script>
+  <script src="app.js?v=4.0"></script>
 
 
 </body>

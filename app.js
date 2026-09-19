@@ -1068,6 +1068,16 @@ function openSpinWheelModal() {
   const modal = document.getElementById("spinWheelModal");
   if (!modal) return;
   modal.style.display = "flex";
+  isWheelSpinning = false;
+
+  const btnCenter = document.getElementById("btnSpinCenter");
+  if (btnCenter) btnCenter.disabled = false;
+  const btnLarge = document.getElementById("btnSpinLarge");
+  if (btnLarge) {
+    btnLarge.disabled = false;
+    btnLarge.innerHTML = `<i class="fa-solid fa-dharmachakra fa-spin"></i> <span>SPIN LUCKY WHEEL NOW</span>`;
+  }
+
   document.getElementById("wheelSection").style.display = "block";
   document.getElementById("wheelWinnerCard").style.display = "none";
   if (!currentWheelPrizes || currentWheelPrizes.length === 0) {
@@ -1089,8 +1099,13 @@ function spinWheel() {
   }
   isWheelSpinning = true;
 
-  const btn = document.getElementById("btnSpinCenter");
-  if (btn) btn.disabled = true;
+  const btnCenter = document.getElementById("btnSpinCenter");
+  if (btnCenter) btnCenter.disabled = true;
+  const btnLarge = document.getElementById("btnSpinLarge");
+  if (btnLarge) {
+    btnLarge.disabled = true;
+    btnLarge.innerHTML = `<i class="fa-solid fa-arrows-rotate fa-spin"></i> <span>SPINNING LUCKY WHEEL...</span>`;
+  }
 
   const winningIndex = Math.floor(Math.random() * currentWheelPrizes.length);
   const numSlices = currentWheelPrizes.length;
@@ -1104,32 +1119,48 @@ function spinWheel() {
 
   const startAngle = wheelCurrentAngle % (2 * Math.PI);
   const delta = totalTargetAngle - startAngle;
-  const duration = 4000;
-  const startTime = performance.now();
+  const duration = 3800;
+  const startTime = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
   let lastTickAngle = startAngle;
 
   function animate(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    
-    // Ease out cubic
-    const easeOut = 1 - Math.pow(1 - progress, 3);
-    wheelCurrentAngle = startAngle + (delta * easeOut);
-    drawWheel();
+    try {
+      const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Ease out cubic
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      wheelCurrentAngle = startAngle + (delta * easeOut);
+      drawWheel();
 
-    // Play click sound on passing slices
-    if (Math.abs(wheelCurrentAngle - lastTickAngle) > (sliceAngle * 0.7)) {
-      playClickSound();
-      lastTickAngle = wheelCurrentAngle;
-    }
+      // Play click sound on passing slices safely
+      if (Math.abs(wheelCurrentAngle - lastTickAngle) > (sliceAngle * 0.7)) {
+        try { playClickSound(); } catch(e) {}
+        lastTickAngle = wheelCurrentAngle;
+      }
 
-    if (progress < 1) {
-      requestAnimationFrame(animate);
-    } else {
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        isWheelSpinning = false;
+        if (btnCenter) btnCenter.disabled = false;
+        if (btnLarge) {
+          btnLarge.disabled = false;
+          btnLarge.innerHTML = `<i class="fa-solid fa-dharmachakra fa-spin"></i> <span>SPIN LUCKY WHEEL NOW</span>`;
+        }
+        try { playWinSound(); } catch(e) {}
+        try { launchConfetti(); } catch(e) {}
+        displayWheelWinner(currentWheelPrizes[winningIndex].id);
+      }
+    } catch(err) {
+      console.error("Spin animation error:", err);
       isWheelSpinning = false;
-      if (btn) btn.disabled = false;
-      playWinSound();
-      launchConfetti();
+      if (btnCenter) btnCenter.disabled = false;
+      if (btnLarge) {
+        btnLarge.disabled = false;
+        btnLarge.innerHTML = `<i class="fa-solid fa-dharmachakra fa-spin"></i> <span>SPIN LUCKY WHEEL NOW</span>`;
+      }
       displayWheelWinner(currentWheelPrizes[winningIndex].id);
     }
   }
