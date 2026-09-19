@@ -1067,6 +1067,7 @@ function drawWheel() {
 function openSpinWheelModal() {
   const modal = document.getElementById("spinWheelModal");
   if (!modal) return;
+  modal.classList.add("active");
   modal.style.display = "flex";
   isWheelSpinning = false;
 
@@ -1089,7 +1090,10 @@ function openSpinWheelModal() {
 
 function closeSpinWheelModal() {
   const modal = document.getElementById("spinWheelModal");
-  if (modal) modal.style.display = "none";
+  if (modal) {
+    modal.classList.remove("active");
+    modal.style.display = "none";
+  }
 }
 
 function spinWheel() {
