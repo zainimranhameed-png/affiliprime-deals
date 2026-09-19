@@ -886,4 +886,299 @@ document.addEventListener("DOMContentLoaded", () => {
   initFlashCountdown();
 });
 
+// ==========================================================================
+// Spin-to-Win Mystery Deal Lucky Wheel Engine (High-Conversion Gamification)
+// ==========================================================================
+const WHEEL_PRIZES = [
+  { id: "prod-1", label: "Sony 13% OFF", color: "#ec4899" },
+  { id: "prod-2", label: "MacBook M3 8%", color: "#8b5cf6" },
+  { id: "prod-4", label: "Air Fryer 31%", color: "#f59e0b" },
+  { id: "prod-3", label: "Apple Watch 7%", color: "#06b6d4" },
+  { id: "prod-9", label: "Dyson 13% OFF", color: "#10b981" },
+  { id: "prod-6", label: "Kindle 13% OFF", color: "#6366f1" },
+  { id: "prod-7", label: "Bose 17% OFF", color: "#f43f5e" },
+  { id: "prod-10", label: "Stanley 20% OFF", color: "#d97706" }
+];
+
+let wheelCurrentAngle = 0;
+let isWheelSpinning = false;
+let audioCtx = null;
+
+function getAudioContext() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  return audioCtx;
+}
+
+function playClickSound() {
+  try {
+    const ctx = getAudioContext();
+    if (ctx.state === "suspended") ctx.resume();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(450, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.04);
+    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.04);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.04);
+  } catch(e) {}
+}
+
+function playWinSound() {
+  try {
+    const ctx = getAudioContext();
+    if (ctx.state === "suspended") ctx.resume();
+    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+    notes.forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.12);
+      gain.gain.setValueAtTime(0.25, ctx.currentTime + idx * 0.12);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + idx * 0.12 + 0.4);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime + idx * 0.12);
+      osc.stop(ctx.currentTime + idx * 0.12 + 0.4);
+    });
+  } catch(e) {}
+}
+
+function drawWheel() {
+  const canvas = document.getElementById("wheelCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const numSlices = WHEEL_PRIZES.length;
+  const sliceAngle = (2 * Math.PI) / numSlices;
+  const radius = canvas.width / 2;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.save();
+  ctx.translate(radius, radius);
+  ctx.rotate(wheelCurrentAngle);
+
+  WHEEL_PRIZES.forEach((prize, i) => {
+    const angle = i * sliceAngle;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.arc(0, 0, radius, angle, angle + sliceAngle);
+    ctx.closePath();
+    ctx.fillStyle = prize.color;
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+    ctx.stroke();
+
+    // Text label
+    ctx.save();
+    ctx.rotate(angle + sliceAngle / 2);
+    ctx.textAlign = "right";
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 12px Outfit, sans-serif";
+    ctx.shadowColor = "rgba(0,0,0,0.6)";
+    ctx.shadowBlur = 4;
+    ctx.fillText(prize.label, radius - 18, 5);
+    ctx.restore();
+  });
+
+  ctx.restore();
+}
+
+function openSpinWheelModal() {
+  const modal = document.getElementById("spinWheelModal");
+  if (!modal) return;
+  modal.style.display = "flex";
+  document.getElementById("wheelSection").style.display = "block";
+  document.getElementById("wheelWinnerCard").style.display = "none";
+  drawWheel();
+}
+
+function closeSpinWheelModal() {
+  const modal = document.getElementById("spinWheelModal");
+  if (modal) modal.style.display = "none";
+}
+
+function spinWheel() {
+  if (isWheelSpinning) return;
+  isWheelSpinning = true;
+
+  const btn = document.getElementById("btnSpinCenter");
+  if (btn) btn.disabled = true;
+
+  const winningIndex = Math.floor(Math.random() * WHEEL_PRIZES.length);
+  const numSlices = WHEEL_PRIZES.length;
+  const sliceAngle = (2 * Math.PI) / numSlices;
+
+  // Calculate destination rotation so winning slice lands directly at top pointer (3*PI/2)
+  const targetSliceCenter = (winningIndex * sliceAngle) + (sliceAngle / 2);
+  const pointerAngle = (3 * Math.PI) / 2;
+  const extraRotations = 5 * (2 * Math.PI); // 5 full spins
+  const totalTargetAngle = extraRotations + (pointerAngle - targetSliceCenter);
+
+  const startAngle = wheelCurrentAngle % (2 * Math.PI);
+  const delta = totalTargetAngle - startAngle;
+  const duration = 4000;
+  const startTime = performance.now();
+  let lastTickAngle = startAngle;
+
+  function animate(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Ease out cubic
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    wheelCurrentAngle = startAngle + (delta * easeOut);
+    drawWheel();
+
+    // Play click sound on passing slices
+    if (Math.abs(wheelCurrentAngle - lastTickAngle) > (sliceAngle * 0.7)) {
+      playClickSound();
+      lastTickAngle = wheelCurrentAngle;
+    }
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      isWheelSpinning = false;
+      if (btn) btn.disabled = false;
+      playWinSound();
+      launchConfetti();
+      displayWheelWinner(WHEEL_PRIZES[winningIndex].id);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+function displayWheelWinner(prodId) {
+  const prod = PRODUCTS_DATA.find(p => p.id === prodId) || PRODUCTS_DATA[0];
+  const affUrl = getAffiliateLink(prod.amazonUrl, prod.title);
+  const wheelSection = document.getElementById("wheelSection");
+  const winnerCard = document.getElementById("wheelWinnerCard");
+
+  wheelSection.style.display = "none";
+  winnerCard.style.display = "block";
+
+  winnerCard.innerHTML = `
+    <div style="text-align: center; margin-bottom: 1.25rem;">
+      <span style="background: rgba(245, 158, 11, 0.2); color: var(--primary); font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.9rem; border-radius: 999px; display: inline-flex; align-items: center; gap: 0.4rem; margin-bottom: 0.5rem; border: 1px solid rgba(245, 158, 11, 0.4);">
+        🎉 JACKPOT DISCOUNT UNLOCKED!
+      </span>
+      <h3 style="font-family: var(--font-heading); font-size: 1.35rem; margin: 0.3rem 0; color: #fff;">
+        You Won ${prod.discount} on Amazon Prime!
+      </h3>
+      <div style="color: var(--accent-rose); font-size: 0.82rem; font-weight: 700;">
+        ⚡ Deal Reserved For You: <span id="winTimer">09:59</span> mins
+      </div>
+    </div>
+
+    <div style="background: var(--bg-body); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.1rem; display: flex; gap: 1rem; align-items: center; margin-bottom: 1.25rem; text-align: left;">
+      <img src="${prod.image}" alt="${prod.title}" style="width: 80px; height: 80px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--border-color); flex-shrink: 0;">
+      <div style="flex: 1;">
+        <div style="font-weight: 700; font-size: 0.95rem; line-height: 1.3; color: var(--text-primary); margin-bottom: 0.3rem;">
+          ${prod.title}
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="font-size: 1.25rem; font-weight: 800; color: var(--primary);">$${prod.price.toFixed(2)}</span>
+          <span style="font-size: 0.84rem; text-decoration: line-through; color: var(--text-muted);">$${prod.originalPrice.toFixed(2)}</span>
+          <span class="card-price-discount" style="font-size: 0.75rem; padding: 0.15rem 0.45rem;">${prod.discount}</span>
+        </div>
+        <div style="font-size: 0.75rem; color: var(--accent-emerald); margin-top: 0.25rem;">
+          <i class="fa-solid fa-truck-fast"></i> Verified Amazon Prime Shipping Available
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 0.75rem;">
+      <a href="${affUrl}" target="_blank" rel="noopener sponsored" class="btn-amazon" style="flex: 1; justify-content: center; padding: 0.8rem 1.25rem; font-size: 0.92rem;" onclick="trackAffiliateClick('${prod.id}', '${prod.title}', ${prod.price}, '${prod.category}')">
+        <i class="fa-brands fa-amazon"></i> Claim Deal on Amazon
+      </a>
+      <button class="btn-secondary" onclick="openSpinWheelModal()" style="padding: 0.8rem 1.1rem;">
+        <i class="fa-solid fa-rotate-left"></i> Spin Again
+      </button>
+    </div>
+  `;
+
+  // Start 10-min countdown timer for urgency
+  let winSecs = 599;
+  const timerInterval = setInterval(() => {
+    winSecs--;
+    const el = document.getElementById("winTimer");
+    if (!el) {
+      clearInterval(timerInterval);
+      return;
+    }
+    const m = Math.floor(winSecs / 60);
+    const s = winSecs % 60;
+    el.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    if (winSecs <= 0) clearInterval(timerInterval);
+  }, 1000);
+}
+
+// ==========================================================================
+// Fullscreen Confetti Particle Cannon
+// ==========================================================================
+function launchConfetti() {
+  const canvas = document.getElementById("confettiCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  const colors = ["#f59e0b", "#ec4899", "#8b5cf6", "#10b981", "#06b6d4", "#ef4444", "#3b82f6"];
+
+  for (let i = 0; i < 120; i++) {
+    particles.push({
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      vx: (Math.random() - 0.5) * 16,
+      vy: (Math.random() - 0.7) * 18,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * 360,
+      vRot: (Math.random() - 0.5) * 12,
+      opacity: 1
+    });
+  }
+
+  let animationFrame;
+  function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = 0;
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.35; // gravity
+      p.rotation += p.vRot;
+      p.opacity -= 0.008;
+
+      if (p.opacity > 0) {
+        alive++;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.opacity;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        ctx.restore();
+      }
+    });
+
+    if (alive > 0) {
+      animationFrame = requestAnimationFrame(update);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  update();
+}
+
 

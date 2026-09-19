@@ -608,6 +608,49 @@
     </div>
   </div>
 
+  <!-- Fullscreen Confetti Particle Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Floating Spin-to-Win Mystery Deal Wheel Button -->
+  <button class="floating-spin-wheel-btn" onclick="openSpinWheelModal()" title="Spin & Win Up to 40% OFF Deals!">
+    <i class="fa-solid fa-dharmachakra fa-spin" style="--fa-animation-duration: 8s;"></i>
+    <span>Spin &amp; Win Deal!</span>
+  </button>
+
+  <!-- Spin-to-Win Mystery Deal Wheel Modal -->
+  <div class="modal-backdrop" id="spinWheelModal" style="display: none;">
+    <div class="modal-card" style="max-width: 480px; text-align: center;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.6rem; text-align: left;">
+          <div style="width: 38px; height: 38px; border-radius: 999px; background: linear-gradient(135deg, #ec4899, #8b5cf6); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem;">
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Mystery Deal Lucky Wheel</h3>
+            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 700;">Spin to Unlock Guaranteed Prime Discount</span>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeSpinWheelModal()">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 1.25rem;">
+        <div id="wheelSection">
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+            Click <b>SPIN</b> in the center to unlock a mystery top-rated Amazon deal!
+          </p>
+          <div class="wheel-container-wrapper">
+            <div class="wheel-pointer"></div>
+            <button class="wheel-center-button" id="btnSpinCenter" onclick="spinWheel()">SPIN</button>
+            <canvas id="wheelCanvas" class="wheel-canvas" width="320" height="320"></canvas>
+          </div>
+        </div>
+
+        <div id="wheelWinnerCard" style="display: none;">
+          <!-- Injected dynamically on win -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
