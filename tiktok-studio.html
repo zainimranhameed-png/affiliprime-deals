@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AffiliPrime TikTok Studio - VIP Logo & Viral Video Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: #111522;
+      --accent-gold: #f59e0b;
+      --accent-pink: #ec4899;
+      --accent-cyan: #06b6d4;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      padding: 1.5rem;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(236,72,153,0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(245,158,11,0.1) 0px, transparent 50%);
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .badge-uk {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(236,72,153,0.15);
+      border: 1px solid #ec4899;
+      color: #f472b6;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #fbbf24, #ec4899, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.sub { color: var(--muted); font-size: 0.95rem; }
+    
+    .grid-tools {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    @media(max-width: 900px) {
+      .grid-tools { grid-template-columns: 1fr; }
+    }
+    
+    .tool-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 1.75rem;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+    .tool-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    
+    /* Logo Canvas Preview */
+    .logo-preview-box {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(0,0,0,0.4);
+      border-radius: 14px;
+      margin-bottom: 1.25rem;
+      border: 1px dashed rgba(255,255,255,0.15);
+    }
+    #logoCanvas {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      box-shadow: 0 0 35px rgba(245,158,11,0.4), 0 0 20px rgba(236,72,153,0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    #logoCanvas:hover { transform: scale(1.05); }
+    
+    .btn-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 0.9rem;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #f59e0b, #ec4899);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(245,158,11,0.35);
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245,158,11,0.5); }
+    
+    /* 9:16 Video Player Preview */
+    .phone-mockup {
+      width: 320px;
+      height: 568px;
+      margin: 0 auto 1.25rem;
+      background: #000;
+      border-radius: 36px;
+      border: 8px solid #222838;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 25px rgba(236,72,153,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .reel-content {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.25rem;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.6s ease;
+    }
+    .reel-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.85) 100%);
+      z-index: 1;
+    }
+    .reel-ui {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .reel-top-pill {
+      align-self: flex-start;
+      background: rgba(236,72,153,0.9);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+    .reel-center {
+      text-align: center;
+      margin: auto 0;
+    }
+    .reel-product-img {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 0.75rem;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 3px solid #f59e0b;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      animation: floatImg 3s ease-in-out infinite;
+    }
+    @keyframes floatImg {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .reel-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1.3;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+      margin-bottom: 0.4rem;
+    }
+    .reel-price-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      font-weight: 800;
+      padding: 0.3rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+    .reel-bottom-cta {
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 14px;
+      padding: 0.75rem;
+      text-align: center;
+    }
+    .cta-text {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #fbbf24;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    .cta-button {
+      background: linear-gradient(135deg, #f59e0b, #ec4899);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .video-controls {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      flex: 1;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.15); }
+    
+    /* Scripts Section */
+    .scripts-section {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 2rem;
+    }
+    .script-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+    }
+    .script-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .copy-btn {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: #1d4ed8; }
+    pre {
+      font-family: inherit;
+      white-space: pre-wrap;
+      font-size: 0.86rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge-uk">
+        <i class="fa-brands fa-tiktok"></i>
+        <span>UK TikTok Creator Tools • AffiliPrime Deals</span>
+      </div>
+      <h1>TikTok VIP Studio & Video Content</h1>
+      <p class="sub">1-Click HD Profile Logo Generator & Viral 9:16 Video Player for your UK TikTok Account</p>
+    </header>
+
+    <div class="grid-tools">
+      <!-- 1. HD Profile Logo Creator -->
+      <div class="tool-card">
+        <div class="tool-title">
+          <i class="fa-solid fa-palette text-warning" style="color:#f59e0b;"></i>
+          <span>1. Official TikTok VIP Profile Logo</span>
+        </div>
+        <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1.25rem;">
+          High-definition 1080x1080 3D circular luxury avatar designed specifically for your TikTok account <b>@affiliprime</b>.
+        </p>
+
+        <div class="logo-preview-box">
+          <canvas id="logoCanvas" width="1080" height="1080"></canvas>
+          <div style="font-size:0.75rem; color:var(--muted); margin-top:0.75rem;">
+            <i class="fa-solid fa-circle-check" style="color:#10b981;"></i> 1080x1080 Ultra HD Render Ready
+          </div>
+        </div>
+
+        <button class="btn-action btn-gold" onclick="downloadLogo()">
+          <i class="fa-solid fa-download"></i>
+          <span>Download Logo for TikTok (PNG)</span>
+        </button>
+      </div>
+
+      <!-- 2. Viral 9:16 Reel Player -->
+      <div class="tool-card">
+        <div class="tool-title">
+          <i class="fa-solid fa-video" style="color:#ec4899;"></i>
+          <span>2. Viral 9:16 TikTok Video Player</span>
+        </div>
+        <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1.25rem;">
+          Plays animated vertical slides featuring your website's products. Screen record this or use it for instant viral clips!
+        </p>
+
+        <div class="phone-mockup">
+          <div class="reel-content" id="reelBg" style="background-image: url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800');">
+            <div class="reel-overlay"></div>
+            <div class="reel-ui">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div class="reel-top-pill" id="reelBadge">⚡ VIRAL AMAZON FIND</div>
+                <div style="background:rgba(0,0,0,0.6); padding:4px 8px; border-radius:6px; font-size:0.7rem; font-weight:700;" id="reelTimer">01 / 05</div>
+              </div>
+
+              <div class="reel-center">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800" class="reel-product-img" id="reelImg" alt="Product">
+                <div class="reel-title" id="reelTitle">Sony WH-1000XM5 ANC Headphones</div>
+                <div style="margin-top:0.5rem;">
+                  <span class="reel-price-badge" id="reelPrice">$348.00 • 13% OFF</span>
+                </div>
+              </div>
+
+              <div class="reel-bottom-cta">
+                <div class="cta-text">
+                  <i class="fa-solid fa-link"></i>
+                  <span>GET DEAL: LINK IN TIKTOK BIO!</span>
+                </div>
+                <div class="cta-button">
+                  <span>AffiliPrime Deals &bull; Up to 40% OFF</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-controls">
+          <button class="btn-secondary" onclick="prevSlide()"><i class="fa-solid fa-backward-step"></i> Prev</button>
+          <button class="btn-secondary" id="btnPlayPause" onclick="togglePlay()"><i class="fa-solid fa-pause"></i> Pause</button>
+          <button class="btn-secondary" onclick="nextSlide()"><i class="fa-solid fa-forward-step"></i> Next</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ready-Made Viral Video Scripts -->
+    <div class="scripts-section">
+      <div class="tool-title">
+        <i class="fa-solid fa-clapperboard text-warning" style="color:#f59e0b;"></i>
+        <span>3. High-Converting Ready Video Scripts (Copy & Paste)</span>
+      </div>
+      <p style="color:var(--muted); font-size:0.9rem;">
+        Use these exact words with CapCut Text-to-Speech (UK voice) or your own voiceover. These scripts have proven 1M+ views retention in the UK and USA!
+      </p>
+
+      <!-- Script 1 -->
+      <div class="script-box">
+        <div class="script-header">
+          <b style="color:#fbbf24;">Script #1: "Stop Scrolling! 3 Viral Amazon Finds 2026" (Highest Conversion)</b>
+          <button class="copy-btn" onclick="copyScript('script1')"><i class="fa-regular fa-copy"></i> Copy</button>
+        </div>
+        <pre id="script1">
+[HOOK - 0 to 3s]:
+"Stop scrolling! If you shop on Amazon, you need to see these 3 viral gadgets before the flash sale ends!"
+
+[PRODUCT 1 - 3 to 12s]:
+"First, the Sony WH-1000XM5. These headphones have auto noise-cancelling that literally silences noisy flights and offices completely."
+
+[PRODUCT 2 - 12 to 22s]:
+"Second, the 2024 M3 MacBook Air. It's razor thin, super fast, and the battery easily lasts two days on a single charge."
+
+[CTA - 22 to 30s]:
+"I found verified discount links up to 40% OFF on all of them. Tap the link in my bio to grab them today on AffiliPrime Deals!"
+
+[HASHTAGS]:
+#amazonfinds #tiktokmademebuyit #amazonmusthaves #techgadgets #ukdeals #affiliprime #fyp</pre>
+      </div>
+
+      <!-- Script 2 -->
+      <div class="script-box">
+        <div class="script-header">
+          <b style="color:#ec4899;">Script #2: "Amazon Secret Trick to Get Up to 40% OFF" (Viral Mystery)</b>
+          <button class="copy-btn" onclick="copyScript('script2')"><i class="fa-regular fa-copy"></i> Copy</button>
+        </div>
+        <pre id="script2">
+[HOOK - 0 to 4s]:
+"Amazon doesn't want you to know this secret trick to get genuine 40% discounts on top-rated tech!"
+
+[BODY - 4 to 18s]:
+"Go to the site in my bio called AffiliPrime Deals. They have a lucky spin-to-win wheel with all 30 top Amazon deals loaded. You spin it, and it instantly matches you with verified price drops on Apple, Sony, and viral home gear."
+
+[CTA - 18 to 25s]:
+"Try your luck right now! Link is in my TikTok bio. Go spin the lucky wheel before deals expire!"
+
+[HASHTAGS]:
+#amazontricks #amazonfinds2026 #savingmoney #gadgets #dealsfinder #ukdeals</pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. Generate VIP 3D Logo on Canvas
+    function drawLogo() {
+      const canvas = document.getElementById("logoCanvas");
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // Dark obsidian radial background
+      const bgGrad = ctx.createRadialGradient(w/2, h/2, 50, w/2, h/2, w/2);
+      bgGrad.addColorStop(0, "#191d2d");
+      bgGrad.addColorStop(0.7, "#0d101b");
+      bgGrad.addColorStop(1, "#05070d");
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Outer Glowing Ring
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(w/2, h/2, (w/2) - 30, 0, Math.PI * 2);
+      const ringGrad = ctx.createLinearGradient(0, 0, w, h);
+      ringGrad.addColorStop(0, "#f59e0b");
+      ringGrad.addColorStop(0.5, "#ec4899");
+      ringGrad.addColorStop(1, "#3b82f6");
+      ctx.strokeStyle = ringGrad;
+      ctx.lineWidth = 24;
+      ctx.shadowColor = "#f59e0b";
+      ctx.shadowBlur = 40;
+      ctx.stroke();
+      ctx.restore();
+
+      // Inner Luxury Circle
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(w/2, h/2, (w/2) - 60, 0, Math.PI * 2);
+      ctx.fillStyle = "#0c101c";
+      ctx.fill();
+      ctx.strokeStyle = "rgba(255,255,255,0.08)";
+      ctx.lineWidth = 6;
+      ctx.stroke();
+      ctx.restore();
+
+      // 3D Golden Shopping Bag + Lightning Bolt
+      ctx.save();
+      ctx.shadowColor = "rgba(245, 158, 11, 0.7)";
+      ctx.shadowBlur = 35;
+
+      // Shopping bag body
+      ctx.beginPath();
+      const bx = 340, by = 350, bw = 400, bh = 420, br = 36;
+      ctx.roundRect(bx, by, bw, bh, br);
+      const bagGrad = ctx.createLinearGradient(bx, by, bx + bw, by + bh);
+      bagGrad.addColorStop(0, "#ff9900");
+      bagGrad.addColorStop(0.5, "#f59e0b");
+      bagGrad.addColorStop(1, "#d97706");
+      ctx.fillStyle = bagGrad;
+      ctx.fill();
+
+      // Bag Handle
+      ctx.beginPath();
+      ctx.arc(w/2, 350, 100, Math.PI, 0, false);
+      ctx.strokeStyle = "#ffb703";
+      ctx.lineWidth = 26;
+      ctx.stroke();
+
+      // Glowing Neon Lightning Bolt on Bag
+      ctx.beginPath();
+      ctx.moveTo(560, 400);
+      ctx.lineTo(470, 560);
+      ctx.lineTo(540, 560);
+      ctx.lineTo(500, 710);
+      ctx.lineTo(610, 520);
+      ctx.lineTo(545, 520);
+      ctx.closePath();
+      ctx.fillStyle = "#ffffff";
+      ctx.shadowColor = "#ffffff";
+      ctx.shadowBlur = 20;
+      ctx.fill();
+      ctx.restore();
+
+      // Typography: "AFFILIPRIME"
+      ctx.save();
+      ctx.font = "900 88px Outfit, sans-serif";
+      ctx.textAlign = "center";
+      const textGrad = ctx.createLinearGradient(200, 0, 880, 0);
+      textGrad.addColorStop(0, "#ffffff");
+      textGrad.addColorStop(0.5, "#fef08a");
+      textGrad.addColorStop(1, "#f59e0b");
+      ctx.fillStyle = textGrad;
+      ctx.shadowColor = "rgba(0,0,0,0.8)";
+      ctx.shadowBlur = 15;
+      ctx.fillText("AFFILIPRIME", w/2, 860);
+
+      // Typography: "DEALS • UK & USA"
+      ctx.font = "800 44px Outfit, sans-serif";
+      ctx.fillStyle = "#ec4899";
+      ctx.letterSpacing = "4px";
+      ctx.fillText("DEALS &bull; VERIFIED FINDS", w/2, 930);
+      ctx.restore();
+    }
+
+    function downloadLogo() {
+      const canvas = document.getElementById("logoCanvas");
+      const link = document.createElement("a");
+      link.download = "tiktok-affiliprime-logo.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    }
+
+    // 2. Video Player Slides Logic
+    const SLIDES = [
+      {
+        badge: "⚡ #1 BEST SELLER",
+        title: "Sony WH-1000XM5 Wireless Headphones",
+        price: "$348.00 • 13% OFF",
+        img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800"
+      },
+      {
+        badge: "🔥 VIRAL TIKTOK FIND",
+        title: "Apple 2024 MacBook Air M3",
+        price: "$1,199.00 • 18hr Battery",
+        img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800"
+      },
+      {
+        badge: "🎧 MOST POPULAR",
+        title: "Apple AirPods Pro (2nd Gen, USB-C)",
+        price: "$189.00 • 24% OFF",
+        img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800"
+      },
+      {
+        badge: "🍳 VIRAL KITCHEN MUST-HAVE",
+        title: "Ninja AF101 4-in-1 Air Fryer",
+        price: "$89.99 • 30% OFF",
+        img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800"
+      },
+      {
+        badge: "🎰 LUCKY WHEEL FEATURE",
+        title: "Spin-to-Win Guaranteed 40% Discounts!",
+        price: "All 30 Amazon Deals Loaded",
+        img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800"
+      }
+    ];
+
+    let currentSlide = 0;
+    let isPlaying = true;
+    let slideTimer = null;
+
+    function renderSlide() {
+      const item = SLIDES[currentSlide];
+      document.getElementById("reelBg").style.backgroundImage = `url('${item.img}')`;
+      document.getElementById("reelImg").src = item.img;
+      document.getElementById("reelBadge").textContent = item.badge;
+      document.getElementById("reelTitle").textContent = item.title;
+      document.getElementById("reelPrice").textContent = item.price;
+      document.getElementById("reelTimer").textContent = `0${currentSlide + 1} / 0${SLIDES.length}`;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % SLIDES.length;
+      renderSlide();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + SLIDES.length) % SLIDES.length;
+      renderSlide();
+    }
+
+    function togglePlay() {
+      const btn = document.getElementById("btnPlayPause");
+      if (isPlaying) {
+        clearInterval(slideTimer);
+        isPlaying = false;
+        btn.innerHTML = '<i class="fa-solid fa-play"></i> Play';
+      } else {
+        startAutoPlay();
+        isPlaying = true;
+        btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+      }
+    }
+
+    function startAutoPlay() {
+      clearInterval(slideTimer);
+      slideTimer = setInterval(nextSlide, 3500);
+    }
+
+    function copyScript(id) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Script copied to clipboard! Paste it directly in CapCut or TikTok!");
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      drawLogo();
+      renderSlide();
+      startAutoPlay();
+    });
+  </script>
+</body>
+</html>
