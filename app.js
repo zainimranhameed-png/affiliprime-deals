@@ -887,22 +887,92 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================================================
-// Spin-to-Win Mystery Deal Lucky Wheel Engine (High-Conversion Gamification)
+// Spin-to-Win Mystery Deal Lucky Wheel Engine (All 30 Products Supported)
 // ==========================================================================
-const WHEEL_PRIZES = [
-  { id: "prod-1", label: "Sony 13% OFF", color: "#ec4899" },
-  { id: "prod-2", label: "MacBook M3 8%", color: "#8b5cf6" },
-  { id: "prod-4", label: "Air Fryer 31%", color: "#f59e0b" },
-  { id: "prod-3", label: "Apple Watch 7%", color: "#06b6d4" },
-  { id: "prod-9", label: "Dyson 13% OFF", color: "#10b981" },
-  { id: "prod-6", label: "Kindle 13% OFF", color: "#6366f1" },
-  { id: "prod-7", label: "Bose 17% OFF", color: "#f43f5e" },
-  { id: "prod-10", label: "Stanley 20% OFF", color: "#d97706" }
+const WHEEL_PALETTE = [
+  "#ec4899", "#8b5cf6", "#3b82f6", "#06b6d4",
+  "#10b981", "#f59e0b", "#f97316", "#ef4444",
+  "#a855f7", "#14b8a6", "#6366f1", "#e11d48"
 ];
 
+let activeWheelCategory = "all";
+let currentWheelPrizes = [];
 let wheelCurrentAngle = 0;
 let isWheelSpinning = false;
 let audioCtx = null;
+
+function getProductWheelLabel(prod) {
+  let name = prod.title.split(/[\s,\(–\-]/)[0];
+  const t = prod.title.toLowerCase();
+  if (t.includes("airpods")) name = "AirPods Pro";
+  else if (t.includes("macbook")) name = "MacBook M3";
+  else if (t.includes("kindle")) name = "Kindle Paper";
+  else if (t.includes("air fryer") || t.includes("ninja af")) name = "Ninja Fryer";
+  else if (t.includes("apple watch")) name = "Apple Watch";
+  else if (t.includes("stream deck")) name = "Stream Deck";
+  else if (t.includes("stanley")) name = "Stanley 40oz";
+  else if (t.includes("dyson")) name = "Dyson V15";
+  else if (t.includes("theragun")) name = "Theragun";
+  else if (t.includes("bose")) name = "Bose Ultra";
+  else if (t.includes("sony")) name = "Sony XM5";
+  else if (t.includes("anker")) name = "Anker 200W";
+  else if (t.includes("herman") || t.includes("embody")) name = "HM Embody";
+  else if (t.includes("laneige")) name = "Laneige Lip";
+  else if (t.includes("roborock")) name = "Roborock S8";
+  else if (t.includes("logitech") || t.includes("mx master")) name = "MX Master 3S";
+  else if (name.length > 11) name = name.substring(0, 10) + "…";
+  return `${name} ${prod.discount}`;
+}
+
+function buildWheelPrizesForCategory(cat = "all") {
+  const pool = (cat === "all") 
+    ? [...PRODUCTS_DATA] 
+    : PRODUCTS_DATA.filter(p => p.category === cat);
+
+  // If pool has more than 12 items, shuffle and pick 12 to keep wheel slices clear and visually stunning
+  let selected = [...pool];
+  if (selected.length > 12) {
+    selected.sort(() => 0.5 - Math.random());
+    selected = selected.slice(0, 12);
+  }
+
+  return selected.map((prod, idx) => ({
+    id: prod.id,
+    label: getProductWheelLabel(prod),
+    color: WHEEL_PALETTE[idx % WHEEL_PALETTE.length],
+    product: prod
+  }));
+}
+
+function setWheelCategory(cat) {
+  if (isWheelSpinning) return;
+  activeWheelCategory = cat;
+
+  // Update tab UI
+  document.querySelectorAll(".wheel-tab").forEach(tab => {
+    tab.classList.toggle("active", tab.getAttribute("data-wheel-cat") === cat);
+  });
+
+  currentWheelPrizes = buildWheelPrizesForCategory(cat);
+  updateWheelPoolStatus();
+  drawWheel();
+}
+
+function shuffleWheelPrizes() {
+  if (isWheelSpinning) return;
+  currentWheelPrizes = buildWheelPrizesForCategory(activeWheelCategory);
+  updateWheelPoolStatus();
+  drawWheel();
+}
+
+function updateWheelPoolStatus() {
+  const el = document.getElementById("wheelPoolText");
+  if (!el) return;
+  const count = (activeWheelCategory === "all") 
+    ? PRODUCTS_DATA.length 
+    : PRODUCTS_DATA.filter(p => p.category === activeWheelCategory).length;
+  el.innerHTML = `<i class="fa-solid fa-boxes-stacked" style="color: var(--primary);"></i> <b>${count} Verified Deals</b> in Pool &bull; Guaranteed Win!`;
+}
 
 function getAudioContext() {
   if (!audioCtx) {
@@ -953,7 +1023,12 @@ function drawWheel() {
   const canvas = document.getElementById("wheelCanvas");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
-  const numSlices = WHEEL_PRIZES.length;
+
+  if (!currentWheelPrizes || currentWheelPrizes.length === 0) {
+    currentWheelPrizes = buildWheelPrizesForCategory(activeWheelCategory);
+  }
+
+  const numSlices = currentWheelPrizes.length;
   const sliceAngle = (2 * Math.PI) / numSlices;
   const radius = canvas.width / 2;
 
@@ -962,7 +1037,7 @@ function drawWheel() {
   ctx.translate(radius, radius);
   ctx.rotate(wheelCurrentAngle);
 
-  WHEEL_PRIZES.forEach((prize, i) => {
+  currentWheelPrizes.forEach((prize, i) => {
     const angle = i * sliceAngle;
     ctx.beginPath();
     ctx.moveTo(0, 0);
@@ -971,7 +1046,7 @@ function drawWheel() {
     ctx.fillStyle = prize.color;
     ctx.fill();
     ctx.lineWidth = 2;
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
     ctx.stroke();
 
     // Text label
@@ -979,10 +1054,10 @@ function drawWheel() {
     ctx.rotate(angle + sliceAngle / 2);
     ctx.textAlign = "right";
     ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 12px Outfit, sans-serif";
-    ctx.shadowColor = "rgba(0,0,0,0.6)";
+    ctx.font = "bold 11px Outfit, Inter, sans-serif";
+    ctx.shadowColor = "rgba(0,0,0,0.75)";
     ctx.shadowBlur = 4;
-    ctx.fillText(prize.label, radius - 18, 5);
+    ctx.fillText(prize.label, radius - 16, 4);
     ctx.restore();
   });
 
@@ -995,6 +1070,10 @@ function openSpinWheelModal() {
   modal.style.display = "flex";
   document.getElementById("wheelSection").style.display = "block";
   document.getElementById("wheelWinnerCard").style.display = "none";
+  if (!currentWheelPrizes || currentWheelPrizes.length === 0) {
+    currentWheelPrizes = buildWheelPrizesForCategory(activeWheelCategory);
+  }
+  updateWheelPoolStatus();
   drawWheel();
 }
 
@@ -1005,13 +1084,16 @@ function closeSpinWheelModal() {
 
 function spinWheel() {
   if (isWheelSpinning) return;
+  if (!currentWheelPrizes || currentWheelPrizes.length === 0) {
+    currentWheelPrizes = buildWheelPrizesForCategory(activeWheelCategory);
+  }
   isWheelSpinning = true;
 
   const btn = document.getElementById("btnSpinCenter");
   if (btn) btn.disabled = true;
 
-  const winningIndex = Math.floor(Math.random() * WHEEL_PRIZES.length);
-  const numSlices = WHEEL_PRIZES.length;
+  const winningIndex = Math.floor(Math.random() * currentWheelPrizes.length);
+  const numSlices = currentWheelPrizes.length;
   const sliceAngle = (2 * Math.PI) / numSlices;
 
   // Calculate destination rotation so winning slice lands directly at top pointer (3*PI/2)
@@ -1048,7 +1130,7 @@ function spinWheel() {
       if (btn) btn.disabled = false;
       playWinSound();
       launchConfetti();
-      displayWheelWinner(WHEEL_PRIZES[winningIndex].id);
+      displayWheelWinner(currentWheelPrizes[winningIndex].id);
     }
   }
 

@@ -102,7 +102,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3.5">
 </head>
 <body>
 
@@ -128,7 +128,7 @@
     <span style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.65rem; border-radius: 4px; font-family: monospace; letter-spacing: 1px; font-size: 0.86rem;">
       <i class="fa-regular fa-clock"></i> Ends In: <b id="flashCountdown" style="color: #fef08a;">03:41:22</b>
     </span>
-    <a href="#deals" style="color: #fef08a; text-decoration: underline; font-weight: 800; font-size: 0.84rem;">Shop Lowest Price &rarr;</a>
+    <a href="javascript:void(0)" onclick="openSpinWheelModal()" style="color: #fef08a; text-decoration: underline; font-weight: 800; font-size: 0.84rem;">🎰 Spin Lucky Wheel (All 30 Deals) &rarr;</a>
   </div>
 
   <!-- Sticky Main Header -->
@@ -152,6 +152,12 @@
       </nav>
 
       <div class="header-actions">
+        <!-- Spin Wheel Button in Header -->
+        <button class="btn-nav-spin" onclick="openSpinWheelModal()" title="Spin Mystery Wheel (All 30 Deals)">
+          <i class="fa-solid fa-dharmachakra fa-spin"></i>
+          <span>Spin &amp; Win Deals</span>
+        </button>
+
         <!-- Live Views & Earnings Button (Direct Access) -->
         <a href="admin.html" class="header-stats-pill" title="Owner Dashboard: Real-Time Views & Commission (PIN: 2026)">
           <i class="fa-solid fa-chart-line"></i>
@@ -218,6 +224,27 @@
             <i class="fa-brands fa-whatsapp"></i> Share on WhatsApp
           </button>
         </div>
+
+        <!-- Spin-to-Win Mystery Deal Lucky Wheel Hero Card -->
+        <div class="hero-spin-card" onclick="openSpinWheelModal()" title="Click to Spin and Win Verified Prime Deals!">
+          <div style="display: flex; align-items: center; gap: 0.85rem;">
+            <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, #8b5cf6); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.4rem; box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4); flex-shrink: 0;">
+              <i class="fa-solid fa-dharmachakra fa-spin" style="--fa-animation-duration: 6s;"></i>
+            </div>
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                <b style="color: #fff; font-size: 1rem; font-family: var(--font-heading);">🎰 Spin-to-Win Mystery Deal Wheel</b>
+                <span style="background: #ec4899; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; text-transform: uppercase;">All 30 Deals Loaded</span>
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 3px;">
+                Can't decide what to buy? Spin the lucky wheel to unlock guaranteed Prime discounts up to 40% OFF!
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary" style="padding: 0.65rem 1.35rem; font-size: 0.86rem; background: linear-gradient(135deg, #ec4899, #8b5cf6); border: none; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); pointer-events: none;">
+            <i class="fa-solid fa-gift"></i> SPIN NOW &rarr;
+          </button>
+        </div>
       </div>
 
       <!-- Spotlight Product Box -->
@@ -248,6 +275,19 @@
   <!-- Filter & Search Bar Section -->
   <section class="filter-section" id="categories">
     <div class="container">
+      <!-- Deals Catalog Spin Bar -->
+      <div class="deals-spin-bar">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <i class="fa-solid fa-gift text-warning" style="font-size: 1.25rem;"></i>
+          <span style="font-size: 0.88rem; color: var(--text-primary); font-weight: 600;">
+            Try your luck: <b>Spin the Mystery Wheel</b> across all 30 handpicked Amazon products!
+          </span>
+        </div>
+        <button class="btn-secondary" onclick="openSpinWheelModal()" style="padding: 0.4rem 0.95rem; font-size: 0.8rem; border-color: var(--primary); color: var(--primary);">
+          <i class="fa-solid fa-dharmachakra fa-spin"></i> Open Lucky Wheel
+        </button>
+      </div>
+
       <div class="filter-controls-row">
         <!-- Search Box -->
         <div class="search-box-wrapper">
@@ -634,13 +674,27 @@
       </div>
       <div class="modal-body" style="padding: 1.25rem;">
         <div id="wheelSection">
-          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
-            Click <b>SPIN</b> in the center to unlock a mystery top-rated Amazon deal!
-          </p>
+          <!-- Wheel Category Filter Tabs -->
+          <div class="wheel-category-tabs" id="wheelCategoryTabs">
+            <button class="wheel-tab active" data-wheel-cat="all" onclick="setWheelCategory('all')">🌟 All 30 Deals</button>
+            <button class="wheel-tab" data-wheel-cat="tech" onclick="setWheelCategory('tech')">💻 Tech</button>
+            <button class="wheel-tab" data-wheel-cat="fitness" onclick="setWheelCategory('fitness')">🏃 Fitness</button>
+            <button class="wheel-tab" data-wheel-cat="home" onclick="setWheelCategory('home')">🍳 Home</button>
+            <button class="wheel-tab" data-wheel-cat="gaming" onclick="setWheelCategory('gaming')">🎮 Gaming</button>
+          </div>
+
           <div class="wheel-container-wrapper">
             <div class="wheel-pointer"></div>
             <button class="wheel-center-button" id="btnSpinCenter" onclick="spinWheel()">SPIN</button>
             <canvas id="wheelCanvas" class="wheel-canvas" width="320" height="320"></canvas>
+          </div>
+
+          <!-- Pool Count & Shuffle Control -->
+          <div style="margin-top: 0.85rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: var(--text-secondary); flex-wrap: wrap; gap: 0.5rem;">
+            <span id="wheelPoolText"><i class="fa-solid fa-boxes-stacked" style="color: var(--primary);"></i> <b>30 Verified Deals</b> in Pool &bull; Guaranteed Win!</span>
+            <button type="button" class="wheel-shuffle-btn" onclick="shuffleWheelPrizes()" title="Shuffle deals on the wheel">
+              <i class="fa-solid fa-shuffle"></i> Shuffle Pool
+            </button>
           </div>
         </div>
 
@@ -707,9 +761,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="data/products.js?v=2.1"></script>
-  <script src="analytics.js?v=2.1"></script>
-  <script src="app.js?v=2.1"></script>
+  <script src="data/products.js?v=3.5"></script>
+  <script src="analytics.js?v=3.5"></script>
+  <script src="app.js?v=3.5"></script>
 
 
 </body>
