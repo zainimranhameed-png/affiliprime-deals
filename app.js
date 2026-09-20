@@ -58,27 +58,35 @@ const toastContainer = document.getElementById("toastContainer");
 // ==========================================================================
 // Initialization
 // ==========================================================================
-document.addEventListener("DOMContentLoaded", () => {
-  initTheme();
-  initAffiliateTag();
-  renderSpotlight();
-  renderProducts();
-  attachEventListeners();
-  initFaqAccordion();
+function bootApp() {
+  try { initTheme(); } catch (e) { console.warn("Theme init note", e); }
+  try { initAffiliateTag(); } catch (e) { console.warn("Tag init note", e); }
+  try { renderSpotlight(); } catch (e) { console.warn("Spotlight error", e); }
+  try { renderProducts(); } catch (e) { console.error("Products render error", e); }
+  try { attachEventListeners(); } catch (e) { console.warn("Listeners note", e); }
+  try { initFaqAccordion(); } catch (e) { console.warn("FAQ init note", e); }
 
   // Handle direct product incoming links from Pinterest / Social shares
-  const urlParams = new URLSearchParams(window.location.search);
-  const targetProdId = urlParams.get("product") || urlParams.get("id");
-  if (targetProdId) {
-    setTimeout(() => {
-      openProductModal(targetProdId);
-      const targetCard = document.querySelector(`[data-id="${targetProdId}"]`);
-      if (targetCard) {
-        targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    }, 450);
-  }
-});
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetProdId = urlParams.get("product") || urlParams.get("id");
+    if (targetProdId) {
+      setTimeout(() => {
+        openProductModal(targetProdId);
+        const targetCard = document.querySelector(`[data-id="${targetProdId}"]`);
+        if (targetCard) {
+          targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 450);
+    }
+  } catch (e) {}
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bootApp);
+} else {
+  bootApp();
+}
 
 // ==========================================================================
 // Affiliate Link Helper (100% Fail-Proof - NEVER shows 404 Page Not Found)
@@ -611,10 +619,12 @@ function toggleTheme() {
 }
 
 function updateThemeIcon(theme) {
+  const icon = document.getElementById("themeIcon");
+  if (!icon) return;
   if (theme === "light") {
-    themeIcon.className = "fa-solid fa-moon";
+    icon.className = "fa-solid fa-moon";
   } else {
-    themeIcon.className = "fa-solid fa-sun";
+    icon.className = "fa-solid fa-sun";
   }
 }
 
@@ -625,7 +635,7 @@ function showToast(message) {
   const toast = document.createElement("div");
   toast.className = "toast";
   toast.innerHTML = `<i class="fa-solid fa-circle-check text-warning"></i> <span>${message}</span>`;
-  toastContainer.appendChild(toast);
+  if (toastContainer) toastContainer.appendChild(toast);
 
   setTimeout(() => toast.classList.add("show"), 10);
   setTimeout(() => {
@@ -639,60 +649,86 @@ function showToast(message) {
 // ==========================================================================
 function attachEventListeners() {
   // Search
-  searchInput.addEventListener("input", (e) => {
-    searchQuery = e.target.value.trim();
-    renderProducts();
-  });
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value.trim();
+      renderProducts();
+    });
+  }
+
+  // Header Search Input
+  const headerSearch = document.getElementById("headerSearchInput");
+  if (headerSearch) {
+    headerSearch.addEventListener("input", (e) => {
+      searchQuery = e.target.value.trim();
+      if (searchInput) searchInput.value = searchQuery;
+      renderProducts();
+    });
+  }
 
   // Category Chips
-  categoryChips.addEventListener("click", (e) => {
-    const chip = e.target.closest(".chip-btn");
-    if (!chip) return;
-    document.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
-    chip.classList.add("active");
-    currentCategory = chip.dataset.category;
-    renderProducts();
-  });
+  if (categoryChips) {
+    categoryChips.addEventListener("click", (e) => {
+      const chip = e.target.closest(".chip-btn");
+      if (!chip) return;
+      document.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
+      chip.classList.add("active");
+      currentCategory = chip.dataset.category;
+      renderProducts();
+    });
+  }
 
   // Sort
-  sortSelect.addEventListener("change", (e) => {
-    currentSort = e.target.value;
-    renderProducts();
-  });
+  if (sortSelect) {
+    sortSelect.addEventListener("change", (e) => {
+      currentSort = e.target.value;
+      renderProducts();
+    });
+  }
 
   // Theme Toggle
-  themeToggleBtn.addEventListener("click", toggleTheme);
+  const themeToggle = document.getElementById("themeToggleBtn");
+  if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
 
   // Tag Config Modals
-  btnOpenTagModal.addEventListener("click", openTagConfigModal);
-  btnSettingsModalTrigger.addEventListener("click", openTagConfigModal);
+  if (btnOpenTagModal) btnOpenTagModal.addEventListener("click", openTagConfigModal);
+  if (btnSettingsModalTrigger) btnSettingsModalTrigger.addEventListener("click", openTagConfigModal);
   if (footerConfigBtn) footerConfigBtn.addEventListener("click", openTagConfigModal);
-  configModalCloseBtn.addEventListener("click", closeTagConfigModal);
-  btnSaveAffiliateTag.addEventListener("click", saveAffiliateTag);
-  btnResetTag.addEventListener("click", resetAffiliateTag);
+  if (configModalCloseBtn) configModalCloseBtn.addEventListener("click", closeTagConfigModal);
+  if (btnSaveAffiliateTag) btnSaveAffiliateTag.addEventListener("click", saveAffiliateTag);
+  if (btnResetTag) btnResetTag.addEventListener("click", resetAffiliateTag);
 
-  customTagInput.addEventListener("input", (e) => {
-    previewTagSpan.textContent = e.target.value.trim() || APP_CONFIG.defaultAffiliateTag;
-  });
+  if (customTagInput) {
+    customTagInput.addEventListener("input", (e) => {
+      if (previewTagSpan) previewTagSpan.textContent = e.target.value.trim() || APP_CONFIG.defaultAffiliateTag;
+    });
+  }
 
   // Product Modal Close
-  modalCloseBtn.addEventListener("click", closeProductModal);
-  productModal.addEventListener("click", (e) => {
-    if (e.target === productModal) closeProductModal();
-  });
+  if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeProductModal);
+  if (productModal) {
+    productModal.addEventListener("click", (e) => {
+      if (e.target === productModal) closeProductModal();
+    });
+  }
 
   // Comparison Handlers
-  headerCompareBtn.addEventListener("click", openComparisonModal);
-  navCompareLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    openComparisonModal();
-  });
-  btnLaunchComparison.addEventListener("click", openComparisonModal);
-  btnClearCompare.addEventListener("click", clearAllCompare);
-  comparisonModalCloseBtn.addEventListener("click", closeComparisonModal);
-  comparisonModal.addEventListener("click", (e) => {
-    if (e.target === comparisonModal) closeComparisonModal();
-  });
+  if (headerCompareBtn) headerCompareBtn.addEventListener("click", openComparisonModal);
+  const navCompare = document.getElementById("navCompareLink");
+  if (navCompare) {
+    navCompare.addEventListener("click", (e) => {
+      e.preventDefault();
+      openComparisonModal();
+    });
+  }
+  if (btnLaunchComparison) btnLaunchComparison.addEventListener("click", openComparisonModal);
+  if (btnClearCompare) btnClearCompare.addEventListener("click", clearAllCompare);
+  if (comparisonModalCloseBtn) comparisonModalCloseBtn.addEventListener("click", closeComparisonModal);
+  if (comparisonModal) {
+    comparisonModal.addEventListener("click", (e) => {
+      if (e.target === comparisonModal) closeComparisonModal();
+    });
+  }
 
   // Global Esc key listener for closing modals
   document.addEventListener("keydown", (e) => {
