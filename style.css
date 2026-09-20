@@ -534,12 +534,9 @@ button, input, select {
    ========================================================================== */
 .filter-section {
   padding: 1.5rem 0 2rem;
-  position: sticky;
-  top: 74px;
+  position: relative;
   z-index: 90;
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
   margin-bottom: 2rem;
 }
