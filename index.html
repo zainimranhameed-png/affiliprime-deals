@@ -336,7 +336,7 @@
         <div style="display: flex; align-items: center; gap: 0.6rem;">
           <i class="fa-solid fa-gift text-warning" style="font-size: 1.25rem;"></i>
           <span style="font-size: 0.88rem; color: var(--text-primary); font-weight: 600;">
-            Try your luck: <b>Spin the Mystery Wheel</b> across all 30 handpicked Amazon products!
+            Try your luck: <b>Spin the Mystery Wheel</b> across all 50 handpicked Amazon products!
           </span>
         </div>
         <button class="btn-secondary" onclick="openSpinWheelModal()" style="padding: 0.4rem 0.95rem; font-size: 0.8rem; border-color: var(--primary); color: var(--primary);">
@@ -412,10 +412,29 @@
         </div>
       </div>
 
+      <!-- Sponsored Partner Deals: Adsterra 728x90 Banner -->
+      <div class="ad-slot-wrapper" id="adsterraTopSlot" style="margin: 1.5rem auto 2rem; text-align: center; max-width: 728px;">
+        <span class="ad-label" style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">
+          <i class="fa-solid fa-rectangle-ad"></i> Sponsored Partner Deals
+        </span>
+        <div class="ad-box-leaderboard" style="min-height: 90px; display: flex; justify-content: center; align-items: center; background: rgba(255,255,255,0.02); border-radius: var(--radius-md); overflow: hidden;">
+          <script type="text/javascript">
+            atOptions = {
+              'key' : 'c26121997f569b377662d878d2f1f56f',
+              'format' : 'iframe',
+              'height' : 90,
+              'width' : 728,
+              'params' : {}
+            };
+          </script>
+          <script type="text/javascript" src="https://www.highrevenueformat.com/c26121997f569b377662d878d2f1f56f/invoke.js"></script>
+        </div>
+      </div>
+
       <div class="section-header">
         <div>
           <h2 class="section-title">Curated Amazon Selections</h2>
-          <p class="products-count" id="productsCountText">Showing 30 verified products</p>
+          <p class="products-count" id="productsCountText">Showing 50 verified products</p>
         </div>
       </div>
 
@@ -764,7 +783,7 @@
 
           <!-- Pool Count & Shuffle Control -->
           <div style="margin-top: 0.85rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: var(--text-secondary); flex-wrap: wrap; gap: 0.5rem;">
-            <span id="wheelPoolText"><i class="fa-solid fa-boxes-stacked" style="color: var(--primary);"></i> <b>30 Verified Deals</b> in Pool &bull; Guaranteed Win!</span>
+            <span id="wheelPoolText"><i class="fa-solid fa-boxes-stacked" style="color: var(--primary);"></i> <b>50 Verified Deals</b> in Pool &bull; Guaranteed Win!</span>
             <button type="button" class="wheel-shuffle-btn" onclick="shuffleWheelPrizes()" title="Shuffle deals on the wheel">
               <i class="fa-solid fa-shuffle"></i> Shuffle Pool
             </button>
