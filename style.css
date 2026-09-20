@@ -2763,3 +2763,229 @@ button, input, select {
   padding: 0.2rem 0.55rem;
   border-radius: 4px;
 }
+
+/* ==========================================================================
+   AUTHENTIC AMAZON STOREFRONT UI SYSTEM (High Conversion Powerhouse)
+   ========================================================================== */
+
+/* Authentic Amazon Badges */
+.amazon-badge-choice {
+  background: #232f3e !important;
+  color: #ffffff !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  padding: 0.25rem 0.65rem !important;
+  border-radius: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4) !important;
+  letter-spacing: 0.2px !important;
+}
+
+.amazon-badge-choice span.highlight {
+  color: #f59e0b !important;
+}
+
+.amazon-badge-bestseller {
+  background: #c45500 !important;
+  color: #ffffff !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  padding: 0.25rem 0.65rem !important;
+  border-radius: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  box-shadow: 0 2px 6px rgba(196, 85, 0, 0.4) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* Amazon Stars & Reviews */
+.amazon-stars {
+  color: #ffa41c !important;
+  font-size: 0.9rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+}
+
+.amazon-reviews-link {
+  color: #007185 !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+}
+
+.amazon-reviews-link:hover {
+  color: #c7511f !important;
+  text-decoration: underline !important;
+}
+
+/* "3K+ bought in past month" */
+.amazon-bought-text {
+  font-size: 0.76rem !important;
+  color: #94a3b8 !important;
+  margin-top: 0.15rem !important;
+  margin-bottom: 0.5rem !important;
+  font-weight: 500 !important;
+}
+
+/* Authentic Amazon Price Block */
+.amazon-price-row {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 0.5rem !important;
+  margin: 0.4rem 0 !important;
+  flex-wrap: wrap !important;
+}
+
+.amazon-deal-tag {
+  background: #cc0c39 !important;
+  color: #ffffff !important;
+  font-size: 0.76rem !important;
+  font-weight: 800 !important;
+  padding: 0.2rem 0.5rem !important;
+  border-radius: 4px !important;
+}
+
+.amazon-main-price {
+  display: inline-flex !important;
+  align-items: flex-start !important;
+  font-family: var(--font-heading) !important;
+  color: #ffffff !important;
+  line-height: 1 !important;
+}
+
+.amazon-price-currency {
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  margin-right: 1px !important;
+  position: relative !important;
+  top: 2px !important;
+}
+
+.amazon-price-main-val {
+  font-size: 1.55rem !important;
+  font-weight: 900 !important;
+}
+
+.amazon-price-cents {
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  position: relative !important;
+  top: 2px !important;
+}
+
+.amazon-list-price {
+  font-size: 0.78rem !important;
+  color: var(--text-muted) !important;
+}
+
+.amazon-list-price span {
+  text-decoration: line-through !important;
+}
+
+/* Authentic Amazon Prime Delivery Guarantee */
+.amazon-prime-line {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  margin: 0.5rem 0 0.85rem !important;
+  font-size: 0.78rem !important;
+}
+
+.amazon-prime-logo {
+  color: #00a8e1 !important;
+  font-weight: 900 !important;
+  font-style: italic !important;
+  font-size: 0.88rem !important;
+  letter-spacing: -0.5px !important;
+}
+
+.amazon-prime-logo i {
+  font-style: normal !important;
+  color: #ff9900 !important;
+}
+
+.amazon-delivery-highlight {
+  color: #38bdf8 !important;
+  font-weight: 600 !important;
+}
+
+/* Authentic Amazon Yellow Buy Button */
+.btn-amazon-yellow {
+  background: #ffd814 !important;
+  border: 1px solid #fcd200 !important;
+  border-radius: 999px !important;
+  color: #0f1111 !important;
+  font-family: var(--font-main) !important;
+  font-weight: 800 !important;
+  font-size: 0.9rem !important;
+  padding: 0.65rem 1.25rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+  text-decoration: none !important;
+  box-shadow: 0 2px 5px rgba(213, 217, 217, 0.2) !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.btn-amazon-yellow:hover {
+  background: #f7ca00 !important;
+  border-color: #f2c200 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35) !important;
+  color: #000000 !important;
+}
+
+/* Amazon Secondary Sub-Navbar */
+.amazon-subnav {
+  background: #232f3e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 0;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.amazon-subnav .container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.amazon-subnav .container::-webkit-scrollbar {
+  display: none;
+}
+
+.subnav-link {
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.subnav-link:hover {
+  border-color: #ffffff;
+  color: #f59e0b;
+}
+
+.subnav-link.active {
+  color: #ff9900;
+  font-weight: 700;
+}
+

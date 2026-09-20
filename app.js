@@ -252,10 +252,23 @@ function renderProducts() {
     for (let i = 0; i < fullStars; i++) starsHtml += `<i class="fa-solid fa-star"></i>`;
     if (hasHalf) starsHtml += `<i class="fa-solid fa-star-half-stroke"></i>`;
 
+    // Generate Amazon style badge
+    let amazonBadgeHtml = `<span class="card-badge ${product.badgeType}">${product.badge}</span>`;
+    if (product.badgeType === "editor") {
+      amazonBadgeHtml = `<span class="amazon-badge-choice"><span>Amazon's</span> <span class="highlight">Choice</span></span>`;
+    } else if (product.badgeType === "hot") {
+      amazonBadgeHtml = `<span class="amazon-badge-bestseller"><i class="fa-solid fa-ribbon"></i> #1 Best Seller</span>`;
+    }
+
+    // Generate price components
+    const wholePart = Math.floor(product.price);
+    const fractionPart = (product.price % 1).toFixed(2).substring(2);
+    const monthlyBuyers = product.rating >= 4.8 ? "4K+" : (product.rating >= 4.6 ? "2K+" : "1K+");
+
     return `
       <article class="product-card" data-id="${product.id}">
         <div class="card-top-row">
-          <span class="card-badge ${product.badgeType}">${product.badge}</span>
+          ${amazonBadgeHtml}
           <button class="card-actions-fav ${isFav ? 'active' : ''}" onclick="toggleFavorite('${product.id}', event)" title="Save to favorites">
             <i class="fa-${isFav ? 'solid' : 'regular'} fa-heart"></i>
           </button>
@@ -266,48 +279,51 @@ function renderProducts() {
         </div>
 
         <div class="card-category">${product.categoryName}</div>
-        <h3 class="card-title" onclick="openProductModal('${product.id}')">${product.title}</h3>
-        <p class="card-tagline">${product.tagline}</p>
+        <h3 class="card-title" onclick="openProductModal('${product.id}')" title="${product.title}">${product.title}</h3>
 
-        <div class="card-rating-row">
-          <div class="stars">${starsHtml}</div>
-          <span style="font-weight: 700; color: var(--text-primary);">${product.rating}</span>
-          <span class="reviews-count">(${product.reviewsCount.toLocaleString()} reviews)</span>
+        <div class="card-rating-row" style="margin-bottom: 0.2rem;">
+          <div class="amazon-stars">${starsHtml}</div>
+          <span style="font-weight: 700; color: #f59e0b; font-size: 0.85rem;">${product.rating}</span>
+          <a href="${affiliateUrl}" target="_blank" rel="nofollow noopener" class="amazon-reviews-link">(${product.reviewsCount.toLocaleString()})</a>
         </div>
 
-        <ul class="card-pros-preview">
-          ${product.pros.slice(0, 2).map(pro => `<li>${pro}</li>`).join("")}
-        </ul>
+        <div class="amazon-bought-text"><i class="fa-solid fa-chart-line" style="color:#10b981; margin-right:4px;"></i> ${monthlyBuyers} bought in past month</div>
 
         <div class="card-bottom-row">
-          <div class="card-price-info">
-            <div>
-              <span class="card-price-current">$${product.price.toFixed(2)}</span>
-              <span class="spotlight-original-price">$${product.originalPrice.toFixed(2)}</span>
+          <div class="amazon-price-row">
+            <span class="amazon-deal-tag">${product.discount}</span>
+            <div class="amazon-main-price">
+              <span class="amazon-price-currency">$</span>
+              <span class="amazon-price-main-val">${wholePart}</span>
+              <span class="amazon-price-cents">${fractionPart}</span>
             </div>
-            <div style="display: flex; align-items: center; gap: 0.4rem;">
-              <span class="prime-delivery-tag"><i class="fa-brands fa-amazon"></i> Prime</span>
-              <span class="card-price-discount">${product.discount}</span>
-            </div>
+            <div class="amazon-list-price">List: <span>$${product.originalPrice.toFixed(2)}</span></div>
+          </div>
+
+          <div class="amazon-prime-line">
+            <span class="amazon-prime-logo"><i class="fa-brands fa-amazon"></i> prime</span>
+            <span class="amazon-delivery-highlight">FREE One-Day</span>
+            <span style="color:var(--text-muted);">Delivery</span>
           </div>
 
           <div class="card-buttons-group">
-            <a href="${affiliateUrl}" target="_blank" rel="nofollow noopener" class="btn-amazon" title="Buy on Amazon with current affiliate tag" onclick="if(typeof trackAffiliateClick==='function') trackAffiliateClick('${product.id}', '${product.title.replace(/'/g, "\\'")}', ${product.price}, '${product.category}')">
-              <i class="fa-brands fa-amazon"></i> Check Deal
+            <a href="${affiliateUrl}" target="_blank" rel="nofollow noopener" class="btn-amazon-yellow" title="View deal directly on official Amazon.com" onclick="if(typeof trackAffiliateClick==='function') trackAffiliateClick('${product.id}', '${product.title.replace(/'/g, "\\'")}', ${product.price}, '${product.category}')">
+              <i class="fa-brands fa-amazon" style="font-size: 1.1rem;"></i>
+              <span>See Deal on Amazon</span>
             </a>
             <button class="btn-card-compare ${isCompared ? 'active' : ''}" onclick="toggleCompare('${product.id}')" title="${isCompared ? 'Remove from comparison' : 'Add to compare'}">
               <i class="fa-solid fa-code-compare"></i>
             </button>
           </div>
           
-          <div style="display: flex; gap: 0.4rem; margin-top: 0.25rem;">
+          <div style="display: flex; gap: 0.4rem; margin-top: 0.35rem;">
             <button class="btn-secondary" style="flex: 1; font-size: 0.78rem; padding: 0.45rem 0.5rem;" onclick="openProductModal('${product.id}')">
-              <i class="fa-solid fa-circle-info"></i> Review
+              <i class="fa-solid fa-circle-info"></i> In-Depth Specs
             </button>
             <a href="${getPinterestShareUrl(product)}" target="_blank" rel="noopener" class="btn-secondary btn-pinterest" style="font-size: 0.85rem; padding: 0.45rem 0.6rem;" title="Pin to Pinterest for viral US buyer traffic">
               <i class="fa-brands fa-pinterest"></i>
             </a>
-            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('🔥 Amazing Amazon Deal: ' + product.title + ' at ' + product.discount + ' - ' + affiliateUrl)}" target="_blank" rel="noopener" class="btn-secondary" style="font-size: 0.85rem; padding: 0.45rem 0.6rem; color: #25D366;" title="Share deal on WhatsApp">
+            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('🔥 Amazon Verified Deal: ' + product.title + ' at ' + product.discount + ' - ' + affiliateUrl)}" target="_blank" rel="noopener" class="btn-secondary" style="font-size: 0.85rem; padding: 0.45rem 0.6rem; color: #25D366;" title="Share deal on WhatsApp">
               <i class="fa-brands fa-whatsapp"></i>
             </a>
             <button class="btn-secondary" style="font-size: 0.78rem; padding: 0.45rem 0.6rem;" onclick="copyAffiliateLink('${affiliateUrl}', event)" title="Copy direct affiliate link to clipboard">

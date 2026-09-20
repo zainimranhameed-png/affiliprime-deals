@@ -102,7 +102,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=6.0">
+  <link rel="stylesheet" href="style.css?v=7.0">
 </head>
 <body>
 
@@ -150,55 +150,88 @@
     </div>
   </div>
 
-  <!-- Sticky Main Header -->
-  <header class="header">
-    <div class="container header-content">
-      <a href="#" class="logo">
-        <div class="logo-icon">
-          <i class="fa-solid fa-bolt"></i>
-        </div>
-        <div>Affili<span>Prime</span></div>
+  <!-- Authentic Amazon Primary Dark Navigation Header (#131921) -->
+  <header class="header" style="background: #131921 !important; border-bottom: none !important;">
+    <div class="container" style="max-width: 1400px; padding: 0.5rem 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+      
+      <!-- Amazon Logo with Smile Arrow & Prime Tag -->
+      <a href="#" class="logo" style="text-decoration: none; display: flex; align-items: baseline; gap: 4px; padding: 0.25rem 0.5rem; border: 1px solid transparent; border-radius: 4px;">
+        <span style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 900; color: #ffffff; letter-spacing: -0.5px;">amazon</span>
+        <span style="color: #00a8e1; font-family: var(--font-heading); font-style: italic; font-size: 1.15rem; font-weight: 800; position: relative; top: -1px;">prime</span>
+        <span style="background: #ff9900; color: #111; font-size: 0.65rem; font-weight: 800; padding: 1px 5px; border-radius: 3px; text-transform: uppercase; margin-left: 2px;">DEALS</span>
       </a>
 
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#deals" class="nav-link active">Top Deals</a></li>
-          <li><a href="#categories" class="nav-link">Categories</a></li>
-          <li><a href="#trust" class="nav-link">Buyer Guarantee</a></li>
-          <li><a href="#faq" class="nav-link">FAQ</a></li>
-          <li><a href="#how-it-works" class="nav-link">Affiliate Guide</a></li>
-        </ul>
-      </nav>
+      <!-- Deliver to Location Pill -->
+      <div class="deliver-pill" style="display: flex; align-items: center; gap: 0.4rem; color: #cccccc; font-size: 0.82rem; padding: 0.35rem 0.6rem; border: 1px solid transparent; border-radius: 4px; cursor: pointer;">
+        <i class="fa-solid fa-location-dot" style="color: #ffffff; font-size: 1.1rem;"></i>
+        <div style="line-height: 1.2;">
+          <div style="font-size: 0.7rem; color: #94a3b8;">Deliver to</div>
+          <b style="color: #ffffff;">United States ▾</b>
+        </div>
+      </div>
 
-      <div class="header-actions">
+      <!-- Integrated Amazon Search Bar -->
+      <div class="amazon-search-header-box" style="flex: 1; max-width: 540px; min-width: 240px; display: flex; border-radius: 6px; overflow: hidden; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+        <select onchange="document.getElementById('sortSelect').value=this.value; if(typeof renderProducts==='function') renderProducts();" style="background: #f3f3f3; border: none; border-right: 1px solid #ddd; padding: 0 0.65rem; font-size: 0.78rem; font-weight: 600; color: #333; outline: none; cursor: pointer;">
+          <option value="featured">All Deals</option>
+          <option value="rating">Top Rated</option>
+          <option value="discount">Big Deals</option>
+          <option value="price-low">Low Price</option>
+        </select>
+        <input type="text" id="headerSearchInput" oninput="document.getElementById('searchInput').value=this.value; if(typeof renderProducts==='function') { searchQuery=this.value; renderProducts(); }" placeholder="Search 30 tested Amazon deals, noise cancelling, air fryer, laptops..." style="flex: 1; border: none; padding: 0.6rem 0.85rem; font-size: 0.88rem; outline: none; color: #111;">
+        <button type="button" onclick="const q=document.getElementById('headerSearchInput').value; document.getElementById('searchInput').value=q; searchQuery=q; renderProducts(); document.getElementById('deals').scrollIntoView({behavior:'smooth'});" style="background: #febd69; border: none; padding: 0 1.15rem; cursor: pointer; color: #111; font-size: 1.1rem; transition: background 0.15s ease;" onmouseover="this.style.background='#f3a847'" onmouseout="this.style.background='#febd69'">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+
+      <!-- Header Actions: Language, Spin Wheel, Cart -->
+      <div style="display: flex; align-items: center; gap: 0.65rem;">
+        <!-- Language / Currency -->
+        <div style="color: #ffffff; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.5rem; border: 1px solid transparent; border-radius: 4px;">
+          <span>🇺🇸</span>
+          <span>EN</span>
+        </div>
+
         <!-- Spin Wheel Button in Header -->
-        <button class="btn-nav-spin" onclick="openSpinWheelModal()" title="Spin Mystery Wheel (All 30 Deals)">
+        <button class="btn-nav-spin" onclick="openSpinWheelModal()" title="Spin Mystery Wheel (All 30 Deals)" style="background: linear-gradient(135deg, #ec4899, #8b5cf6); padding: 0.4rem 0.85rem; border-radius: 999px; border: none; color: #fff; font-weight: 800; font-size: 0.78rem; cursor: pointer; display: flex; align-items: center; gap: 0.4rem;">
           <i class="fa-solid fa-dharmachakra fa-spin"></i>
-          <span>Spin &amp; Win Deals</span>
+          <span>Spin &amp; Win</span>
         </button>
 
         <!-- Live Views & Earnings Button (Direct Access) -->
-        <a href="admin.html" class="header-stats-pill" title="Owner Dashboard: Real-Time Views & Commission (PIN: 2026)">
+        <a href="admin.html" class="header-stats-pill" title="Owner Dashboard: Real-Time Views & Commission (PIN: 2026)" style="font-size: 0.76rem; padding: 0.4rem 0.75rem; border-radius: 999px;">
           <i class="fa-solid fa-chart-line"></i>
-          <span>Live Stats & Earnings</span>
+          <span>Stats</span>
         </a>
 
-        <!-- Theme Toggle -->
-        <button class="action-btn" id="themeToggleBtn" title="Toggle Dark/Light Theme">
-          <i class="fa-solid fa-sun" id="themeIcon"></i>
-        </button>
-
         <!-- Compare Drawer Trigger Button -->
-        <button class="action-btn" id="headerCompareBtn" title="View Comparison">
+        <button class="action-btn" id="headerCompareBtn" title="View Comparison" style="width: 36px; height: 36px;">
           <i class="fa-solid fa-code-compare"></i>
           <span class="compare-badge-count" id="compareCountBadge" style="display: none;">0</span>
         </button>
 
         <!-- Affiliate Settings Button -->
-        <button class="btn-tag-settings" id="btnSettingsModalTrigger" title="Set your Amazon Associate Tag">
+        <button class="btn-tag-settings" id="btnSettingsModalTrigger" title="Set your Amazon Associate Tag" style="padding: 0.4rem 0.75rem; font-size: 0.78rem;">
           <i class="fa-solid fa-sliders"></i>
-          <span>Affiliate Config</span>
+          <span>Tag ID</span>
         </button>
+      </div>
+
+    </div>
+
+    <!-- Authentic Amazon Secondary Sub-Navigation Bar (#232f3e) -->
+    <div class="amazon-subnav">
+      <div class="container" style="max-width: 1400px; padding: 0 1rem;">
+        <a href="#deals" class="subnav-link active"><i class="fa-solid fa-bars"></i> All Deals</a>
+        <a href="#categories" onclick="document.querySelector('[data-category=under50]').click();" class="subnav-link" style="color: #6ee7b7;"><i class="fa-solid fa-tags"></i> Under $50 Finds</a>
+        <a href="#categories" onclick="document.querySelector('[data-category=mega-deals]').click();" class="subnav-link" style="color: #f472b6;"><i class="fa-solid fa-fire"></i> 20%+ Mega Drops</a>
+        <a href="#categories" onclick="document.querySelector('[data-category=tech]').click();" class="subnav-link"><i class="fa-solid fa-laptop"></i> Tech &amp; Audio</a>
+        <a href="#categories" onclick="document.querySelector('[data-category=fitness]').click();" class="subnav-link"><i class="fa-solid fa-heart-pulse"></i> Fitness &amp; Health</a>
+        <a href="#categories" onclick="document.querySelector('[data-category=home]').click();" class="subnav-link"><i class="fa-solid fa-house"></i> Home &amp; Kitchen</a>
+        <a href="#categories" onclick="document.querySelector('[data-category=gaming]').click();" class="subnav-link"><i class="fa-solid fa-gamepad"></i> Desk &amp; Gaming</a>
+        <a href="javascript:void(0)" onclick="openSpinWheelModal()" class="subnav-link" style="color: #fef08a; font-weight: 800;"><i class="fa-solid fa-dharmachakra"></i> Spin Lucky Wheel</a>
+        <a href="#trust" class="subnav-link"><i class="fa-solid fa-shield-halved"></i> Buyer Guarantee</a>
+        <a href="#faq" class="subnav-link"><i class="fa-solid fa-circle-question"></i> FAQ</a>
       </div>
     </div>
   </header>
@@ -797,9 +830,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="data/products.js?v=6.0"></script>
-  <script src="analytics.js?v=6.0"></script>
-  <script src="app.js?v=6.0"></script>
+  <script src="data/products.js?v=7.0"></script>
+  <script src="analytics.js?v=7.0"></script>
+  <script src="app.js?v=7.0"></script>
 
 
 </body>
