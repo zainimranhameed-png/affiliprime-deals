@@ -384,6 +384,27 @@
           <button class="btn-secondary" id="btnPlayPause" onclick="togglePlay()"><i class="fa-solid fa-pause"></i> Pause</button>
           <button class="btn-secondary" onclick="nextSlide()"><i class="fa-solid fa-forward-step"></i> Next</button>
         </div>
+
+        <!-- 1-Click Video Downloader Action -->
+        <div style="margin-top: 1.25rem;">
+          <button type="button" class="btn-action btn-gold" id="btnRecordVideo" onclick="generateAndDownloadVideo()" style="font-size: 1.05rem; padding: 1rem; border-radius: 14px; box-shadow: 0 6px 25px rgba(245,158,11,0.4);">
+            <i class="fa-solid fa-circle-play"></i>
+            <span>🎬 1-Click Render &amp; Download Viral Video (9:16 Shorts)</span>
+          </button>
+          
+          <div id="recordProgressBox" style="display: none; margin-top: 0.85rem; background: rgba(0,0,0,0.6); padding: 1rem; border-radius: 12px; border: 1px solid rgba(245,158,11,0.3);">
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.5rem;">
+              <span id="recordStatusLabel" style="color: #f59e0b; font-weight: 700;">Rendering video frames...</span>
+              <span id="recordPercentLabel" style="color: #fff; font-weight: 800;">0%</span>
+            </div>
+            <div style="height: 8px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden;">
+              <div id="recordProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #f59e0b, #ec4899, #06b6d4); transition: width 0.1s linear;"></div>
+            </div>
+            <div style="font-size: 0.72rem; color: var(--muted); margin-top: 0.45rem;">
+              Auto-renders 15s HD vertical (9:16) video with sound effect pulses. No watermark!
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -431,13 +452,33 @@
 "Amazon doesn't want you to know this secret trick to get genuine 40% discounts on top-rated tech!"
 
 [BODY - 4 to 18s]:
-"Go to the site in my bio called AffiliPrime Deals. They have a lucky spin-to-win wheel with all 30 top Amazon deals loaded. You spin it, and it instantly matches you with verified price drops on Apple, Sony, and viral home gear."
+"Go to the site in my bio called AffiliPrime Deals. They have a lucky spin-to-win wheel with all 50 top Amazon deals loaded. You spin it, and it instantly matches you with verified price drops on Apple, Sony, and viral home gear."
 
 [CTA - 18 to 25s]:
-"Try your luck right now! Link is in my TikTok bio. Go spin the lucky wheel before deals expire!"
+"Try your luck right now! Link is in my bio. Go spin the lucky wheel before deals expire!"
 
 [HASHTAGS]:
 #amazontricks #amazonfinds2026 #savingmoney #gadgets #dealsfinder #ukdeals</pre>
+      </div>
+
+      <!-- Script 3: YouTube Shorts Viral Package -->
+      <div class="script-box" style="border-color: rgba(255,0,0,0.3); background: rgba(255,0,0,0.03);">
+        <div class="script-header">
+          <b style="color:#ef4444;"><i class="fa-brands fa-youtube"></i> Script #3: Official YouTube Shorts Viral Copy-Paste Kit</b>
+          <button class="copy-btn" style="background: #ef4444;" onclick="copyScript('script3')"><i class="fa-regular fa-copy"></i> Copy Kit</button>
+        </div>
+        <pre id="script3">
+🎬 TITLE:
+3 Viral Amazon Gadgets You Actually Need in 2026! 🔥 #shorts #amazonfinds
+
+📝 DESCRIPTION:
+Tested and reviewed the 3 highest-rated Amazon gadgets of 2026! From industry-leading noise cancellation to viral everyday essentials. Grab verified discounts up to 40% OFF today!
+
+👉 GET VERIFIED DEALS HERE:
+https://zainimranhameed-png.github.io/affiliprime-deals/
+
+💬 PINNED COMMENT (Paste & Pin in Comments):
+"✨ Grab all verified discount links & spin the mystery deals wheel here: https://zainimranhameed-png.github.io/affiliprime-deals/ (Ends tonight!)"</pre>
       </div>
     </div>
   </div>
@@ -632,6 +673,364 @@
       navigator.clipboard.writeText(text).then(() => {
         alert("Script copied to clipboard! Paste it directly in CapCut or TikTok!");
       });
+    }
+
+    // 3. 1-Click Viral 9:16 Video Generator Engine
+    async function generateAndDownloadVideo() {
+      const btn = document.getElementById("btnRecordVideo");
+      const progressBox = document.getElementById("recordProgressBox");
+      const progressBar = document.getElementById("recordProgressBar");
+      const statusLabel = document.getElementById("recordStatusLabel");
+      const percentLabel = document.getElementById("recordPercentLabel");
+
+      btn.disabled = true;
+      btn.style.opacity = "0.6";
+      progressBox.style.display = "block";
+
+      try {
+        const W = 720;
+        const H = 1280;
+        const canvas = document.createElement("canvas");
+        canvas.width = W;
+        canvas.height = H;
+        const ctx = canvas.getContext("2d");
+
+        // Web Audio Synthesizer for rhythmic beat
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        const audioCtx = new AudioContextClass();
+        const dest = audioCtx.createMediaStreamDestination();
+
+        function playSoundPulse(freq, duration, type = "sine") {
+          try {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(dest);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+          } catch(e) {}
+        }
+
+        // Setup MediaRecorder with Audio + Video streams
+        const videoStream = canvas.captureStream(30);
+        const combinedStream = new MediaStream([
+          ...videoStream.getVideoTracks(),
+          ...dest.stream.getAudioTracks()
+        ]);
+
+        let mimeType = 'video/webm;codecs=vp9';
+        if (!MediaRecorder.isTypeSupported(mimeType)) {
+          mimeType = 'video/webm';
+        }
+
+        const recorder = new MediaRecorder(combinedStream, { mimeType, videoBitsPerSecond: 3500000 });
+        const chunks = [];
+        recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+
+        recorder.start();
+
+        const TOTAL_FRAMES = 30 * 15; // 15 seconds at 30 FPS = 450 frames
+        let frame = 0;
+
+        const slidesData = [
+          {
+            type: "hook",
+            badge: "🚨 STOP SCROLLING!",
+            title: "3 VIRAL AMAZON FINDS",
+            subtitle: "You Actually Need in 2026!",
+            highlight: "Verified Tested Gadgets 🔥",
+            accent: "#ec4899"
+          },
+          {
+            type: "product",
+            badge: "🎧 #1 VIRAL TECH",
+            title: "Sony WH-1000XM5 ANC",
+            highlight: "Silences Noisy Commutes & Flights",
+            price: "$348.00 • 13% OFF",
+            rating: "⭐ 4.8 / 5.0 (14,800+ Reviews)",
+            icon: "🎧",
+            accent: "#3b82f6"
+          },
+          {
+            type: "product",
+            badge: "🥤 TIKTOK SENSATION",
+            title: "Stanley Quencher (40 oz)",
+            highlight: "Keeps Ice Frozen for 48 Hours!",
+            price: "$45.00 • Best Seller",
+            rating: "⭐ 4.9 / 5.0 (Viral Drinkware)",
+            icon: "🥤",
+            accent: "#10b981"
+          },
+          {
+            type: "product",
+            badge: "🍳 TOP HOME UPGRADE",
+            title: "Ninja AF101 Air Fryer",
+            highlight: "Crisps Food with 75% Less Fat!",
+            price: "$89.99 • 30% OFF",
+            rating: "⭐ 4.8 / 5.0 (64,000+ Reviews)",
+            icon: "🍳",
+            accent: "#f59e0b"
+          },
+          {
+            type: "cta",
+            badge: "⚡ LIMITED 40% SALE",
+            title: "GET VERIFIED DEALS!",
+            subtitle: "Link in Bio & Pinned Comment",
+            highlight: "AffiliPrime Deals Storefront",
+            icon: "🎁",
+            accent: "#ec4899"
+          }
+        ];
+
+        function renderFrame() {
+          const slideIdx = Math.min(Math.floor((frame / TOTAL_FRAMES) * slidesData.length), slidesData.length - 1);
+          const s = slidesData[slideIdx];
+
+          // Sound beats
+          if (frame % 15 === 0) {
+            playSoundPulse(slideIdx % 2 === 0 ? 150 : 240, 0.12, "triangle");
+          }
+
+          // Canvas Background
+          const bgGrad = ctx.createRadialGradient(W/2, H/2, 80, W/2, H/2, H * 0.7);
+          bgGrad.addColorStop(0, "#16192b");
+          bgGrad.addColorStop(0.6, "#0b0e18");
+          bgGrad.addColorStop(1, "#040508");
+          ctx.fillStyle = bgGrad;
+          ctx.fillRect(0, 0, W, H);
+
+          // Animated Glowing Neon Frame Border
+          ctx.save();
+          const borderGrad = ctx.createLinearGradient(0, 0, W, H);
+          borderGrad.addColorStop(0, s.accent);
+          borderGrad.addColorStop(0.5, "#f59e0b");
+          borderGrad.addColorStop(1, "#06b6d4");
+          ctx.strokeStyle = borderGrad;
+          ctx.lineWidth = 14;
+          ctx.strokeRect(20, 20, W - 40, H - 40);
+          ctx.restore();
+
+          // Brand Top Bar
+          ctx.save();
+          ctx.fillStyle = "rgba(255,255,255,0.06)";
+          ctx.beginPath();
+          ctx.roundRect(50, 50, W - 100, 58, 29);
+          ctx.fill();
+          ctx.font = "800 22px Outfit, sans-serif";
+          ctx.fillStyle = "#ffffff";
+          ctx.textAlign = "center";
+          ctx.fillText("⚡ AFFILIPRIME DEALS • OFFICIAL AMAZON FINDS", W/2, 87);
+          ctx.restore();
+
+          // Animated Category Badge
+          ctx.save();
+          const badgeY = 150;
+          ctx.fillStyle = s.accent;
+          ctx.shadowColor = s.accent;
+          ctx.shadowBlur = 24;
+          ctx.beginPath();
+          ctx.roundRect(W/2 - 180, badgeY, 360, 52, 26);
+          ctx.fill();
+          ctx.font = "900 24px Outfit, sans-serif";
+          ctx.fillStyle = "#ffffff";
+          ctx.textAlign = "center";
+          ctx.shadowBlur = 0;
+          ctx.fillText(s.badge, W/2, badgeY + 36);
+          ctx.restore();
+
+          // Hero Central Card
+          ctx.save();
+          const cardY = 240;
+          const cardH = 680;
+          ctx.fillStyle = "rgba(18, 24, 38, 0.95)";
+          ctx.strokeStyle = "rgba(255,255,255,0.12)";
+          ctx.lineWidth = 2;
+          ctx.shadowColor = "rgba(0,0,0,0.85)";
+          ctx.shadowBlur = 35;
+          ctx.beginPath();
+          ctx.roundRect(50, cardY, W - 100, cardH, 30);
+          ctx.fill();
+          ctx.stroke();
+          ctx.restore();
+
+          // Slide Contents
+          if (s.type === "hook") {
+            ctx.save();
+            ctx.font = "120px serif";
+            ctx.textAlign = "center";
+            ctx.fillText("🔥", W/2, 400);
+
+            ctx.font = "900 52px Outfit, sans-serif";
+            ctx.fillStyle = "#ffdd00";
+            ctx.shadowColor = "#ff9900";
+            ctx.shadowBlur = 25;
+            ctx.fillText(s.title, W/2, 510);
+
+            ctx.font = "800 36px Outfit, sans-serif";
+            ctx.fillStyle = "#ffffff";
+            ctx.shadowBlur = 0;
+            ctx.fillText(s.subtitle, W/2, 590);
+
+            ctx.font = "700 28px Inter, sans-serif";
+            ctx.fillStyle = "#06b6d4";
+            ctx.fillText(s.highlight, W/2, 660);
+
+            // Timer Pill
+            ctx.fillStyle = "rgba(236,72,153,0.2)";
+            ctx.strokeStyle = "#ec4899";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.roundRect(W/2 - 200, 730, 400, 60, 16);
+            ctx.fill();
+            ctx.stroke();
+            ctx.font = "800 24px Outfit, sans-serif";
+            ctx.fillStyle = "#f472b6";
+            ctx.fillText("⏳ 24HR PRICE DROP ACTIVE", W/2, 768);
+            ctx.restore();
+
+          } else if (s.type === "product") {
+            ctx.save();
+            ctx.font = "115px serif";
+            ctx.textAlign = "center";
+            ctx.fillText(s.icon || "🎁", W/2, 390);
+
+            ctx.font = "800 38px Outfit, sans-serif";
+            ctx.fillStyle = "#ffffff";
+            ctx.fillText(s.title, W/2, 490);
+
+            ctx.font = "600 24px Inter, sans-serif";
+            ctx.fillStyle = "#94a3b8";
+            ctx.fillText(s.highlight, W/2, 550);
+
+            // Price Tag
+            ctx.fillStyle = "rgba(245, 158, 11, 0.2)";
+            ctx.strokeStyle = "#f59e0b";
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.roundRect(W/2 - 210, 620, 420, 72, 18);
+            ctx.fill();
+            ctx.stroke();
+            ctx.font = "900 34px Outfit, sans-serif";
+            ctx.fillStyle = "#fbbf24";
+            ctx.fillText(s.price, W/2, 668);
+
+            // Rating
+            ctx.font = "700 26px Inter, sans-serif";
+            ctx.fillStyle = "#10b981";
+            ctx.fillText(s.rating, W/2, 750);
+
+            ctx.font = "600 22px Inter, sans-serif";
+            ctx.fillStyle = "#cbd5e1";
+            ctx.fillText("✓ 100% Prime A-to-z Protected", W/2, 810);
+            ctx.restore();
+
+          } else if (s.type === "cta") {
+            ctx.save();
+            ctx.font = "115px serif";
+            ctx.textAlign = "center";
+            ctx.fillText("🎁", W/2, 400);
+
+            ctx.font = "900 48px Outfit, sans-serif";
+            const ctaGrad = ctx.createLinearGradient(100, 0, 620, 0);
+            ctaGrad.addColorStop(0, "#fbbf24");
+            ctaGrad.addColorStop(1, "#ec4899");
+            ctx.fillStyle = ctaGrad;
+            ctx.fillText(s.title, W/2, 500);
+
+            ctx.font = "800 28px Outfit, sans-serif";
+            ctx.fillStyle = "#ffffff";
+            ctx.fillText(s.subtitle, W/2, 570);
+
+            // Big CTA Button
+            ctx.fillStyle = "#ff9900";
+            ctx.shadowColor = "#ff9900";
+            ctx.shadowBlur = 30;
+            ctx.beginPath();
+            ctx.roundRect(W/2 - 240, 650, 480, 88, 44);
+            ctx.fill();
+            ctx.font = "900 32px Outfit, sans-serif";
+            ctx.fillStyle = "#111111";
+            ctx.shadowBlur = 0;
+            ctx.fillText("👉 TAP LINK IN BIO NOW", W/2, 706);
+
+            ctx.font = "700 24px Inter, sans-serif";
+            ctx.fillStyle = "#94a3b8";
+            ctx.fillText("🎰 Spin Lucky Wheel & Win Deals!", W/2, 800);
+            ctx.restore();
+          }
+
+          // Bottom CTA Banner
+          ctx.save();
+          const btmY = 960;
+          const btmGrad = ctx.createLinearGradient(50, btmY, W - 50, btmY + 160);
+          btmGrad.addColorStop(0, "#f59e0b");
+          btmGrad.addColorStop(1, "#ec4899");
+          ctx.fillStyle = btmGrad;
+          ctx.beginPath();
+          ctx.roundRect(50, btmY, W - 100, 160, 24);
+          ctx.fill();
+
+          ctx.font = "900 32px Outfit, sans-serif";
+          ctx.fillStyle = "#ffffff";
+          ctx.textAlign = "center";
+          ctx.fillText("VERIFIED AMAZON PRICE DROPS", W/2, btmY + 65);
+
+          ctx.font = "800 24px Inter, sans-serif";
+          ctx.fillStyle = "#111827";
+          ctx.fillText("🔗 LINK IN BIO & PINNED COMMENT", W/2, btmY + 115);
+          ctx.restore();
+
+          // Bottom Progress Bar
+          ctx.save();
+          ctx.fillStyle = "rgba(255,255,255,0.15)";
+          ctx.fillRect(0, H - 16, W, 16);
+          ctx.fillStyle = "#ec4899";
+          ctx.fillRect(0, H - 16, (frame / TOTAL_FRAMES) * W, 16);
+          ctx.restore();
+
+          frame++;
+          const pct = Math.round((frame / TOTAL_FRAMES) * 100);
+          progressBar.style.width = pct + "%";
+          percentLabel.textContent = pct + "%";
+          statusLabel.textContent = `Rendering video frames (${Math.round(frame/30)}s / 15s)...`;
+
+          if (frame < TOTAL_FRAMES) {
+            requestAnimationFrame(renderFrame);
+          } else {
+            recorder.stop();
+            statusLabel.textContent = "Finalizing video download...";
+            recorder.onstop = () => {
+              const blob = new Blob(chunks, { type: 'video/webm' });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement("a");
+              a.href = url;
+              a.download = "Viral-Amazon-Finds-2026-Shorts.webm";
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+
+              statusLabel.textContent = "🎉 Video downloaded successfully! Ready for YouTube Shorts!";
+              btn.disabled = false;
+              btn.style.opacity = "1";
+              btn.innerHTML = '<i class="fa-solid fa-circle-play"></i> 🎬 Render & Download Again';
+              alert("🚀 Video download ho chuki hai!\n\nIsko YouTube Shorts, TikTok ya Instagram Reels par upload karein aur niche diye gaye Script #3 se Title aur Pinned Comment copy kar lein!");
+            };
+          }
+        }
+
+        renderFrame();
+
+      } catch (err) {
+        console.error("Video record error:", err);
+        alert("Video creation error: " + err.message);
+        btn.disabled = false;
+        btn.style.opacity = "1";
+        progressBox.style.display = "none";
+      }
     }
 
     window.addEventListener("DOMContentLoaded", () => {
