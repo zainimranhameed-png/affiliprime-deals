@@ -20,6 +20,7 @@ const metricAdRevenue = document.getElementById("metricAdRevenue");
 const metricPinterestRevenue = document.getElementById("metricPinterestRevenue");
 const metricPinterestViewsCount = document.getElementById("metricPinterestViewsCount");
 const metricCommission = document.getElementById("metricCommission");
+const metricAmazonOrdersTrend = document.getElementById("metricAmazonOrdersTrend");
 const metricTotalEarnings = document.getElementById("metricTotalEarnings");
 
 // Secondary Traffic Metric Elements
@@ -32,6 +33,7 @@ const metricSales = document.getElementById("metricSales");
 const countryListContainer = document.getElementById("countryListContainer");
 const trafficSourcesContainer = document.getElementById("trafficSourcesContainer");
 const activityStreamContainer = document.getElementById("activityStreamContainer");
+const confirmedOrdersTableBody = document.getElementById("confirmedOrdersTableBody");
 const productPerformanceTableBody = document.getElementById("productPerformanceTableBody");
 
 // ==========================================================================
@@ -129,13 +131,22 @@ function renderDashboard() {
   if (metricPinterestRevenue) metricPinterestRevenue.textContent = `$${financials.pinterestEstEarnings}`;
   if (metricPinterestViewsCount) metricPinterestViewsCount.textContent = `${financials.pinterestViews} Pinterest Visitors`;
   if (metricCommission) metricCommission.textContent = `$${financials.totalAmazonCommission}`;
+  if (metricAmazonOrdersTrend) {
+    metricAmazonOrdersTrend.textContent = financials.confirmedOrdersCount === 0 
+      ? "0 Orders (Verified on Amazon)" 
+      : `${financials.confirmedOrdersCount} Verified Amazon Orders`;
+  }
   if (metricTotalEarnings) metricTotalEarnings.textContent = `$${financials.totalCombinedEarnings}`;
 
   // 2. Secondary Operational Metrics
   if (metricViews) metricViews.textContent = financials.totalViews.toLocaleString();
   if (metricClicks) metricClicks.textContent = financials.totalClicks.toLocaleString();
   if (metricCtr) metricCtr.textContent = `${financials.ctr}%`;
-  if (metricSales) metricSales.textContent = `$${financials.totalEstSales}`;
+  if (metricSales) {
+    metricSales.textContent = financials.confirmedOrdersCount === 0 
+      ? "0 Orders" 
+      : `${financials.confirmedOrdersCount} Items ($${financials.totalEstSales})`;
+  }
 
   // 3. Render Countries
   renderCountries(data);
@@ -146,10 +157,13 @@ function renderDashboard() {
   // 5. Render Live Activity Stream
   renderActivityStream(data);
 
-  // 6. Render Top Products Table
+  // 6. Render Confirmed Amazon Orders (Real Purchases Only)
+  renderConfirmedOrders(data);
+
+  // 7. Render Outbound Product Clicks Table
   renderProductPerformance(data);
 
-  // 7. Render Pinterest Auto-Pin Hub
+  // 8. Render Pinterest Auto-Pin Hub
   renderPinterestHub();
 }
 
@@ -279,18 +293,69 @@ function renderActivityStream(data) {
 }
 
 // ==========================================================================
-// Top Products Table
+// Confirmed Amazon Orders Table (Real Purchases Only)
+// ==========================================================================
+function renderConfirmedOrders(data) {
+  if (!confirmedOrdersTableBody) return;
+  const orders = data.confirmedOrders || [];
+
+  if (orders.length === 0) {
+    confirmedOrdersTableBody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted);">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem; opacity: 0.6;">🛍️</div>
+          <div style="font-weight: 700; color: var(--text-primary); font-size: 1rem; margin-bottom: 0.35rem;">
+            Abhi tak Amazon par koi verified purchase record nahi hui
+          </div>
+          <div style="font-size: 0.82rem; max-width: 520px; margin: 0 auto; line-height: 1.45;">
+            Jab koi visitor aapke affiliate link se product buy karega, toh Amazon Associates portal me sale show hogi.<br>
+            Aap upar <b>"+ Record Amazon Sale"</b> button se entry add kar sakte hain taake sirf actual orders hi earnings me count hon!
+          </div>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  confirmedOrdersTableBody.innerHTML = orders.map(order => `
+    <tr>
+      <td>
+        <div style="font-weight: 700; color: var(--text-primary); font-size: 0.92rem;">
+          ${order.title}
+        </div>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">ID: ${order.id}</span>
+      </td>
+      <td style="font-weight: 600; color: var(--text-primary);">$${(parseFloat(order.salePrice) || 0).toFixed(2)}</td>
+      <td style="font-weight: 800; color: var(--accent-emerald); font-size: 1.05rem;">+$${(parseFloat(order.commissionEarned) || 0).toFixed(2)}</td>
+      <td style="color: var(--text-secondary); font-size: 0.85rem;">${order.date || 'Recent'}</td>
+      <td>
+        <span class="table-badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.3);">
+          <i class="fa-solid fa-check-circle"></i> ${order.status || 'Verified Purchase'}
+        </span>
+      </td>
+      <td>
+        <button onclick="removeOrder('${order.id}')" style="background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.85rem; padding: 0.3rem 0.5rem;" title="Delete order entry">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  `).join("");
+}
+
+// ==========================================================================
+// Outbound Store Clicks Table
 // ==========================================================================
 function renderProductPerformance(data) {
+  if (!productPerformanceTableBody) return;
   const products = Object.entries(data.productClicks || {}).sort((a, b) => b[1].clicks - a[1].clicks);
 
   if (products.length === 0) {
     productPerformanceTableBody.innerHTML = `
       <tr>
-        <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2.5rem 1rem;">
+        <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 2.5rem 1rem;">
           <i class="fa-solid fa-arrow-pointer" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary); display: block;"></i>
           <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;">No Clicks Recorded Yet</div>
-          <div style="font-size: 0.82rem;">As visitors click "Check Deal on Amazon", items and real estimated commissions will appear here.</div>
+          <div style="font-size: 0.82rem;">When visitors click "Check Deal on Amazon", outbound items will be tracked here.</div>
         </td>
       </tr>
     `;
@@ -298,10 +363,6 @@ function renderProductPerformance(data) {
   }
 
   productPerformanceTableBody.innerHTML = products.map(([prodId, prodData]) => {
-    const estOrders = Math.max(1, Math.round(prodData.clicks * 0.12));
-    const rate = ((prodData.estCommissionRate || 0.04) * 100).toFixed(1);
-    const estRev = (estOrders * prodData.price * (prodData.estCommissionRate || 0.04)).toFixed(2);
-
     return `
       <tr>
         <td>
@@ -316,9 +377,14 @@ function renderProductPerformance(data) {
             <i class="fa-solid fa-arrow-pointer"></i> ${prodData.clicks}
           </span>
         </td>
-        <td style="font-weight: 600; color: var(--accent-cyan);">${estOrders}</td>
-        <td><span style="color: var(--text-secondary);">${rate}%</span></td>
-        <td style="font-weight: 800; color: var(--accent-emerald); font-size: 1rem;">+$${estRev}</td>
+        <td style="color: var(--text-secondary); font-size: 0.85rem;">
+          <i class="fa-brands fa-amazon" style="color: var(--primary);"></i> Sent to Amazon Store
+        </td>
+        <td>
+          <span class="table-badge" style="background: rgba(245, 158, 11, 0.1); color: var(--primary); border: 1px solid rgba(245, 158, 11, 0.25);">
+            Awaiting Customer Order
+          </span>
+        </td>
       </tr>
     `;
   }).join("");
@@ -370,16 +436,55 @@ function simulateLiveVisit() {
   renderDashboard();
 }
 
-function simulateClickTest() {
-  const prods = [
-    { id: "prod-1", title: "Sony WH-1000XM5 Headphones", price: 348.00, cat: "tech" },
-    { id: "prod-2", title: "Apple MacBook Air M3", price: 1199.00, cat: "tech" },
-    { id: "prod-4", title: "Ninja AF101 Air Fryer", price: 89.99, cat: "home" },
-    { id: "prod-9", title: "Dyson V15 Cordless Vacuum", price: 649.99, cat: "home" }
-  ];
-  const p = prods[Math.floor(Math.random() * prods.length)];
-  trackAffiliateClick(p.id, p.title, p.price, p.cat);
+// ==========================================================================
+// Verified Order Modal & Actions
+// ==========================================================================
+function openRecordOrderModal() {
+  const modal = document.getElementById("recordOrderModal");
+  if (modal) {
+    modal.style.display = "flex";
+    const dateInput = document.getElementById("orderDate");
+    if (dateInput && !dateInput.value) {
+      dateInput.value = new Date().toISOString().split("T")[0];
+    }
+  }
+}
+
+function closeRecordOrderModal() {
+  const modal = document.getElementById("recordOrderModal");
+  if (modal) modal.style.display = "none";
+}
+
+function handleRecordOrderSubmit(e) {
+  e.preventDefault();
+  const title = document.getElementById("orderProductTitle").value.trim();
+  const salePrice = parseFloat(document.getElementById("orderSalePrice").value) || 0;
+  const commissionEarned = parseFloat(document.getElementById("orderCommissionEarned").value) || 0;
+  const date = document.getElementById("orderDate").value;
+
+  if (!title || salePrice <= 0) {
+    alert("Please enter a valid product name and sale price.");
+    return;
+  }
+
+  recordConfirmedAmazonOrder({
+    title: title,
+    salePrice: salePrice,
+    commissionEarned: commissionEarned,
+    date: date
+  });
+
+  closeRecordOrderModal();
+  document.getElementById("recordOrderForm").reset();
   renderDashboard();
+  alert("✅ Amazon Verified Order record ho gaya! Ab sirf actual purchase hi earnings me show ho rahi hai.");
+}
+
+function removeOrder(orderId) {
+  if (confirm("Kya aap is verified order ko list se remove karna chahte hain?")) {
+    deleteConfirmedAmazonOrder(orderId);
+    renderDashboard();
+  }
 }
 
 function refreshDashboard() {

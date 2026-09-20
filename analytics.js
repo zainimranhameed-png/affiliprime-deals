@@ -19,6 +19,7 @@ function getDefaultAnalytics() {
     },
     countries: {},
     productClicks: {},
+    confirmedOrders: [],
     activities: [
       {
         id: Date.now(),
@@ -69,6 +70,7 @@ function getAnalyticsData() {
     }
     if (!data.countries) data.countries = {};
     if (!data.productClicks) data.productClicks = {};
+    if (!data.confirmedOrders) data.confirmedOrders = [];
     if (!data.activities) data.activities = [];
     return data;
   } catch (e) {
@@ -226,19 +228,17 @@ async function trackAffiliateClick(productId, productTitle, price, category) {
 // 3. Amazon Affiliate Commission (Product purchase conversions)
 // 4. Combined Net Total Earnings
 function calculateEarnings(data) {
-  let totalEstSales = 0;
+  let totalConfirmedSales = 0;
   let totalAmazonCommission = 0;
-  const avgConversionRate = 0.10; // Amazon benchmark: 10% high-intent clicks convert
+  const orders = data.confirmedOrders || [];
 
-  // 1. Amazon Affiliate Commission
-  Object.values(data.productClicks || {}).forEach(p => {
-    if (p.clicks > 0) {
-      const estOrders = Math.max(1, Math.round(p.clicks * avgConversionRate));
-      const volume = estOrders * p.price;
-      const comm = volume * (p.estCommissionRate || 0.035);
-      totalEstSales += volume;
-      totalAmazonCommission += comm;
-    }
+  // 1. Amazon Affiliate Commission: STRICTLY Real Confirmed Purchases Only!
+  // (No fake multiplication on clicks - only items actually ordered show here)
+  orders.forEach(order => {
+    const sale = parseFloat(order.salePrice) || 0;
+    const comm = parseFloat(order.commissionEarned) || (sale * (parseFloat(order.commissionRate) || 0.035));
+    totalConfirmedSales += sale;
+    totalAmazonCommission += comm;
   });
 
   // 2. Ad Impression Revenue (Adsterra & Google CPM for Page Views)
@@ -275,8 +275,9 @@ function calculateEarnings(data) {
   const ctr = data.totalViews > 0 ? ((data.totalClicks / data.totalViews) * 100).toFixed(1) : "0.0";
 
   return {
-    totalEstSales: totalEstSales.toFixed(2),
+    totalEstSales: totalConfirmedSales.toFixed(2),
     totalAmazonCommission: totalAmazonCommission.toFixed(2),
+    confirmedOrdersCount: orders.length,
     totalAdRevenue: totalAdRevenue.toFixed(2),
     pinterestEstEarnings: pinterestEstEarnings.toFixed(2),
     totalCombinedEarnings: totalCombinedEarnings.toFixed(2),
@@ -287,6 +288,47 @@ function calculateEarnings(data) {
     googleViews: (data.sources && data.sources.google) ? data.sources.google.count : 0,
     directViews: (data.sources && data.sources.direct) ? data.sources.direct.count : 0
   };
+}
+
+// Record a genuine confirmed Amazon purchase (e.g. verified on Amazon Associates Central)
+function recordConfirmedAmazonOrder(order) {
+  const data = getAnalyticsData();
+  if (!data.confirmedOrders) data.confirmedOrders = [];
+
+  const newOrder = {
+    id: order.id || `AMZ-${Date.now().toString().slice(-6)}`,
+    title: order.title || "Amazon Verified Product",
+    productId: order.productId || "external",
+    salePrice: parseFloat(order.salePrice) || 0,
+    commissionEarned: parseFloat(order.commissionEarned) || 0,
+    commissionRate: parseFloat(order.commissionRate) || 0.035,
+    date: order.date || new Date().toISOString().split("T")[0],
+    status: order.status || "Confirmed & Delivered"
+  };
+
+  data.confirmedOrders.unshift(newOrder);
+
+  // Log in activity stream
+  data.activities.unshift({
+    id: Date.now(),
+    type: "order",
+    text: `🎉 Verified Amazon Purchase: ${newOrder.title.slice(0, 30)} (+$${newOrder.commissionEarned.toFixed(2)})`,
+    location: "Amazon.com Verified 📦",
+    time: "Just now"
+  });
+
+  if (data.activities.length > 40) data.activities.pop();
+
+  saveAnalyticsData(data);
+  return newOrder;
+}
+
+// Delete a confirmed order if needed
+function deleteConfirmedAmazonOrder(orderId) {
+  const data = getAnalyticsData();
+  if (!data.confirmedOrders) return;
+  data.confirmedOrders = data.confirmedOrders.filter(o => o.id !== orderId);
+  saveAnalyticsData(data);
 }
 
 // Reset Analytics to Clean Zero
