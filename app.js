@@ -183,7 +183,13 @@ function getFilteredProducts() {
 
   // Category filter
   if (currentCategory !== "all") {
-    filtered = filtered.filter(p => p.category === currentCategory);
+    if (currentCategory === "under50") {
+      filtered = filtered.filter(p => p.price <= 50);
+    } else if (currentCategory === "mega-deals") {
+      filtered = filtered.filter(p => (parseInt(p.discount) || 0) >= 20);
+    } else {
+      filtered = filtered.filter(p => p.category === currentCategory);
+    }
   }
 
   // Search filter
@@ -279,7 +285,10 @@ function renderProducts() {
               <span class="card-price-current">$${product.price.toFixed(2)}</span>
               <span class="spotlight-original-price">$${product.originalPrice.toFixed(2)}</span>
             </div>
-            <span class="card-price-discount">${product.discount}</span>
+            <div style="display: flex; align-items: center; gap: 0.4rem;">
+              <span class="prime-delivery-tag"><i class="fa-brands fa-amazon"></i> Prime</span>
+              <span class="card-price-discount">${product.discount}</span>
+            </div>
           </div>
 
           <div class="card-buttons-group">

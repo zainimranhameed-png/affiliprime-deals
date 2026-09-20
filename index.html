@@ -102,7 +102,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=5.0">
+  <link rel="stylesheet" href="style.css?v=6.0">
 </head>
 <body>
 
@@ -129,6 +129,25 @@
       <i class="fa-regular fa-clock"></i> Ends In: <b id="flashCountdown" style="color: #fef08a;">03:41:22</b>
     </span>
     <a href="javascript:void(0)" onclick="openSpinWheelModal()" style="color: #fef08a; text-decoration: underline; font-weight: 800; font-size: 0.84rem;">🎰 Spin Lucky Wheel (All 30 Deals) &rarr;</a>
+  </div>
+
+  <!-- Live VIP Price Drop Marquee Ticker -->
+  <div class="vip-marquee-bar" aria-hidden="true">
+    <div class="vip-marquee-content">
+      <span class="marquee-item"><span class="marquee-pill">🔥 VIRAL</span> Apple AirPods Pro (USB-C) <b>24% OFF</b></span>
+      <span class="marquee-item"><span class="marquee-pill">🎧 BEST SELLER</span> Sony WH-1000XM5 <b>Save $51.99</b></span>
+      <span class="marquee-item"><span class="marquee-pill">💻 M3 CHIP</span> MacBook Air 13" <b>18hr Battery Deal</b></span>
+      <span class="marquee-item"><span class="marquee-pill">🍳 KITCHEN</span> Ninja 4-in-1 Air Fryer <b>30% OFF</b></span>
+      <span class="marquee-item"><span class="marquee-pill">⚡ FLASH DROP</span> Stanley 40oz Quencher <b>In Stock Prime</b></span>
+      <span class="marquee-item"><span class="marquee-pill">🎰 LUCKY WHEEL</span> Spin Mystery Wheel for <b>Guaranteed Amazon Discounts</b></span>
+      <!-- Duplicate for infinite seamless loop -->
+      <span class="marquee-item"><span class="marquee-pill">🔥 VIRAL</span> Apple AirPods Pro (USB-C) <b>24% OFF</b></span>
+      <span class="marquee-item"><span class="marquee-pill">🎧 BEST SELLER</span> Sony WH-1000XM5 <b>Save $51.99</b></span>
+      <span class="marquee-item"><span class="marquee-pill">💻 M3 CHIP</span> MacBook Air 13" <b>18hr Battery Deal</b></span>
+      <span class="marquee-item"><span class="marquee-pill">🍳 KITCHEN</span> Ninja 4-in-1 Air Fryer <b>30% OFF</b></span>
+      <span class="marquee-item"><span class="marquee-pill">⚡ FLASH DROP</span> Stanley 40oz Quencher <b>In Stock Prime</b></span>
+      <span class="marquee-item"><span class="marquee-pill">🎰 LUCKY WHEEL</span> Spin Mystery Wheel for <b>Guaranteed Amazon Discounts</b></span>
+    </div>
   </div>
 
   <!-- Sticky Main Header -->
@@ -201,6 +220,10 @@
         </p>
         
         <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number" style="color: #10b981; display: inline-flex; align-items: center;"><span class="live-radar-dot"></span>184 Live</span>
+            <span class="stat-label">Shoppers Online</span>
+          </div>
           <div class="stat-item">
             <span class="stat-number">100%</span>
             <span class="stat-label">Verified Reviews</span>
@@ -298,7 +321,13 @@
         <!-- Category Filter Chips -->
         <div class="category-chips" id="categoryChips">
           <button class="chip-btn active" data-category="all">
-            <i class="fa-solid fa-border-all"></i> All Products
+            <i class="fa-solid fa-border-all"></i> All Deals
+          </button>
+          <button class="chip-btn" data-category="under50" style="color: #10b981; border-color: rgba(16, 185, 129, 0.3);">
+            <i class="fa-solid fa-tags"></i> Under $50
+          </button>
+          <button class="chip-btn" data-category="mega-deals" style="color: #ec4899; border-color: rgba(236, 72, 153, 0.3);">
+            <i class="fa-solid fa-fire"></i> 20%+ Mega Drops
           </button>
           <button class="chip-btn" data-category="tech">
             <i class="fa-solid fa-laptop"></i> Tech & Audio
@@ -768,9 +797,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="data/products.js?v=5.0"></script>
-  <script src="analytics.js?v=5.0"></script>
-  <script src="app.js?v=5.0"></script>
+  <script src="data/products.js?v=6.0"></script>
+  <script src="analytics.js?v=6.0"></script>
+  <script src="app.js?v=6.0"></script>
 
 
 </body>

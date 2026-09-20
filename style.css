@@ -2636,6 +2636,7 @@ button, input, select {
 }
 
 /* Fullscreen Confetti Canvas */
+/* Fullscreen Confetti Canvas */
 #confettiCanvas {
   position: fixed;
   top: 0;
@@ -2646,7 +2647,119 @@ button, input, select {
   z-index: 10000;
 }
 
+/* ==========================================================================
+   VIP Experience Enhancements (Marquee Ticker, Live Radar, Glowing Sheen)
+   ========================================================================== */
+.vip-marquee-bar {
+  background: #090d16;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.45rem 0;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  position: relative;
+}
 
+.vip-marquee-content {
+  display: inline-flex;
+  gap: 2.5rem;
+  animation: marqueeScroll 28s linear infinite;
+}
 
+.vip-marquee-content:hover {
+  animation-play-state: paused;
+}
 
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.marquee-pill {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--primary);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.72rem;
+}
+
+/* Live Shoppers Radar Dot */
+.live-radar-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  background: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.live-radar-dot::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid #10b981;
+  animation: radarWave 1.8s infinite cubic-bezier(0, 0.2, 0.8, 1);
+}
+
+@keyframes radarWave {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Glowing Holographic Border on Product Card Hover */
+.product-card {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-lg);
+  padding: 2px;
+  background: linear-gradient(135deg, transparent, rgba(245, 158, 11, 0.4), rgba(236, 72, 153, 0.4), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 25px rgba(245, 158, 11, 0.15);
+}
+
+/* Prime Delivery Micro Badge */
+.prime-delivery-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.73rem;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
