@@ -852,7 +852,7 @@
   </footer>
 
   <!-- Floating Bottom Sticky Deal Bar (Boosts Amazon Clicks & Conversions) -->
-  <div class="sticky-deal-bar" id="stickyDealBar" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 998; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-top: 1px solid rgba(245, 158, 11, 0.3); padding: 0.65rem 1rem; box-shadow: 0 -4px 20px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+  <div class="sticky-deal-bar" id="stickyDealBar" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 998; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(12px); border-top: 1px solid rgba(245, 158, 11, 0.35); padding: 0.6rem 1rem; box-shadow: 0 -4px 24px rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.65rem;">
     <div style="display: flex; align-items: center; gap: 0.75rem;">
       <span class="pulse-dot" style="background: #ef4444; box-shadow: 0 0 10px #ef4444;"></span>
       <div>
@@ -860,16 +860,141 @@
         <span style="color: var(--text-secondary); font-size: 0.82rem; margin-left: 0.3rem;">Save Up to 40% on Apple, Sony &amp; Viral Gear</span>
       </div>
     </div>
-    <div style="display: flex; align-items: center; gap: 0.5rem;">
+    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+      <!-- NEW: Prime Free Trial CTA in Sticky Bar -->
+      <a href="https://www.amazon.com/amazonprime?tag=affiliprimehu-20" target="_blank" rel="noopener sponsored" style="background: linear-gradient(135deg, #00A8E1, #0082b4); color: #fff; font-weight: 800; font-size: 0.78rem; padding: 0.45rem 1rem; border-radius: 999px; text-decoration: none; display: flex; align-items: center; gap: 0.35rem; box-shadow: 0 2px 10px rgba(0,168,225,0.4);">
+        <i class="fa-brands fa-amazon"></i> Prime FREE Trial
+      </a>
       <button onclick="openSpinWheelModal()" style="background: linear-gradient(135deg, #ec4899, #8b5cf6); color: #fff; border: none; font-weight: 700; font-size: 0.8rem; padding: 0.45rem 0.95rem; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 0.35rem;">
         <i class="fa-solid fa-dharmachakra fa-spin"></i> Spin Wheel
       </button>
       <a href="#deals" style="background: linear-gradient(135deg, #f59e0b, #ff9900); color: #111; font-weight: 800; font-size: 0.8rem; padding: 0.45rem 1rem; border-radius: 999px; text-decoration: none; display: flex; align-items: center; gap: 0.35rem;">
-        <i class="fa-brands fa-amazon"></i> View 50 Deals &rarr;
+        <i class="fa-brands fa-amazon"></i> 50 Deals &rarr;
       </a>
       <button onclick="document.getElementById('stickyDealBar').style.display='none'" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; padding: 0 0.3rem;" title="Close bar">&times;</button>
     </div>
   </div>
+
+  <!-- 🎯 EXIT-INTENT POPUP: Triggers when user moves mouse to close/leave -->
+  <div id="exitIntentOverlay" style="display:none; position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); align-items:center; justify-content:center;" onclick="if(event.target===this)closeExitPopup()">
+    <div style="background: linear-gradient(145deg, #0f172a, #1e293b); border: 1px solid rgba(0,168,225,0.4); border-radius: 20px; padding: 2.5rem 2rem; max-width: 460px; width: 90%; margin: 1rem; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.7); animation: exitPopupIn 0.4s cubic-bezier(0.34,1.56,0.64,1);">
+      <button onclick="closeExitPopup()" style="position:absolute; top:1rem; right:1rem; background:rgba(255,255,255,0.1); border:none; color:#94a3b8; font-size:1.2rem; width:32px; height:32px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center;">&times;</button>
+      <!-- Emoji + Headline -->
+      <div style="text-align:center; margin-bottom:1.5rem;">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">⏳</div>
+        <h2 style="font-family: var(--font-heading); font-size: 1.6rem; color:#fff; margin: 0 0 0.5rem; line-height:1.25;">Wait! Don't Miss This Deal 🔥</h2>
+        <p style="color: #94a3b8; font-size: 0.88rem; margin:0;">Before you go — claim your <strong style="color:#00A8E1;">Amazon Prime 30-Day FREE Trial</strong> and unlock exclusive member-only discounts on every product here.</p>
+      </div>
+      <!-- Benefits List -->
+      <ul style="list-style:none; padding:0; margin:0 0 1.5rem; display:flex; flex-direction:column; gap:0.6rem;">
+        <li style="display:flex; align-items:center; gap:0.65rem; font-size:0.88rem; color:#e2e8f0;"><span style="color:#10b981; font-size:1.1rem;">✓</span> <b>FREE 2-day delivery</b> on every order</li>
+        <li style="display:flex; align-items:center; gap:0.65rem; font-size:0.88rem; color:#e2e8f0;"><span style="color:#10b981; font-size:1.1rem;">✓</span> <b>Exclusive Prime member pricing</b> on deals</li>
+        <li style="display:flex; align-items:center; gap:0.65rem; font-size:0.88rem; color:#e2e8f0;"><span style="color:#10b981; font-size:1.1rem;">✓</span> <b>Prime Video, Music & Gaming</b> included FREE</li>
+        <li style="display:flex; align-items:center; gap:0.65rem; font-size:0.88rem; color:#e2e8f0;"><span style="color:#10b981; font-size:1.1rem;">✓</span> Cancel anytime — <b>zero commitment</b></li>
+      </ul>
+      <!-- CTA Button -->
+      <a href="https://www.amazon.com/amazonprime?tag=affiliprimehu-20" target="_blank" rel="noopener sponsored" onclick="closeExitPopup()" style="display:block; text-align:center; background:linear-gradient(135deg, #00A8E1, #0082b4); color:#fff; font-weight:800; font-size:1rem; padding:0.9rem 1.5rem; border-radius:12px; text-decoration:none; box-shadow:0 6px 20px rgba(0,168,225,0.4); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <i class="fa-brands fa-amazon"></i> Start My FREE 30-Day Prime Trial &rarr;
+      </a>
+      <p style="text-align:center; font-size:0.74rem; color:#475569; margin:0.85rem 0 0;">* Affiliate link. You pay nothing extra. Commission supports this free site.</p>
+      <!-- OR Skip link -->
+      <div style="text-align:center; margin-top:0.75rem;">
+        <button onclick="closeExitPopup()" style="background:none; border:none; color:#475569; font-size:0.8rem; cursor:pointer; text-decoration:underline;">No thanks, I'll miss the deals</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📧 DEAL ALERTS Floating Button -->
+  <button id="dealAlertFab" onclick="openDealAlertModal()" title="Get Free Deal Alerts" style="position:fixed; bottom:70px; right:1.25rem; z-index:997; background:linear-gradient(135deg, #10b981, #059669); color:#fff; border:none; border-radius:999px; padding:0.65rem 1.1rem; font-weight:800; font-size:0.82rem; cursor:pointer; display:flex; align-items:center; gap:0.4rem; box-shadow:0 6px 20px rgba(16,185,129,0.45); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.07)'; this.style.boxShadow='0 8px 28px rgba(16,185,129,0.6)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(16,185,129,0.45)'">
+    <i class="fa-solid fa-bell fa-shake" style="--fa-animation-duration:2s;"></i>
+    <span>Free Deal Alerts</span>
+  </button>
+
+  <!-- 📧 DEAL ALERTS Modal -->
+  <div id="dealAlertModalOverlay" style="display:none; position:fixed; inset:0; z-index:10001; background:rgba(0,0,0,0.7); backdrop-filter:blur(8px); align-items:center; justify-content:center;" onclick="if(event.target===this)closeDealAlertModal()">
+    <div style="background:linear-gradient(145deg, #0f172a, #1e293b); border:1px solid rgba(16,185,129,0.4); border-radius:20px; padding:2.5rem 2rem; max-width:420px; width:90%; margin:1rem; position:relative; box-shadow:0 25px 60px rgba(0,0,0,0.7); animation: exitPopupIn 0.35s cubic-bezier(0.34,1.56,0.64,1);">
+      <button onclick="closeDealAlertModal()" style="position:absolute; top:1rem; right:1rem; background:rgba(255,255,255,0.1); border:none; color:#94a3b8; font-size:1.2rem; width:32px; height:32px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center;">&times;</button>
+      <div style="text-align:center; margin-bottom:1.5rem;">
+        <div style="font-size:2.5rem; margin-bottom:0.5rem;">🔔</div>
+        <h2 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin:0 0 0.4rem;">Get Free Deal Alerts!</h2>
+        <p style="color:#94a3b8; font-size:0.85rem; margin:0;">Enter your email to get notified when new Amazon deals drop — up to 40% OFF Flash Deals, directly to your inbox.</p>
+      </div>
+      <div id="dealAlertFormState">
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <input type="email" id="dealAlertEmail" placeholder="your@email.com" style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:0.8rem 1rem; color:#fff; font-size:0.92rem; outline:none; width:100%; box-sizing:border-box; transition:border-color 0.2s;" onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+          <button onclick="submitDealAlert()" style="background:linear-gradient(135deg, #10b981, #059669); color:#fff; border:none; border-radius:10px; padding:0.8rem; font-weight:800; font-size:0.95rem; cursor:pointer; width:100%; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+            <i class="fa-solid fa-bell"></i> Subscribe — It's FREE!
+          </button>
+        </div>
+        <p style="text-align:center; font-size:0.74rem; color:#475569; margin:0.75rem 0 0;">No spam ever. Unsubscribe anytime. Amazon deals only.</p>
+      </div>
+      <div id="dealAlertSuccessState" style="display:none; text-align:center; padding:1rem 0;">
+        <div style="font-size:3rem;">🎉</div>
+        <h3 style="color:#10b981; font-family:var(--font-heading); margin:0.5rem 0;">You're In!</h3>
+        <p style="color:#94a3b8; font-size:0.88rem;">Deal alerts are activated. Check out today's top deals below!</p>
+        <a href="#deals" onclick="closeDealAlertModal()" style="display:inline-block; margin-top:1rem; background:linear-gradient(135deg,#f59e0b,#ff9900); color:#111; font-weight:800; padding:0.65rem 1.5rem; border-radius:999px; text-decoration:none;">🛍️ View Today's Deals</a>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes exitPopupIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to   { transform: scale(1);    opacity: 1; }
+    }
+  </style>
+
+  <script>
+    // === EXIT-INTENT POPUP ===
+    let exitPopupShown = false;
+    document.addEventListener('mouseleave', function(e) {
+      if (e.clientY <= 5 && !exitPopupShown && !sessionStorage.getItem('apExitDismissed')) {
+        exitPopupShown = true;
+        document.getElementById('exitIntentOverlay').style.display = 'flex';
+      }
+    });
+    function closeExitPopup() {
+      document.getElementById('exitIntentOverlay').style.display = 'none';
+      sessionStorage.setItem('apExitDismissed', '1');
+    }
+
+    // === DEAL ALERTS MODAL ===
+    function openDealAlertModal() {
+      document.getElementById('dealAlertModalOverlay').style.display = 'flex';
+      document.getElementById('dealAlertFormState').style.display = 'block';
+      document.getElementById('dealAlertSuccessState').style.display = 'none';
+      document.getElementById('dealAlertEmail').value = '';
+    }
+    function closeDealAlertModal() {
+      document.getElementById('dealAlertModalOverlay').style.display = 'none';
+    }
+    function submitDealAlert() {
+      const emailEl = document.getElementById('dealAlertEmail');
+      const email = emailEl.value.trim();
+      if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
+        emailEl.style.borderColor = '#ef4444';
+        emailEl.focus();
+        return;
+      }
+      // Store locally (in real deployment, send to your email service)
+      const leads = JSON.parse(localStorage.getItem('apDealLeads') || '[]');
+      if (!leads.includes(email)) leads.push(email);
+      localStorage.setItem('apDealLeads', JSON.stringify(leads));
+      // Show success
+      document.getElementById('dealAlertFormState').style.display = 'none';
+      document.getElementById('dealAlertSuccessState').style.display = 'block';
+    }
+
+    // === AUTO-SHOW DEAL ALERTS after 45 seconds (first visit only) ===
+    if (!localStorage.getItem('apDealAlertSeen')) {
+      setTimeout(function() {
+        if (!document.getElementById('exitIntentOverlay').style.display || document.getElementById('exitIntentOverlay').style.display === 'none') {
+          openDealAlertModal();
+          localStorage.setItem('apDealAlertSeen', '1');
+        }
+      }, 45000);
+    }
+  </script>
 
   <!-- Scripts -->
   <script src="data/products.js?v=9.1"></script>
