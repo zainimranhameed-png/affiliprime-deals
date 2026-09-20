@@ -128,7 +128,7 @@
     <span style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.65rem; border-radius: 4px; font-family: monospace; letter-spacing: 1px; font-size: 0.86rem;">
       <i class="fa-regular fa-clock"></i> Ends In: <b id="flashCountdown" style="color: #fef08a;">03:41:22</b>
     </span>
-    <a href="javascript:void(0)" onclick="openSpinWheelModal()" style="color: #fef08a; text-decoration: underline; font-weight: 800; font-size: 0.84rem;">🎰 Spin Lucky Wheel (All 30 Deals) &rarr;</a>
+    <a href="javascript:void(0)" onclick="openSpinWheelModal()" style="color: #fef08a; text-decoration: underline; font-weight: 800; font-size: 0.84rem;">🎰 Spin Lucky Wheel (All 50 Deals) &rarr;</a>
   </div>
 
   <!-- Live VIP Price Drop Marquee Ticker -->
@@ -193,7 +193,7 @@
         </div>
 
         <!-- Spin Wheel Button in Header -->
-        <button class="btn-nav-spin" onclick="openSpinWheelModal()" title="Spin Mystery Wheel (All 30 Deals)" style="background: linear-gradient(135deg, #ec4899, #8b5cf6); padding: 0.4rem 0.85rem; border-radius: 999px; border: none; color: #fff; font-weight: 800; font-size: 0.78rem; cursor: pointer; display: flex; align-items: center; gap: 0.4rem;">
+        <button class="btn-nav-spin" onclick="openSpinWheelModal()" title="Spin Mystery Wheel (All 50 Deals)" style="background: linear-gradient(135deg, #ec4899, #8b5cf6); padding: 0.4rem 0.85rem; border-radius: 999px; border: none; color: #fff; font-weight: 800; font-size: 0.78rem; cursor: pointer; display: flex; align-items: center; gap: 0.4rem;">
           <i class="fa-solid fa-dharmachakra fa-spin"></i>
           <span>Spin &amp; Win</span>
         </button>
@@ -290,7 +290,7 @@
             <div>
               <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
                 <b style="color: #fff; font-size: 1rem; font-family: var(--font-heading);">🎰 Spin-to-Win Mystery Deal Wheel</b>
-                <span style="background: #ec4899; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; text-transform: uppercase;">All 30 Deals Loaded</span>
+                <span style="background: #ec4899; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; text-transform: uppercase;">All 50 Deals Loaded</span>
               </div>
               <div style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 3px;">
                 Can't decide what to buy? Spin the lucky wheel to unlock guaranteed Prime discounts up to 40% OFF!
@@ -373,6 +373,9 @@
           </button>
           <button class="chip-btn" data-category="gaming">
             <i class="fa-solid fa-gamepad"></i> Desk & Gaming
+          </button>
+          <button class="chip-btn" data-category="beauty">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Beauty & Personal Care
           </button>
         </div>
 
@@ -739,11 +742,12 @@
         <div id="wheelSection">
           <!-- Wheel Category Filter Tabs -->
           <div class="wheel-category-tabs" id="wheelCategoryTabs">
-            <button class="wheel-tab active" data-wheel-cat="all" onclick="setWheelCategory('all')">🌟 All 30 Deals</button>
+            <button class="wheel-tab active" data-wheel-cat="all" onclick="setWheelCategory('all')">🌟 All 50 Deals</button>
             <button class="wheel-tab" data-wheel-cat="tech" onclick="setWheelCategory('tech')">💻 Tech</button>
             <button class="wheel-tab" data-wheel-cat="fitness" onclick="setWheelCategory('fitness')">🏃 Fitness</button>
             <button class="wheel-tab" data-wheel-cat="home" onclick="setWheelCategory('home')">🍳 Home</button>
             <button class="wheel-tab" data-wheel-cat="gaming" onclick="setWheelCategory('gaming')">🎮 Gaming</button>
+            <button class="wheel-tab" data-wheel-cat="beauty" onclick="setWheelCategory('beauty')">✨ Beauty</button>
           </div>
 
           <div class="wheel-container-wrapper" onclick="spinWheel()" style="cursor: pointer;" title="Click anywhere on the wheel to spin!">
@@ -830,9 +834,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="data/products.js?v=8.0"></script>
-  <script src="analytics.js?v=8.0"></script>
-  <script src="app.js?v=8.0"></script>
+  <script src="data/products.js?v=9.0"></script>
+  <script src="analytics.js?v=9.0"></script>
+  <script src="app.js?v=9.0"></script>
   <script src="animations.js?v=1.0"></script>
 
 

@@ -1080,6 +1080,732 @@ const PRODUCTS_DATA = [
     ],
     description: "A leave-on lip mask that delivers intense moisture and antioxidants while you sleep with its Moisture Wrap technology and Berry Fruit Complex. Wake up to supple, smooth, nourished lips."
   }
+,
+  {
+    "id": "prod-31",
+    "asin": "B0CHWRXH8B",
+    "title": "Apple AirPods 4 with Active Noise Cancellation",
+    "tagline": "Personalized Spatial Audio, ANC, USB-C charging — Apple's most advanced open-ear AirPods",
+    "category": "tech",
+    "categoryName": "Tech & Audio",
+    "rating": 4.8,
+    "reviewsCount": 32500,
+    "price": 129,
+    "originalPrice": 179,
+    "discount": "28% OFF",
+    "badge": "🔥 #1 Best Seller",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1606741965429-02919b2e0806?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B0CHWRXH8B",
+    "specs": {
+      "Chip": "Apple H2",
+      "ANC": "Active Noise Cancellation",
+      "Audio": "Personalized Spatial Audio",
+      "Charging": "USB-C",
+      "Battery": "30 hours total",
+      "Sweat": "IP54"
+    },
+    "pros": [
+      "Best-in-class open-ear ANC",
+      "USB-C charging",
+      "Seamless Apple ecosystem",
+      "Spatial Audio is stunning"
+    ],
+    "cons": [
+      "Open-ear — some sound leak",
+      "Premium price vs base model"
+    ],
+    "description": "Apple AirPods 4 with ANC are the most advanced open-ear earbuds Apple has ever made. With H2 chip, you get Active Noise Cancellation in a completely open design. Pairs instantly with all Apple devices."
+  },
+  {
+    "id": "prod-32",
+    "asin": "B09G9HD6PD",
+    "title": "Stanley Quencher H2.0 FlowState Tumbler 40 oz",
+    "tagline": "The internet-famous 40oz tumbler — keeps drinks cold for 2 days. Viral on TikTok with 80M+ views",
+    "category": "home",
+    "categoryName": "Home & Kitchen",
+    "rating": 4.8,
+    "reviewsCount": 89200,
+    "price": 35,
+    "originalPrice": 45,
+    "discount": "22% OFF",
+    "badge": "🔥 #1 Viral Pick",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1625708458528-802ec79b1ed8?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B09G9HD6PD",
+    "specs": {
+      "Capacity": "40 oz",
+      "Cold": "2+ days iced",
+      "Hot": "5-7 hours",
+      "Material": "18/8 Stainless Steel",
+      "Dishwasher": "Yes",
+      "Handle": "Comfort-Grip Removable"
+    },
+    "pros": [
+      "Viral on TikTok & Instagram — 80M+ views",
+      "FlowState 3-position lid",
+      "Fits in car cup holder",
+      "Keeps ice 36+ hours"
+    ],
+    "cons": [
+      "Condensation in humid weather",
+      "Lid can be stiff initially"
+    ],
+    "description": "The Stanley Quencher H2.0 FlowState is the legendary 40oz tumbler that broke the internet. Double-wall vacuum insulation keeps your drinks ice cold for 2+ days. The FlowState lid has 3 positions: straw, sip, and close."
+  },
+  {
+    "id": "prod-33",
+    "asin": "B08HR712CL",
+    "title": "Mighty Patch Original Hydrocolloid Acne Patches (36 Count)",
+    "tagline": "#1 rated acne patch — absorbs pus & flattens pimples overnight. Dermatologist approved, 157K+ reviews",
+    "category": "beauty",
+    "categoryName": "Beauty & Skincare",
+    "rating": 4.6,
+    "reviewsCount": 157000,
+    "price": 12.99,
+    "originalPrice": 16.99,
+    "discount": "24% OFF",
+    "badge": "🔥 #1 Best Seller",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B08HR712CL",
+    "specs": {
+      "Count": "36 patches (3 sizes)",
+      "Technology": "Medical-grade Hydrocolloid",
+      "Usage": "Overnight 6-8 hours",
+      "Skin Type": "All skin types",
+      "Certified": "Dermatologist Approved",
+      "Vegan": "Yes"
+    },
+    "pros": [
+      "Visibly absorbs pus overnight",
+      "#1 acne patch with 157K reviews",
+      "Protects from picking & bacteria",
+      "Nearly invisible on skin"
+    ],
+    "cons": [
+      "Works best on whiteheads only",
+      "Single-use — not reusable"
+    ],
+    "description": "Mighty Patch is the #1 bestselling acne patch in America. Medical-grade hydrocolloid absorbs pus and flattens pimples overnight. Just apply before bed and wake up to clearer skin. Used by millions worldwide."
+  },
+  {
+    "id": "prod-34",
+    "asin": "B0BFQQ7K3H",
+    "title": "Ring Battery Doorbell Pro 2nd Gen — Smart Video Doorbell",
+    "tagline": "Head-to-Toe HD+ video, 3D motion detection, color night vision, 2-way talk — no wiring needed",
+    "category": "home",
+    "categoryName": "Smart Home",
+    "rating": 4.5,
+    "reviewsCount": 28400,
+    "price": 179.99,
+    "originalPrice": 229.99,
+    "discount": "22% OFF",
+    "badge": "⭐ Amazon's Choice",
+    "badgeType": "editor",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B0BFQQ7K3H",
+    "specs": {
+      "Video": "1536p HD+ Head-to-Toe",
+      "Vision": "Advanced Color Night Vision",
+      "Motion": "3D Bird's Eye Motion Detection",
+      "Audio": "2-way Noise Cancellation",
+      "Power": "Rechargeable Battery 6 months",
+      "Alexa": "Works with Alexa"
+    },
+    "pros": [
+      "Head-to-Toe video shows packages clearly",
+      "3D Bird's Eye View path tracking",
+      "Color night vision exceptional",
+      "Easy battery — no wiring needed"
+    ],
+    "cons": [
+      "Ring Protect subscription $3.99/mo for history",
+      "Battery takes 5-6 hours to charge"
+    ],
+    "description": "Ring Battery Doorbell Pro is Ring's most advanced wire-free doorbell. With 3D Motion Detection, Bird's Eye View, and Head-to-Toe HD+ video with color night vision, you'll never miss a delivery or visitor again."
+  },
+  {
+    "id": "prod-35",
+    "asin": "B09V3KXJPB",
+    "title": "Kindle Paperwhite Signature Edition 32GB — Waterproof E-Reader",
+    "tagline": "6.8\" display, warm light, wireless charging, IPX8 waterproof — 12 weeks battery. The ultimate e-reader",
+    "category": "tech",
+    "categoryName": "Tech & Gadgets",
+    "rating": 4.8,
+    "reviewsCount": 76300,
+    "price": 139.99,
+    "originalPrice": 189.99,
+    "discount": "26% OFF",
+    "badge": "⭐ Editor's Choice",
+    "badgeType": "editor",
+    "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B09V3KXJPB",
+    "specs": {
+      "Display": "6.8-inch 300 ppi",
+      "Storage": "32 GB",
+      "Light": "Auto warm light",
+      "Battery": "Up to 12 weeks",
+      "Waterproof": "IPX8 2m/60min",
+      "Charging": "USB-C + Wireless Qi"
+    },
+    "pros": [
+      "Zero glare in direct sunlight",
+      "Wireless charging effortless",
+      "32GB stores 30,000+ books",
+      "12 weeks battery life"
+    ],
+    "cons": [
+      "No physical page-turn buttons",
+      "Higher price than base Paperwhite"
+    ],
+    "description": "Kindle Paperwhite Signature Edition is the ultimate e-reader with wireless charging, auto-adjusting warm light, and IPX8 waterproofing. Perfect poolside, in the bath, or under the covers. 32GB stores your entire library."
+  },
+  {
+    "id": "prod-36",
+    "asin": "B09B8YWXDF",
+    "title": "Apple Watch Series 10 GPS 42mm — Thinnest Apple Watch Ever",
+    "tagline": "Sleep Apnea detection, ECG, Blood Oxygen, Always-On display, 18-hour battery — most advanced health smartwatch",
+    "category": "fitness",
+    "categoryName": "Fitness & Health",
+    "rating": 4.7,
+    "reviewsCount": 41200,
+    "price": 329,
+    "originalPrice": 399,
+    "discount": "18% OFF",
+    "badge": "🔥 #1 Best Seller",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B09B8YWXDF",
+    "specs": {
+      "Display": "Always-On Retina OLED",
+      "Health": "Sleep Apnea Detection, ECG, Blood O2",
+      "Fitness": "60+ workout modes",
+      "Battery": "18 hours + fast charge",
+      "Water": "50m waterproof",
+      "Chip": "Apple S10 dual-core"
+    },
+    "pros": [
+      "Sleep Apnea detection can save lives",
+      "Thinnest Apple Watch design ever",
+      "Double-tap gesture control",
+      "Most accurate heart rate monitor"
+    ],
+    "cons": [
+      "Requires nightly charging",
+      "Only works with iPhone"
+    ],
+    "description": "Apple Watch Series 10 is the thinnest Apple Watch ever with Sleep Apnea detection (FDA cleared), ECG, blood oxygen monitoring, and 60+ workout modes. The Always-On Retina display is 30% larger than Series 4."
+  },
+  {
+    "id": "prod-37",
+    "asin": "B08PPDJWC8",
+    "title": "Ninja AF101 Air Fryer 4 Quart — 112,000+ Reviews",
+    "tagline": "4-in-1: Air Fry, Roast, Reheat & Dehydrate. Up to 75% less fat. Most reviewed air fryer on Amazon",
+    "category": "home",
+    "categoryName": "Home & Kitchen",
+    "rating": 4.8,
+    "reviewsCount": 112000,
+    "price": 89.99,
+    "originalPrice": 129.99,
+    "discount": "31% OFF",
+    "badge": "🔥 #1 Best Seller",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1585515320310-259814833e62?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B08PPDJWC8",
+    "specs": {
+      "Capacity": "4 Quart (2-4 people)",
+      "Functions": "Air Fry, Roast, Reheat, Dehydrate",
+      "Temp": "105°F to 400°F",
+      "Fat": "75% less than deep fry",
+      "Wattage": "1550W",
+      "Dishwasher": "Yes"
+    },
+    "pros": [
+      "112,000+ 5-star reviews",
+      "Crispy wings & fries in 15-20 min",
+      "Compact footprint",
+      "No preheat needed saves time"
+    ],
+    "cons": [
+      "4QT small for large families",
+      "No digital display on base model"
+    ],
+    "description": "Ninja AF101 is the #1 bestselling air fryer on Amazon with 112,000+ verified reviews. Air fry, roast, reheat, and dehydrate with 75% less fat. Perfect for crispy chicken, fries, vegetables, and reheating leftovers."
+  },
+  {
+    "id": "prod-38",
+    "asin": "B07BNGZBS5",
+    "title": "Instant Pot Duo 7-in-1 Electric Pressure Cooker 6 Qt",
+    "tagline": "World's #1 multi-cooker — pressure cook, slow cook, rice, steam, sauté, yogurt & warm. 138,000+ reviews",
+    "category": "home",
+    "categoryName": "Home & Kitchen",
+    "rating": 4.7,
+    "reviewsCount": 138000,
+    "price": 79.95,
+    "originalPrice": 99.95,
+    "discount": "20% OFF",
+    "badge": "🔥 Best Seller",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B07BNGZBS5",
+    "specs": {
+      "Capacity": "6 Quart (4-6 people)",
+      "Functions": "7-in-1 multi-cooker",
+      "Programs": "13 smart programs",
+      "Safety": "10 safety mechanisms",
+      "Material": "Stainless Steel inner pot",
+      "Certified": "UL/ULC"
+    },
+    "pros": [
+      "Replaces 7 kitchen appliances",
+      "138,000+ reviews",
+      "Cooks frozen chicken in 20 min",
+      "Delay start very convenient"
+    ],
+    "cons": [
+      "Learning curve for timing",
+      "Takes up counter space"
+    ],
+    "description": "The Instant Pot Duo is the world's #1 selling multi-cooker. Replace 7 kitchen appliances: pressure cook, slow cook, rice, steam, sauté, yogurt, and warm. Cuts cooking time by up to 70%."
+  },
+  {
+    "id": "prod-39",
+    "asin": "B081QSJNRJ",
+    "title": "COSRX Advanced Snail 96 Mucin Power Essence 100ml",
+    "tagline": "Korean beauty cult-favorite — 96% snail mucin repairs skin, hydrates & fades acne scars. Viral on TikTok 500M views",
+    "category": "beauty",
+    "categoryName": "Beauty & Skincare",
+    "rating": 4.5,
+    "reviewsCount": 94600,
+    "price": 19,
+    "originalPrice": 25,
+    "discount": "24% OFF",
+    "badge": "🔥 Viral TikTok",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B081QSJNRJ",
+    "specs": {
+      "Ingredient": "96% Snail Secretion Filtrate",
+      "Size": "100ml",
+      "Skin Type": "All types",
+      "pH": "6.5 optimal",
+      "Cruelty Free": "PETA certified",
+      "Fragrance": "Fragrance Free"
+    },
+    "pros": [
+      "Highest snail mucin concentration",
+      "Fades hyperpigmentation in 2-4 weeks",
+      "Lightweight — layers perfectly",
+      "500M+ TikTok views"
+    ],
+    "cons": [
+      "Not vegan (snail-derived)",
+      "Results take 2-4 weeks"
+    ],
+    "description": "COSRX Snail 96 Mucin Essence is Korean skincare's most iconic product. 96% snail secretion filtrate hydrates, repairs skin damage, fades acne scars, and smooths texture. 94,600+ reviews. Went viral on TikTok."
+  },
+  {
+    "id": "prod-40",
+    "asin": "B07HBQNNGP",
+    "title": "Anker 65W 3-Port GaN USB-C Wall Charger",
+    "tagline": "Charge iPhone + iPad + MacBook simultaneously. GaN technology — 40% smaller than Apple charger. Works in 150 countries",
+    "category": "tech",
+    "categoryName": "Tech & Accessories",
+    "rating": 4.7,
+    "reviewsCount": 67800,
+    "price": 35.99,
+    "originalPrice": 49.99,
+    "discount": "28% OFF",
+    "badge": "⭐ Amazon's Choice",
+    "badgeType": "editor",
+    "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B07HBQNNGP",
+    "specs": {
+      "Ports": "2x USB-C + 1x USB-A",
+      "Wattage": "65W total",
+      "Tech": "GaN Gallium Nitride",
+      "Compatible": "iPhone, MacBook, iPad, Samsung",
+      "Size": "40% smaller than Apple 65W",
+      "Safety": "Multi-protect surge protection"
+    },
+    "pros": [
+      "Replaces 3 bulky chargers in one",
+      "GaN — 40% smaller same power",
+      "Charges MacBook 0-80% in 45 min",
+      "Works in 150+ countries"
+    ],
+    "cons": [
+      "Cables not included",
+      "Wall outlet only"
+    ],
+    "description": "Anker's 65W GaN 3-port charger replaces three separate chargers. Advanced GaN technology delivers 65W across two USB-C and one USB-A port in a charger 40% smaller than Apple's equivalent. Charge phone, tablet, and laptop simultaneously."
+  },
+  {
+    "id": "prod-41",
+    "asin": "B099VMT8VZ",
+    "title": "Tile Mate Bluetooth Tracker 4-Pack — Find Keys, Wallet & Bags",
+    "tagline": "300ft Bluetooth range, 1-year battery, works with Alexa & Google Home — never lose your keys again",
+    "category": "tech",
+    "categoryName": "Tech & Accessories",
+    "rating": 4.4,
+    "reviewsCount": 89400,
+    "price": 59.99,
+    "originalPrice": 79.99,
+    "discount": "25% OFF",
+    "badge": "⭐ Amazon's Choice",
+    "badgeType": "editor",
+    "image": "https://images.unsplash.com/photo-1644725564200-7c42e8d9e77e?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B099VMT8VZ",
+    "specs": {
+      "Range": "300 ft Bluetooth",
+      "Battery": "1-year replaceable",
+      "Pack": "4 Tile Mates",
+      "Alexa": "Works with Alexa",
+      "Water": "IP67 waterproof",
+      "Network": "Tile Network millions of phones"
+    },
+    "pros": [
+      "Find keys, wallet, pet from phone",
+      "Tile Network community finding",
+      "4-pack value",
+      "Works with Alexa voice"
+    ],
+    "cons": [
+      "Premium features need subscription",
+      "Network depends on nearby Tile users"
+    ],
+    "description": "Tile Mate 4-pack lets you find anything. Keys in the couch? Open the Tile app and ring them. 300ft range and a network of millions of Tile users means you can find items even when far away."
+  },
+  {
+    "id": "prod-42",
+    "asin": "B07D4D2JYJ",
+    "title": "Fitbit Charge 6 Advanced Fitness Tracker with Google Maps",
+    "tagline": "Built-in GPS, Google Maps on wrist, 40+ workouts, 7-day battery, stress & sleep tracking — no phone needed",
+    "category": "fitness",
+    "categoryName": "Fitness & Health",
+    "rating": 4.4,
+    "reviewsCount": 38700,
+    "price": 129.95,
+    "originalPrice": 159.95,
+    "discount": "19% OFF",
+    "badge": "⭐ Amazon's Choice",
+    "badgeType": "editor",
+    "image": "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B07D4D2JYJ",
+    "specs": {
+      "GPS": "Built-in GPS",
+      "Heart Rate": "24/7 continuous",
+      "Exercise": "40+ workout modes",
+      "Sleep": "Sleep stages + Sleep Score",
+      "Battery": "7 days",
+      "Google": "Maps, Wallet, YouTube Music",
+      "Water": "50m waterproof"
+    },
+    "pros": [
+      "Built-in GPS — no phone needed",
+      "Google Maps navigation on wrist",
+      "7-day battery charge once a week",
+      "Stress management score"
+    ],
+    "cons": [
+      "Premium features need Fitbit Premium",
+      "Small screen vs Apple Watch"
+    ],
+    "description": "Fitbit Charge 6 is the most capable Fitbit ever, powered by Google. Track 40+ exercises, navigate with Google Maps from your wrist, and get a daily Readiness Score. 7-day battery life means charge it Sunday and forget it all week."
+  },
+  {
+    "id": "prod-43",
+    "asin": "B00FLYWNYQ",
+    "title": "Hydro Flask 32 oz Wide Mouth Water Bottle — Lifetime Warranty",
+    "tagline": "Keeps drinks cold 24h, hot 12h with TempShield insulation. BPA-free, dishwasher safe, lifetime warranty",
+    "category": "fitness",
+    "categoryName": "Fitness & Outdoors",
+    "rating": 4.8,
+    "reviewsCount": 74200,
+    "price": 37.49,
+    "originalPrice": 49.95,
+    "discount": "25% OFF",
+    "badge": "🔥 Best Seller",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B00FLYWNYQ",
+    "specs": {
+      "Size": "32 oz Wide Mouth",
+      "Cold": "24 hours iced",
+      "Hot": "12 hours hot",
+      "Material": "18/8 Pro-Grade Stainless",
+      "BPA Free": "100% BPA-free",
+      "Dishwasher": "Yes",
+      "Warranty": "Lifetime"
+    },
+    "pros": [
+      "Cult global following",
+      "Wide mouth fits ice easily",
+      "Color Last powder coat",
+      "Lifetime warranty"
+    ],
+    "cons": [
+      "Premium price vs generic",
+      "Cap noisy on hard surfaces"
+    ],
+    "description": "Hydro Flask is the iconic water bottle trusted by outdoor enthusiasts worldwide. TempShield double-wall insulation keeps drinks ice cold for 24 hours and hot for 12 hours. Backed by a lifetime warranty — the last water bottle you'll buy."
+  },
+  {
+    "id": "prod-44",
+    "asin": "B07VGRJDFY",
+    "title": "Amazon Echo Dot 5th Gen — Smart Speaker with Motion Sensor & Alexa",
+    "tagline": "Crisp clear 360° sound, motion sensor, eero WiFi extender, Alexa — world's #1 most popular smart speaker (186K+ reviews)",
+    "category": "home",
+    "categoryName": "Smart Home",
+    "rating": 4.7,
+    "reviewsCount": 186000,
+    "price": 39.99,
+    "originalPrice": 49.99,
+    "discount": "20% OFF",
+    "badge": "🔥 #1 Best Seller",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1543512214-318c7553f230?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B07VGRJDFY",
+    "specs": {
+      "Audio": "Improved directional audio",
+      "Motion Sensor": "Built-in triggers Alexa routines",
+      "WiFi": "eero WiFi extender built-in",
+      "Voice": "Far-field microphones",
+      "Smart Hub": "Zigbee, Matter, Thread",
+      "Privacy": "Physical mic off button"
+    },
+    "pros": [
+      "186,000+ reviews — world's most trusted",
+      "Motion sensor for smart routines",
+      "Extends WiFi network free",
+      "Controls entire smart home by voice"
+    ],
+    "cons": [
+      "Not audiophile quality",
+      "Privacy-conscious users may hesitate"
+    ],
+    "description": "Echo Dot 5th Gen is the world's best-selling smart speaker with 186,000+ reviews. Improved audio, built-in motion sensor, eero WiFi mesh extension, and full Alexa. Set timers, play music, control smart lights — all hands-free."
+  },
+  {
+    "id": "prod-45",
+    "asin": "B07ZPKN6YR",
+    "title": "Vitamix E310 Explorian Blender 48oz — Professional Grade",
+    "tagline": "2.0 HP motor, aircraft-grade blades, makes silky smoothies, hot soups & nut butters in 60 seconds. 5-year warranty",
+    "category": "home",
+    "categoryName": "Home & Kitchen",
+    "rating": 4.7,
+    "reviewsCount": 22900,
+    "price": 279.95,
+    "originalPrice": 349.95,
+    "discount": "20% OFF",
+    "badge": "⭐ Editor's Choice",
+    "badgeType": "editor",
+    "image": "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B07ZPKN6YR",
+    "specs": {
+      "Container": "48 oz BPA-free",
+      "Motor": "2.0 HP",
+      "Blades": "Aircraft-grade stainless steel",
+      "Speeds": "10 variable + Pulse",
+      "Heat": "Hot soup from friction in 6 min",
+      "Warranty": "5 years"
+    },
+    "pros": [
+      "Frozen fruit to ice cream in 30s",
+      "Self-cleaning with just water",
+      "5-year warranty on $280 blender",
+      "Makes hot soup with no heat source"
+    ],
+    "cons": [
+      "Premium investment",
+      "Large footprint on counter"
+    ],
+    "description": "Vitamix E310 Explorian is professional blending made accessible. 2.0 HP motor and aircraft-grade stainless blades make silky smoothies, soups, nut butters, and ice cream in under 60 seconds. 5-year warranty makes it the last blender you'll ever need."
+  },
+  {
+    "id": "prod-46",
+    "asin": "B09G3HRMVB",
+    "title": "Red Light Therapy Face Device — 7 LED Anti-Aging Facial Massager",
+    "tagline": "7 LED wavelengths + EMS microcurrent + vibration — clinically proven collagen boost, wrinkle reduction & acne clearing at home",
+    "category": "beauty",
+    "categoryName": "Beauty & Skincare",
+    "rating": 4.4,
+    "reviewsCount": 18700,
+    "price": 89.99,
+    "originalPrice": 139.99,
+    "discount": "36% OFF",
+    "badge": "🔥 Viral TikTok",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B09G3HRMVB",
+    "specs": {
+      "Light": "7 LED wavelengths (Red, NIR, Blue, Green)",
+      "EMS": "Microcurrent facial lifting",
+      "Vibration": "8000 RPM massage",
+      "Session": "10-min daily treatment",
+      "Results": "Visible in 4-8 weeks",
+      "Safe": "FDA-cleared",
+      "Charging": "USB-C rechargeable"
+    },
+    "pros": [
+      "7 wavelengths target wrinkles, spots & acne",
+      "EMS firms and lifts facial muscles",
+      "Replaces expensive spa treatments",
+      "Viral TikTok beauty sensation"
+    ],
+    "cons": [
+      "Consistent daily use required 4-8 weeks",
+      "10-20 min daily treatment"
+    ],
+    "description": "This 7-LED red light therapy device combines EMS microcurrent and vibration massage for a professional anti-aging facial at home. Red light stimulates collagen, blue light kills acne bacteria, and EMS firms sagging skin. FDA-cleared and clinically proven."
+  },
+  {
+    "id": "prod-47",
+    "asin": "B09JQL3NWT",
+    "title": "Phomemo M02 Pro Mini Bluetooth Photo Printer — Zero Ink Sticker Printer",
+    "tagline": "Print 3x3 full-color sticker photos from your phone in 30 seconds — no ink needed. Viral on TikTok & Instagram",
+    "category": "tech",
+    "categoryName": "Tech & Gadgets",
+    "rating": 4.3,
+    "reviewsCount": 41300,
+    "price": 59.99,
+    "originalPrice": 89.99,
+    "discount": "33% OFF",
+    "badge": "🔥 Viral Pick",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B09JQL3NWT",
+    "specs": {
+      "Size": "3x3 inch prints",
+      "Tech": "ZINK zero-ink",
+      "Connection": "Bluetooth 5.0 iOS & Android",
+      "DPI": "300 DPI full color",
+      "Battery": "500mAh 20+ photos",
+      "Paper": "Self-adhesive sticker",
+      "Speed": "30-60 seconds per photo"
+    },
+    "pros": [
+      "No ink cartridge ever needed",
+      "Prints as sticky-back stickers",
+      "Pocket size — fits in handbag",
+      "Viral TikTok photo journal trend"
+    ],
+    "cons": [
+      "Special Phomemo paper needed ongoing",
+      "Lower quality vs professional prints"
+    ],
+    "description": "Phomemo M02 Pro lets you print 3x3 full-color sticker photos from your phone in seconds. ZINK zero-ink means no cartridges. Perfect for journals, scrapbooks, gifts, and decorating your space. The viral photo printer of 2026."
+  },
+  {
+    "id": "prod-48",
+    "asin": "B084DWCZY2",
+    "title": "Ultimate Ears BOOM 3 Portable Bluetooth Speaker — IP67 Waterproof",
+    "tagline": "360° full immersive sound, floats on water, 15-hour battery, 100ft range. Connects to 150+ speakers for epic parties",
+    "category": "tech",
+    "categoryName": "Tech & Audio",
+    "rating": 4.7,
+    "reviewsCount": 54200,
+    "price": 89.95,
+    "originalPrice": 119.99,
+    "discount": "25% OFF",
+    "badge": "🔥 Best Seller",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B084DWCZY2",
+    "specs": {
+      "Sound": "360° full-circle",
+      "Battery": "15 hours",
+      "Waterproof": "IP67 — floats on water",
+      "Range": "100 ft Bluetooth",
+      "PartyUp": "Connect 150+ speakers",
+      "Weight": "1.3 lbs"
+    },
+    "pros": [
+      "Floats on water — pool/beach safe",
+      "15-hour battery all-day outdoor",
+      "Connect 150 speakers for massive party",
+      "360° fills any space perfectly"
+    ],
+    "cons": [
+      "No built-in speakerphone mic",
+      "Bass light for EDM lovers"
+    ],
+    "description": "UE BOOM 3 delivers 360° loud immersive sound with deep bass. IP67 waterproof — it literally floats on water. 15-hour battery, 100ft Bluetooth range, and connect to 150 UE speakers for a massive outdoor party setup."
+  },
+  {
+    "id": "prod-49",
+    "asin": "B09B9G48R9",
+    "title": "iRobot Roomba i4+ EVO Self-Emptying Robot Vacuum",
+    "tagline": "Smart mapping robot vacuum that empties itself for 60 days, learns your floor plan & avoids obstacles. Works with Alexa",
+    "category": "home",
+    "categoryName": "Home & Kitchen",
+    "rating": 4.4,
+    "reviewsCount": 29800,
+    "price": 349.99,
+    "originalPrice": 499.99,
+    "discount": "30% OFF",
+    "badge": "⭐ Editor's Choice",
+    "badgeType": "editor",
+    "image": "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B09B9G48R9",
+    "specs": {
+      "Self-Empty": "60-day auto-empty Clean Base",
+      "Mapping": "Smart room mapping learns home",
+      "Suction": "10x power-lifting",
+      "Navigation": "3-stage dual rubber brushes",
+      "Alexa": "Works with Alexa & Google",
+      "Runtime": "75 min before auto-recharge"
+    },
+    "pros": [
+      "Self-empties 60 days — never touch dirt",
+      "Smart room zone mapping",
+      "Alexa voice control works great",
+      "Dual brushes don't tangle pet hair"
+    ],
+    "cons": [
+      "Clean Base takes floor space",
+      "Struggles with dark floors"
+    ],
+    "description": "Roomba i4+ EVO changes the game with its Clean Base — robot empties itself for 60 days. Maps your home room-by-room, sets cleaning zones, and integrates with Alexa for voice control. The most hands-free vacuum on Amazon."
+  },
+  {
+    "id": "prod-50",
+    "asin": "B08C1W5N87",
+    "title": "Anti-Theft Travel Backpack 15.6\" — USB Charging Port & TSA Lock",
+    "tagline": "Hidden anti-theft back pocket, USB charging port, TSA combination lock, water resistant — the ultimate commuter & travel backpack",
+    "category": "fitness",
+    "categoryName": "Travel & Lifestyle",
+    "rating": 4.6,
+    "reviewsCount": 48300,
+    "price": 45.99,
+    "originalPrice": 69.99,
+    "discount": "34% OFF",
+    "badge": "🔥 Trending",
+    "badgeType": "hot",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&auto=format&fit=crop&q=80",
+    "amazonUrl": "https://www.amazon.com/dp/B08C1W5N87",
+    "specs": {
+      "Laptop": "15.6-inch fits",
+      "Anti-Theft": "Hidden back zipper pocket",
+      "USB": "External USB-A port + cable",
+      "TSA": "Built-in combination lock",
+      "Water": "Water-resistant polyester",
+      "Volume": "30L capacity",
+      "Weight": "1.5 lbs lightweight"
+    },
+    "pros": [
+      "Hidden pocket thieves can't access",
+      "USB port keeps phone charged",
+      "Fits under airplane seat",
+      "48,000+ reviews from travelers"
+    ],
+    "cons": [
+      "Built-in USB cable fixed",
+      "Back panel awkward to self-access"
+    ],
+    "description": "The Anti-Theft Travel Backpack is the ultimate travel companion with a hidden back anti-theft pocket, built-in USB charging port, TSA-lock compartment, and water-resistant shell. Trusted by 48,000+ travelers worldwide for commuting and air travel."
+  }
 ];
 
 // Global configuration for Affiliate Tag
