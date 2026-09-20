@@ -1280,11 +1280,6 @@ function displayWheelWinner(prodId) {
         <i class="fa-solid fa-rotate-left"></i> Spin Again
       </button>
     </div>
-
-    <a href="https://www.profitableratecpmnetwork.com/kife527r7s?key=588f686bc32b67b1eec13b206ebea217" target="_blank" rel="noopener sponsored" style="margin-top: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: linear-gradient(135deg, #ec4899, #8b5cf6); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.85rem; padding: 0.7rem 1rem; border-radius: var(--radius-sm); box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);">
-      <i class="fa-solid fa-gift"></i>
-      <span>🎁 Unlock Extra $25 VIP Sponsor Voucher &rarr;</span>
-    </a>
   `;
 
   // Start 10-min countdown timer for urgency
