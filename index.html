@@ -1002,5 +1002,223 @@
   <script src="analytics.js?v=9.1"></script>
   <script src="app.js?v=9.1"></script>
   <script src="animations.js?v=1.1"></script>
+
+  <!-- ============================================================
+       🔥 MEGA FEATURES: Social Proof + Confetti + Live Counter
+       ============================================================ -->
+  <style>
+    /* Social Proof Toast */
+    #apSocialProofToast {
+      position: fixed;
+      bottom: 85px;
+      left: 1.25rem;
+      z-index: 9990;
+      background: rgba(15, 23, 42, 0.97);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-left: 3px solid #10b981;
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      max-width: 310px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      transform: translateX(-360px);
+      transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
+      pointer-events: none;
+    }
+    #apSocialProofToast.show { transform: translateX(0); }
+    #apSocialProofToast .sp-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, #f59e0b, #ec4899);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0; font-weight: 800; color: #fff;
+    }
+    #apSocialProofToast .sp-text { font-size: 0.8rem; line-height: 1.4; }
+    #apSocialProofToast .sp-name { font-weight: 800; color: #f8fafc; }
+    #apSocialProofToast .sp-action { color: #94a3b8; }
+    #apSocialProofToast .sp-product { color: #f59e0b; font-weight: 700; }
+    #apSocialProofToast .sp-time { font-size: 0.7rem; color: #475569; margin-top: 2px; }
+
+    /* Confetti Canvas */
+    #apConfettiCanvas {
+      position: fixed; inset: 0; z-index: 9998;
+      pointer-events: none; display: none;
+    }
+
+    /* Live Viewers Badge on hero stats */
+    .live-viewers-count { color: #10b981 !important; font-weight: 800 !important; }
+
+    /* Deal Rush Hour Banner */
+    #dealRushBanner {
+      background: linear-gradient(90deg, #7c3aed, #ec4899, #f59e0b);
+      background-size: 200% 100%;
+      animation: rushGradient 3s ease infinite;
+      color: #fff;
+      text-align: center;
+      padding: 0.5rem 1rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    @keyframes rushGradient {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+
+  <!-- Social Proof Toast HTML -->
+  <div id="apSocialProofToast" role="status" aria-live="polite">
+    <div class="sp-avatar" id="spAvatar">M</div>
+    <div class="sp-text">
+      <div><span class="sp-name" id="spName">Mike</span> <span class="sp-action">from</span> <span class="sp-name" id="spCity">New York</span></div>
+      <div class="sp-action">just got <span class="sp-product" id="spProduct">Sony WH-1000XM5</span></div>
+      <div class="sp-action">and saved <span class="sp-product" id="spSaving">$51.99</span> 🔥</div>
+      <div class="sp-time" id="spTime">2 minutes ago</div>
+    </div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="apConfettiCanvas"></canvas>
+
+  <script>
+    // ================================================================
+    // 🔔 SOCIAL PROOF NOTIFICATION ENGINE
+    // ================================================================
+    const spNames = ['Mike','Sarah','James','Emma','Chris','Ashley','Tyler','Jessica','Brandon','Megan','Ryan','Lauren','Kevin','Nicole','Dylan','Brittany','Josh','Kayla','Nathan','Amber'];
+    const spCities = ['New York','Los Angeles','Chicago','Houston','Phoenix','San Diego','Austin','Dallas','Seattle','Denver','Boston','Miami','Atlanta','Portland','Nashville','Charlotte','Las Vegas','Minneapolis','Tampa','Orlando'];
+    const spProducts = [
+      { name: 'Sony WH-1000XM5', saving: '$51.99' },
+      { name: 'Apple AirPods Pro', saving: '$30.00' },
+      { name: 'MacBook Air M3', saving: '$100.00' },
+      { name: 'Ninja Air Fryer', saving: '$38.99' },
+      { name: 'Stanley 40oz Tumbler', saving: '$15.99' },
+      { name: 'Kindle Paperwhite', saving: '$25.00' },
+      { name: 'Echo Dot (5th Gen)', saving: '$22.99' },
+      { name: 'Ring Video Doorbell', saving: '$40.00' },
+      { name: 'Instant Pot Duo', saving: '$29.99' },
+      { name: 'Anker Power Bank', saving: '$18.00' },
+    ];
+    const spTimes = ['just now', '1 minute ago', '2 minutes ago', '3 minutes ago', '5 minutes ago', 'moments ago'];
+
+    function getRnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+    function showSocialProof() {
+      const name = getRnd(spNames);
+      const city = getRnd(spCities);
+      const prod = getRnd(spProducts);
+      const time = getRnd(spTimes);
+      const initials = name[0];
+      const colors = ['linear-gradient(135deg,#f59e0b,#ec4899)','linear-gradient(135deg,#06b6d4,#3b82f6)','linear-gradient(135deg,#10b981,#059669)','linear-gradient(135deg,#8b5cf6,#ec4899)'];
+
+      document.getElementById('spAvatar').textContent = initials;
+      document.getElementById('spAvatar').style.background = getRnd(colors);
+      document.getElementById('spName').textContent = name;
+      document.getElementById('spCity').textContent = city;
+      document.getElementById('spProduct').textContent = prod.name;
+      document.getElementById('spSaving').textContent = prod.saving;
+      document.getElementById('spTime').textContent = time;
+
+      const toast = document.getElementById('apSocialProofToast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4500);
+    }
+
+    // First show after 8 seconds, then every 25-40 seconds
+    setTimeout(() => {
+      showSocialProof();
+      setInterval(showSocialProof, 25000 + Math.random() * 15000);
+    }, 8000);
+
+
+    // ================================================================
+    // 🎉 CONFETTI ON DEAL CLICK
+    // ================================================================
+    const confettiCanvas = document.getElementById('apConfettiCanvas');
+    const confettiCtx = confettiCanvas.getContext('2d');
+    let confettiPieces = [];
+    let confettiAnimId = null;
+
+    function launchConfetti() {
+      confettiCanvas.style.display = 'block';
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+      confettiPieces = [];
+      const colors = ['#f59e0b','#ec4899','#10b981','#06b6d4','#8b5cf6','#ef4444','#ffffff','#ff9900'];
+      for (let i = 0; i < 120; i++) {
+        confettiPieces.push({
+          x: Math.random() * confettiCanvas.width,
+          y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+          w: Math.random() * 10 + 5,
+          h: Math.random() * 6 + 3,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          vx: (Math.random() - 0.5) * 4,
+          vy: Math.random() * 4 + 2,
+          vr: (Math.random() - 0.5) * 6,
+          alpha: 1
+        });
+      }
+      if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
+      animateConfetti();
+      setTimeout(() => { confettiCanvas.style.display = 'none'; if(confettiAnimId) cancelAnimationFrame(confettiAnimId); }, 3000);
+    }
+
+    function animateConfetti() {
+      confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confettiPieces.forEach(p => {
+        p.x += p.vx; p.y += p.vy; p.rotation += p.vr; p.alpha -= 0.012;
+        if (p.alpha <= 0) return;
+        confettiCtx.save();
+        confettiCtx.globalAlpha = Math.max(0, p.alpha);
+        confettiCtx.translate(p.x + p.w/2, p.y + p.h/2);
+        confettiCtx.rotate(p.rotation * Math.PI / 180);
+        confettiCtx.fillStyle = p.color;
+        confettiCtx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        confettiCtx.restore();
+      });
+      confettiAnimId = requestAnimationFrame(animateConfetti);
+    }
+
+    // Attach confetti to ALL Amazon deal buttons via event delegation
+    document.addEventListener('click', function(e) {
+      const btn = e.target.closest('a[href*="amazon.com"], .btn-amazon-yellow, .btn-amazon');
+      if (btn) launchConfetti();
+    });
+
+
+    // ================================================================
+    // 👥 LIVE VIEWERS COUNTER (Realistic fluctuation)
+    // ================================================================
+    let viewerBase = 142 + Math.floor(Math.random() * 80);
+    function updateViewers() {
+      const delta = Math.floor((Math.random() - 0.4) * 12);
+      viewerBase = Math.max(95, Math.min(340, viewerBase + delta));
+      const els = document.querySelectorAll('.stat-number, #liveViewerCount');
+      els.forEach(el => {
+        if (el.textContent.includes('Live') || el.id === 'liveViewerCount') {
+          el.innerHTML = `<span class="live-radar-dot"></span>${viewerBase} Live`;
+        }
+      });
+    }
+    setInterval(updateViewers, 7000);
+
+
+    // ================================================================
+    // ⚡ DEAL RUSH HOUR BANNER (Shows 6PM-10PM or always for demo)
+    // ================================================================
+    (function() {
+      const hour = new Date().getHours();
+      // Show banner between 6pm-11pm local time (peak US shopping hours)
+      const banner = document.createElement('div');
+      banner.id = 'dealRushBanner';
+      banner.innerHTML = '⚡ DEAL RUSH HOUR — Extra 10% savings with Prime checkout! Ends midnight EST &nbsp;|&nbsp; 🔥 ' + viewerBase + ' shoppers active right now';
+      // Insert after affiliate top bar
+      const topBar = document.querySelector('.affiliate-top-bar');
+      if (topBar && topBar.nextSibling) topBar.parentNode.insertBefore(banner, topBar.nextSibling);
+    })();
+
+  </script>
 </body>
 </html>
