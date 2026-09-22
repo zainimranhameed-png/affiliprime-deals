@@ -10,6 +10,31 @@
   <link rel="canonical" href="https://zainimranhameed-png.github.io/affiliprime-deals/">
   <meta name="google-site-verification" content="xN_H3IGgFCxFgluDBlQSdVxtpIYfHopzladovptXvug" />
 
+  <!-- ✅ Google Analytics 4 — Real Visitor Tracking (Country, Device, Source) -->
+  <!-- 🔴 REPLACE "G-XXXXXXXXXX" with YOUR actual Measurement ID from analytics.google.com -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+      page_title: 'AffiliPrime Deals',
+      page_location: window.location.href,
+      send_page_view: true
+    });
+    // Track affiliate link clicks as GA4 events
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a[href*="amazon.com"]');
+      if (link && typeof gtag !== 'undefined') {
+        gtag('event', 'affiliate_click', {
+          event_category: 'Amazon',
+          event_label: link.href,
+          value: 1
+        });
+      }
+    });
+  </script>
+
   <!-- Open Graph / Facebook / WhatsApp Preview Cards -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zainimranhameed-png.github.io/affiliprime-deals/">
